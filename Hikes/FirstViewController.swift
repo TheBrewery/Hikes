@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HikeCollectionViewCell: UICollectionViewCell {
-    
+    @IBOutlet weak var imageView: UIImageView?
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var subtitleLabel: UILabel?
+    @IBOutlet weak var rightLabel: UILabel?
 }
 
 class FirstViewController: UICollectionViewController {
@@ -17,7 +21,6 @@ class FirstViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.registerClass(HikeCollectionViewCell.self, forCellWithReuseIdentifier: HikeCollectionViewCellIdentifier)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,12 +31,17 @@ class FirstViewController: UICollectionViewController {
     // Mark - UICollectionViewDataSource
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 190
+        return Realm().objects(Hike).count
     }
         
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(HikeCollectionViewCellIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(HikeCollectionViewCellIdentifier, forIndexPath: indexPath) as! HikeCollectionViewCell
+        let hike = Realm().objects(Hike)[indexPath.row]
+        cell.titleLabel!.text = hike.name
+        cell.subtitleLabel!.text = hike.locality
+        cell.rightLabel!.text = String(format: "%.1f mi", hike.distance/1.6)
+        cell.contentView.backgroundColor = UIColor.purpleColor()
         return cell
     }
 }

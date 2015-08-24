@@ -9,38 +9,53 @@
 import Foundation
 import RealmSwift
 
-//    http://assets.hike.io/hike-images/
+private let baseImageUrlString = "http://assets.hike.io/hike-images/"
 // small, medium, large.jpg
+
+enum ImageSize: Int {
+    case Small
+    case Medium
+    case Large
+}
 
 enum ImageType: String {
     case Generic = "Generic"
     case Facts = "Facts"
     case Landscape = "Landscape"
-    case Preview = "Previce"
+    case Preview = "Preview"
 }
+
+private var _mapping: [String: String] = {
+    return [
+        "identifier" : "id",
+        "type": "type",
+        "path": "string_id",
+        "width": "width",
+        "height": "height",
+        "descriptionHtml": "alt",
+        "attributionUrlString": "attribution_link"]
+    }()
 
 class Image : TBObject {
     dynamic var type: String = ImageType.Generic.rawValue
     dynamic var path: String = ""
-    dynamic var descriptionString: String = ""
+    dynamic var descriptionHtml: String = ""
     dynamic var width: Float = 0.0
     dynamic var height: Float = 0.0
     dynamic var attributionUrlString: String = ""
     
-    convenience init(imageType: ImageType, dictionary: [String: AnyObject]) {
-        self.init()
-        type = imageType.rawValue
-        identifier = String(dictionary["id"] as! Int)
-        path = dictionary["string_id"] as! String
-        width = dictionary["width"] as! Float
-        height = dictionary["height"] as! Float
-        
-        if let _descriptionString = dictionary["alt"] as? String {
-            descriptionString = _descriptionString
-        }
-        
-        if let _attributionUrlString = dictionary["attribution_link"] as? String {
-            attributionUrlString = _attributionUrlString
+    override class func mapping() -> [String: String] {
+        return _mapping
+    }
+    
+    func urlForImageSize (size: ImageSize = ImageSize.Medium) -> NSURL {
+        switch size {
+        case .Small:
+            return NSURL(string: "\(baseImageUrlString)\(self.path)/small.jpg")!
+        case .Large:
+            return NSURL(string: "\(baseImageUrlString)\(self.path)/large.jpg")!
+        default:
+            return NSURL(string: "\(baseImageUrlString)\(self.path)/medium.jpg")!
         }
     }
 }

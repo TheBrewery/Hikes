@@ -9,6 +9,27 @@
 import Foundation
 import RealmSwift
 
+private let ImagesRemoteKey = "ImagesRemoteKey"
+
+private var _mapping: [String: String] = {
+    return [
+        "identifier" : "id",
+        "slug": "string_id",
+        "name": "name",
+        "locality": "locality",
+        "distance": "distance",
+        "elevationGain": "elevation_gain",
+        "elevationMax": "elevation_max",
+        "descriptionHtml": "description",
+        "permitInfo": "permit",
+        "isFeatured": "featured",
+        "lat": "location.latitude",
+        "lng": "location.longitude",
+        "creationDate": "creation_time",
+        "editDate": "edit_time",
+        "images": ImagesRemoteKey]
+}()
+
 class Hike: TBObject {
     dynamic var slug: String = ""
     dynamic var name: String = ""
@@ -17,52 +38,45 @@ class Hike: TBObject {
     dynamic var distance: Double = 0.0
     dynamic var elevationGain: Double = 0.0
     dynamic var elevationMax: Double = 0.0
-    dynamic var creationTime: NSDate = NSDate(timeIntervalSince1970: 0)
-    dynamic var editTime: NSDate = NSDate(timeIntervalSince1970: 0)
+    dynamic var creationDate: NSDate = NSDate(timeIntervalSince1970: 0)
+    dynamic var editDate: NSDate = NSDate(timeIntervalSince1970: 0)
     dynamic var permitInfo: String = ""
     dynamic var isFeatured: Bool = false
     dynamic var lat: Double = 0.0
     dynamic var lng: Double = 0.0
     let images = List<Image>()
 
+    override class func mapping() -> [String: String] {
+        return _mapping
+    }
     
-    convenience init(dictionary: [String: AnyObject]) {
-        self.init()
-        identifier = String(dictionary["id"] as! Int)
-        slug = dictionary["string_id"] as! String
-        name = dictionary["name"] as! String
-        locality = dictionary["locality"] as! String
-        distance = dictionary["distance"] as! Double
-        elevationGain = dictionary["elevation_gain"] as! Double
-        elevationMax = dictionary["elevation_max"] as! Double
+    override class func flatten (dictionary: [String: AnyObject]) -> [String: AnyObject] {
+        var mutableDictionary = dictionary
+        var imageDictionaries = [[String: AnyObject]]()
         
-//        Creates a parsing issue
-//        creationTime = dictionary["creation_time"] as! NSDate
-//        editTime = dictionary["edit_time"] as! NSDate
+        let imageTypesByKey = ["photos_generic": ImageType.Generic,
+                                "photo_facts": ImageType.Facts,
+                                "photo_landscape": ImageType.Landscape,
+                                "photo_preview": ImageType.Preview]
         
-        
-        if let _descriptionHtml = dictionary["description"] as? String {
-            descriptionHtml = _descriptionHtml
+        func addImageMapping (dictionary: [String : AnyObject], type: ImageType) {
+            var mutableImageMapping = Image.map(dictionary)
+            mutableImageMapping["type"] = type.rawValue
+            imageDictionaries.append(mutableImageMapping)
         }
         
-        if let _permitInfo = dictionary["permit"] as? String {
-            permitInfo = _permitInfo
-        }
-
-        if let _isFeatured = dictionary["featured"] as? Bool {
-            isFeatured = _isFeatured
-        }
-        
-        if let locationDictionary = dictionary["location"] as? [String: AnyObject] {
-            lat = locationDictionary["latitude"] as! Double
-            lng = locationDictionary["longitude"] as! Double
-        }
-        
-        if let imageDictionaries = dictionary["photos_generic"] as? [[String: AnyObject]] {
-            for imageDictionary in imageDictionaries {
-                let image = Image(imageType: ImageType.Generic, dictionary: imageDictionary)
-                images.append(image)
+        for (key, type) in imageTypesByKey {
+            if let dictionaries = mutableDictionary[key] as? [[String: AnyObject]] {
+                for dictionary in dictionaries {
+                    addImageMapping(dictionary, type)
+                }
+            } else if let dictionary = mutableDictionary[key] as? [String: AnyObject] {
+                addImageMapping(dictionary, type)
             }
         }
+        
+        mutableDictionary[ImagesRemoteKey] = imageDictionaries
+        
+        return mutableDictionary
     }
 }
