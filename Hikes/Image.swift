@@ -51,11 +51,11 @@ class Image : TBObject {
     func urlForImageSize (size: ImageSize = ImageSize.Medium) -> NSURL {
         switch size {
         case .Small:
-            return NSURL(string: "\(baseImageUrlString)\(self.path)/small.jpg")!
+            return NSURL(string: "\(baseImageUrlString)\(self.path)-small.jpg")!
         case .Large:
-            return NSURL(string: "\(baseImageUrlString)\(self.path)/large.jpg")!
+            return NSURL(string: "\(baseImageUrlString)\(self.path)-large.jpg")!
         default:
-            return NSURL(string: "\(baseImageUrlString)\(self.path)/medium.jpg")!
+            return NSURL(string: "\(baseImageUrlString)\(self.path)-medium.jpg")!
         }
     }
 }

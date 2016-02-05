@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01D3C6889F62F5590AAFB5C2 /* Pods_Hikes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0742EA245428C9CC65C42AC2 /* Pods_Hikes.framework */; };
+		0D4E3B901C64589200E24F99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D4E3B8F1C64589200E24F99 /* Images.xcassets */; };
 		0D6AE3201B85A0E0000B0A07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */; };
-		0D6AE3221B85A0E0000B0A07 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3211B85A0E0000B0A07 /* FirstViewController.swift */; };
-		0D6AE3241B85A0E0000B0A07 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3231B85A0E0000B0A07 /* SecondViewController.swift */; };
+		0D6AE3221B85A0E0000B0A07 /* HikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */; };
 		0D6AE3271B85A0E0000B0A07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AE3251B85A0E0000B0A07 /* Main.storyboard */; };
-		0D6AE3291B85A0E0000B0A07 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AE3281B85A0E0000B0A07 /* Images.xcassets */; };
 		0D6AE32C1B85A0E0000B0A07 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AE32A1B85A0E0000B0A07 /* LaunchScreen.xib */; };
 		0D6AE3381B85A0E0000B0A07 /* HikesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */; };
+		0D99240B1C63EEF20009027D /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D99240A1C63EEF20009027D /* FontAwesome.otf */; };
 		0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A381B85B775008F6246 /* Realm.framework */; };
 		0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A391B85B775008F6246 /* RealmSwift.framework */; };
 		0DE33A3C1B85B82F008F6246 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A331B85B1F7008F6246 /* Alamofire.framework */; };
@@ -34,17 +35,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0742EA245428C9CC65C42AC2 /* Pods_Hikes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hikes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D4E3B8F1C64589200E24F99 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0D6AE31A1B85A0E0000B0A07 /* Hikes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hikes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6AE31E1B85A0E0000B0A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0D6AE3211B85A0E0000B0A07 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		0D6AE3231B85A0E0000B0A07 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesViewController.swift; sourceTree = "<group>"; };
 		0D6AE3261B85A0E0000B0A07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0D6AE3281B85A0E0000B0A07 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0D6AE32B1B85A0E0000B0A07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0D6AE3311B85A0E0000B0A07 /* HikesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HikesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6AE3361B85A0E0000B0A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesTests.swift; sourceTree = "<group>"; };
+		0D99240A1C63EEF20009027D /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		0DE33A331B85B1F7008F6246 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0DE33A381B85B775008F6246 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		0DE33A391B85B775008F6246 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
@@ -52,6 +54,8 @@
 		0DE33A3F1B85C03F008F6246 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		0DE33A411B85C0A0008F6246 /* hikes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hikes.json; sourceTree = "<group>"; };
 		0DE33A431B85C627008F6246 /* TBObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBObject.swift; sourceTree = "<group>"; };
+		6F4031A0A68D5FBA2EC8E72E /* Pods-Hikes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hikes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.debug.xcconfig"; sourceTree = "<group>"; };
+		CB8102FD706F2D8A9A88B085 /* Pods-Hikes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hikes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 				0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */,
 				0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */,
 				0DE33A3C1B85B82F008F6246 /* Alamofire.framework in Frameworks */,
+				01D3C6889F62F5590AAFB5C2 /* Pods_Hikes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +87,7 @@
 				0D6AE3341B85A0E0000B0A07 /* HikesTests */,
 				0D6AE31B1B85A0E0000B0A07 /* Products */,
 				42595D21F1D327D21D5277F3 /* Frameworks */,
+				7DBC78872B717CC79ED2CA77 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,14 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */,
-				0D6AE3211B85A0E0000B0A07 /* FirstViewController.swift */,
-				0D6AE3231B85A0E0000B0A07 /* SecondViewController.swift */,
+				0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */,
 				0DE33A3D1B85BBC7008F6246 /* Hike.swift */,
 				0DE33A431B85C627008F6246 /* TBObject.swift */,
 				0DE33A3F1B85C03F008F6246 /* Image.swift */,
 				0D6AE3251B85A0E0000B0A07 /* Main.storyboard */,
-				0D6AE3281B85A0E0000B0A07 /* Images.xcassets */,
 				0D6AE32A1B85A0E0000B0A07 /* LaunchScreen.xib */,
+				0D4E3B8F1C64589200E24F99 /* Images.xcassets */,
+				0D99240A1C63EEF20009027D /* FontAwesome.otf */,
 				0DE33A411B85C0A0008F6246 /* hikes.json */,
 				0D6AE31D1B85A0E0000B0A07 /* Supporting Files */,
 			);
@@ -143,8 +149,18 @@
 				0DE33A381B85B775008F6246 /* Realm.framework */,
 				0DE33A391B85B775008F6246 /* RealmSwift.framework */,
 				0DE33A331B85B1F7008F6246 /* Alamofire.framework */,
+				0742EA245428C9CC65C42AC2 /* Pods_Hikes.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DBC78872B717CC79ED2CA77 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6F4031A0A68D5FBA2EC8E72E /* Pods-Hikes.debug.xcconfig */,
+				CB8102FD706F2D8A9A88B085 /* Pods-Hikes.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,10 +170,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D6AE33B1B85A0E0000B0A07 /* Build configuration list for PBXNativeTarget "Hikes" */;
 			buildPhases = (
+				CBAA30731FBD7D816880DA2C /* Check Pods Manifest.lock */,
 				0D6AE3161B85A0DF000B0A07 /* Sources */,
 				0D6AE3171B85A0DF000B0A07 /* Frameworks */,
 				0D6AE3181B85A0DF000B0A07 /* Resources */,
-				0DE33A371B85B4EC008F6246 /* ShellScript */,
+				B0529B87B033019109C5D1F9 /* Embed Pods Frameworks */,
+				F9591FC7292581B976E1C3B5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -192,11 +210,13 @@
 		0D6AE3121B85A0DF000B0A07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "The Brewery";
 				TargetAttributes = {
 					0D6AE3191B85A0DF000B0A07 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = XL7WH63756;
 					};
 					0D6AE3301B85A0E0000B0A07 = {
 						CreatedOnToolsVersion = 6.4;
@@ -229,9 +249,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D6AE3271B85A0E0000B0A07 /* Main.storyboard in Resources */,
+				0D4E3B901C64589200E24F99 /* Images.xcassets in Resources */,
+				0D99240B1C63EEF20009027D /* FontAwesome.otf in Resources */,
 				0D6AE32C1B85A0E0000B0A07 /* LaunchScreen.xib in Resources */,
 				0DE33A421B85C0A0008F6246 /* hikes.json in Resources */,
-				0D6AE3291B85A0E0000B0A07 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,21 +266,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0DE33A371B85B4EC008F6246 /* ShellScript */ = {
+		B0529B87B033019109C5D1F9 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 			);
+			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hikes/Pods-Hikes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBAA30731FBD7D816880DA2C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F9591FC7292581B976E1C3B5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hikes/Pods-Hikes-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -268,10 +318,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D6AE3241B85A0E0000B0A07 /* SecondViewController.swift in Sources */,
 				0D6AE3201B85A0E0000B0A07 /* AppDelegate.swift in Sources */,
 				0DE33A3E1B85BBC7008F6246 /* Hike.swift in Sources */,
-				0D6AE3221B85A0E0000B0A07 /* FirstViewController.swift in Sources */,
+				0D6AE3221B85A0E0000B0A07 /* HikesViewController.swift in Sources */,
 				0DE33A441B85C627008F6246 /* TBObject.swift in Sources */,
 				0DE33A401B85C03F008F6246 /* Image.swift in Sources */,
 			);
@@ -398,8 +447,11 @@
 		};
 		0D6AE33C1B85A0E0000B0A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F4031A0A68D5FBA2EC8E72E /* Pods-Hikes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -407,13 +459,18 @@
 				INFOPLIST_FILE = Hikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		0D6AE33D1B85A0E0000B0A07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB8102FD706F2D8A9A88B085 /* Pods-Hikes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -421,6 +478,8 @@
 				INFOPLIST_FILE = Hikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

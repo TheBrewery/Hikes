@@ -67,15 +67,19 @@ class TBObject: Object {
         if let mapping = self.mapping() {
             let flattenedDictionary = self.flatten(dictionary)
             
-            let classSchema = Realm().schema[className()]!
-            for (propertyName, keypath) in mapping {
-                let propertyType = classSchema[propertyName]!.type
-                
-                if let value: AnyObject = (flattenedDictionary as NSDictionary).valueForKeyPath(keypath) {
-                    if let transformedValue: AnyObject = transformedValue(propertyType, value) {
-                        _map[propertyName] = transformedValue
+            do {
+                let classSchema = try Realm().schema[className()]!
+                for (propertyName, keypath) in mapping {
+                    let propertyType = classSchema[propertyName]!.type
+                    
+                    if let value: AnyObject = (flattenedDictionary as NSDictionary).valueForKeyPath(keypath) {
+                        if let transformedValue: AnyObject = transformedValue(propertyType, object: value) {
+                            _map[propertyName] = transformedValue
+                        }
                     }
                 }
+            } catch {
+                
             }
         }
         return _map

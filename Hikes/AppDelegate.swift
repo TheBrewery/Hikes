@@ -17,15 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         if let path = NSBundle.mainBundle().pathForResource("hikes", ofType: "json") {
-            if let jsonData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil) {
-                if let jsonResult = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments, error: nil) as? [[String: AnyObject]] {
-                    let _realm = Realm()
-                    for dictionary in jsonResult {
-                        _realm.write({
-                            _realm.create(Hike.self, value: Hike.map(dictionary), update: true)
-                        })
-                    }
+            do {
+                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                let jsonResult = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! [[String: AnyObject]]
+                
+                let _realm = try Realm()
+                for dictionary in jsonResult {
+                    try _realm.write({
+                        _realm.create(Hike.self, value: Hike.map(dictionary), update: true)
+                    })
                 }
+            } catch {
+                print("LOAD ERROR")
             }
         }
         

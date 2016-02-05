@@ -68,10 +68,10 @@ class Hike: TBObject {
         for (key, type) in imageTypesByKey {
             if let dictionaries = mutableDictionary[key] as? [[String: AnyObject]] {
                 for dictionary in dictionaries {
-                    addImageMapping(dictionary, type)
+                    addImageMapping(dictionary, type: type)
                 }
             } else if let dictionary = mutableDictionary[key] as? [String: AnyObject] {
-                addImageMapping(dictionary, type)
+                addImageMapping(dictionary, type: type)
             }
         }
         
