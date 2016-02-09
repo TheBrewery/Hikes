@@ -21,6 +21,7 @@ private var _mapping: [String: String] = {
         "elevationGain": "elevation_gain",
         "elevationMax": "elevation_max",
         "descriptionHtml": "description",
+        "strippedDescription": "stripped_description",
         "permitInfo": "permit",
         "isFeatured": "featured",
         "lat": "location.latitude",
@@ -30,10 +31,18 @@ private var _mapping: [String: String] = {
         "images": ImagesRemoteKey]
 }()
 
+extension String {
+    func stringByStrippingHTML() -> String {
+        let string = self.stringByReplacingOccurrencesOfString("<[^>]*>", withString: "", options: .RegularExpressionSearch, range: nil)
+        return string.stringByReplacingOccurrencesOfString("(\\r|\\n){3,}", withString: "\n\n", options: .RegularExpressionSearch, range: nil)
+    }
+}
+
 class Hike: TBObject {
     dynamic var slug: String = ""
     dynamic var name: String = ""
     dynamic var descriptionHtml: String = ""
+    dynamic var strippedDescription: String = ""
     dynamic var locality: String = ""
     dynamic var distance: Double = 0.0
     dynamic var elevationGain: Double = 0.0
@@ -50,8 +59,11 @@ class Hike: TBObject {
         return _mapping
     }
     
-    override class func flatten (dictionary: [String: AnyObject]) -> [String: AnyObject] {
-        var mutableDictionary = dictionary
+    override class func flattenMap (var dictionary: [String: AnyObject]) -> [String: AnyObject] {
+        if let string = dictionary["description"] as? String {
+            dictionary["stripped_description"] = string.stringByStrippingHTML()
+        }
+        
         var imageDictionaries = [[String: AnyObject]]()
         
         let imageTypesByKey = ["photos_generic": ImageType.Generic,
@@ -66,17 +78,17 @@ class Hike: TBObject {
         }
         
         for (key, type) in imageTypesByKey {
-            if let dictionaries = mutableDictionary[key] as? [[String: AnyObject]] {
+            if let dictionaries = dictionary[key] as? [[String: AnyObject]] {
                 for dictionary in dictionaries {
                     addImageMapping(dictionary, type: type)
                 }
-            } else if let dictionary = mutableDictionary[key] as? [String: AnyObject] {
+            } else if let dictionary = dictionary[key] as? [String: AnyObject] {
                 addImageMapping(dictionary, type: type)
             }
         }
         
-        mutableDictionary[ImagesRemoteKey] = imageDictionaries
+        dictionary[ImagesRemoteKey] = imageDictionaries
         
-        return mutableDictionary
+        return dictionary
     }
 }

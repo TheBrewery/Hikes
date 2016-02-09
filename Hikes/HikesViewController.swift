@@ -19,9 +19,9 @@ enum TBAnimatingSearchBarState {
 }
 
 private let placeholderOffsetX: CGFloat = 4.0
-private let viewHeight: CGFloat = 50.0
+private let viewHeight: CGFloat = 44.0
 
-class TBAnimatingSearchBar: UIView {
+class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
     class TBTextField: UITextField {
         override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
             return CGRectInset(bounds, placeholderOffsetX, 0)
@@ -42,6 +42,23 @@ class TBAnimatingSearchBar: UIView {
     var iconLabel: UILabel!
     var backgroundView: TBControl!
     var textField: TBTextField!
+    
+    private var previousBarState: TBAnimatingSearchBarState = .Floating
+    
+    var barState: TBAnimatingSearchBarState = .Floating {
+        willSet {
+            previousBarState = barState
+        } didSet {
+            guard previousBarState != barState else {
+                return
+            }
+            respondsToContentOffset = barState != .Expanded
+            animateSizeForState(barState)
+        }
+    }
+    
+    var stateChangeDidComplete: ((TBAnimatingSearchBarState) -> ())?
+    var textDidChange: ((String) -> ())?
     
     private var respondsToContentOffset = true
     
@@ -84,6 +101,7 @@ class TBAnimatingSearchBar: UIView {
         textField.textColor = hikesGreen
         textField.returnKeyType = .Search
         textField.userInteractionEnabled = false
+        textField.delegate = self
         
         backgroundView.addSubview(iconLabel)
         backgroundView.addSubview(textField)
@@ -92,6 +110,13 @@ class TBAnimatingSearchBar: UIView {
         addSubview(backgroundView)
         addSubview(statusBarView)
         addSubview(activityIndicator)
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text {
+            textDidChange?(text + string)
+        }
+        return true
     }
     
     func didTap() {
@@ -120,6 +145,8 @@ class TBAnimatingSearchBar: UIView {
     }
 
     func animateSizeForState(barState: TBAnimatingSearchBarState) {
+        self.stateChangeDidComplete?(barState)
+
         guard barState != .Expanded else {
             UIView.animateKeyframesWithDuration(0.35, delay: 0, options: UIViewKeyframeAnimationOptions.CalculationModeCubic, animations: {
                 UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.75) {
@@ -143,12 +170,12 @@ class TBAnimatingSearchBar: UIView {
             }
             return
         }
-
+        
         let expand = barState == .Floating
         
         let animation = CABasicAnimation(keyPath: "cornerRadius")
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        animation.fromValue = expand ? viewHeight/2.0 : 3.0
+        animation.fromValue = backgroundView.layer.cornerRadius
         animation.toValue = expand ? 3.0 : viewHeight/2.0
         animation.duration = 0.15
         backgroundView.layer.addAnimation(animation, forKey: "cornerRadius")
@@ -163,21 +190,7 @@ class TBAnimatingSearchBar: UIView {
             self.backgroundView.frame = CGRect(x: 20, y: 40, width: width, height: viewHeight)
             self.textField.frame.origin.x = self.iconLabel.frame.maxX - placeholderOffsetX
             self.textField.alpha = CGFloat(expand)
-            }, completion: nil)
-    }
-    
-    private var previousBarState: TBAnimatingSearchBarState = .Floating
-    
-    var barState: TBAnimatingSearchBarState = .Floating {
-        willSet {
-            previousBarState = barState
-        } didSet {
-            guard previousBarState != barState else {
-                return
-            }
-            respondsToContentOffset = barState != .Expanded
-            animateSizeForState(barState)
-        }
+        }, completion: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -194,6 +207,7 @@ class HikeCollectionViewCell: UICollectionViewCell {
 
 class HikesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     let HikeCollectionViewCellIdentifier = "HikeCollectionViewCell"
+    let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
     var animatingSearchBar: TBAnimatingSearchBar!
     
     @IBOutlet var collectionView: UICollectionView!
@@ -203,6 +217,40 @@ class HikesViewController: UIViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         
         animatingSearchBar = TBAnimatingSearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
+        animatingSearchBar.stateChangeDidComplete = { (state) in
+            guard let child = self.childViewControllers.first else {
+                if state != TBAnimatingSearchBarState.Expanded {
+                    return
+                }
+                
+                self.searchViewController.willMoveToParentViewController(self)
+                self.view.addSubview(self.searchViewController.view)
+                self.searchViewController.view.frame = CGRectOffset(self.searchViewController.view.frame, 0, self.searchViewController.view.frame.height)
+                self.addChildViewController(self.searchViewController)
+                self.searchViewController.didMoveToParentViewController(self.searchViewController)
+                
+                UIView.animateWithDuration(0.35, animations: { () -> Void in
+                    self.searchViewController.view.frame = CGRectOffset(self.searchViewController.view.frame, 0, -self.searchViewController.view.frame.height + 64)
+                    })
+                
+                self.animatingSearchBar.textDidChange = { (text) in
+                    self.searchViewController.refreshSearchResults(text)
+                }
+
+                return
+            }
+            
+            child.willMoveToParentViewController(nil)
+            UIView.animateWithDuration(0.35, animations: { () -> Void in
+                child.view.frame = CGRectOffset(child.view.frame, 0, child.view.frame.height)
+                }, completion: { (finished) in
+
+                    child.view.removeFromSuperview()
+                    child.removeFromParentViewController()
+                    child.didMoveToParentViewController(nil)
+            })
+        }
+        
         view.addSubview(animatingSearchBar)
         
         navigationController?.navigationBarHidden = true

@@ -57,7 +57,11 @@ class TBObject: Object {
         return nil
     }
     
-    class func flatten (dictionary: [String: AnyObject]) -> [String: AnyObject] {
+    class func flattenMap (dictionary: [String: AnyObject]) -> [String: AnyObject] {
+        return dictionary
+    }
+    
+    class func transform (dictionary: [String: AnyObject]) -> [String: AnyObject] {
         return dictionary
     }
     
@@ -65,8 +69,8 @@ class TBObject: Object {
         var _map = [String: AnyObject]()
         
         if let mapping = self.mapping() {
-            let flattenedDictionary = self.flatten(dictionary)
-            
+            let flattenedDictionary = self.flattenMap(dictionary)
+
             do {
                 let classSchema = try Realm().schema[className()]!
                 for (propertyName, keypath) in mapping {

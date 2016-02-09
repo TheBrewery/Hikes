@@ -22,6 +22,8 @@
 		0DE33A401B85C03F008F6246 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE33A3F1B85C03F008F6246 /* Image.swift */; };
 		0DE33A421B85C0A0008F6246 /* hikes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DE33A411B85C0A0008F6246 /* hikes.json */; };
 		0DE33A441B85C627008F6246 /* TBObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE33A431B85C627008F6246 /* TBObject.swift */; };
+		0DE811711C64F14000D4B446 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE811701C64F14000D4B446 /* SearchViewController.swift */; };
+		0DE811731C6555A900D4B446 /* HikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE811721C6555A900D4B446 /* HikeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		0DE33A3F1B85C03F008F6246 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		0DE33A411B85C0A0008F6246 /* hikes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hikes.json; sourceTree = "<group>"; };
 		0DE33A431B85C627008F6246 /* TBObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBObject.swift; sourceTree = "<group>"; };
+		0DE811701C64F14000D4B446 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0DE811721C6555A900D4B446 /* HikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikeViewController.swift; sourceTree = "<group>"; };
 		6F4031A0A68D5FBA2EC8E72E /* Pods-Hikes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hikes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.debug.xcconfig"; sourceTree = "<group>"; };
 		CB8102FD706F2D8A9A88B085 /* Pods-Hikes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hikes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +109,8 @@
 			children = (
 				0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */,
 				0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */,
+				0DE811701C64F14000D4B446 /* SearchViewController.swift */,
+				0DE811721C6555A900D4B446 /* HikeViewController.swift */,
 				0DE33A3D1B85BBC7008F6246 /* Hike.swift */,
 				0DE33A431B85C627008F6246 /* TBObject.swift */,
 				0DE33A3F1B85C03F008F6246 /* Image.swift */,
@@ -318,6 +324,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DE811711C64F14000D4B446 /* SearchViewController.swift in Sources */,
+				0DE811731C6555A900D4B446 /* HikeViewController.swift in Sources */,
 				0D6AE3201B85A0E0000B0A07 /* AppDelegate.swift in Sources */,
 				0DE33A3E1B85BBC7008F6246 /* Hike.swift in Sources */,
 				0D6AE3221B85A0E0000B0A07 /* HikesViewController.swift in Sources */,
