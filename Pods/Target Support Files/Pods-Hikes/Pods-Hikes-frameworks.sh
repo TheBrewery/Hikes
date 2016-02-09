@@ -87,13 +87,17 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Hikes/Alamofire.framework"
   install_framework "Pods-Hikes/AlamofireImage.framework"
   install_framework "Pods-Hikes/ObjectMapper.framework"
+  install_framework "Pods-Hikes/RBQFetchedResultsController.framework"
   install_framework "Pods-Hikes/Realm.framework"
+  install_framework "Pods-Hikes/RealmSearchViewController.framework"
   install_framework "Pods-Hikes/RealmSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Hikes/Alamofire.framework"
   install_framework "Pods-Hikes/AlamofireImage.framework"
   install_framework "Pods-Hikes/ObjectMapper.framework"
+  install_framework "Pods-Hikes/RBQFetchedResultsController.framework"
   install_framework "Pods-Hikes/Realm.framework"
+  install_framework "Pods-Hikes/RealmSearchViewController.framework"
   install_framework "Pods-Hikes/RealmSwift.framework"
 fi
