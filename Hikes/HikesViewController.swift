@@ -110,13 +110,12 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
         addSubview(backgroundView)
         addSubview(statusBarView)
         addSubview(activityIndicator)
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text {
-            textDidChange?(text + string)
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
+            if let textField = notification.object as? UITextField {
+                self.textDidChange?(textField.text!)
+            }
         }
-        return true
     }
     
     func didTap() {
@@ -207,48 +206,50 @@ class HikeCollectionViewCell: UICollectionViewCell {
 
 class HikesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     let HikeCollectionViewCellIdentifier = "HikeCollectionViewCell"
-    let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+
     var animatingSearchBar: TBAnimatingSearchBar!
     
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
     
+    
+    let dataSource = HikesDataSource()
+    
+    lazy var searchViewController: SearchViewController = {
+        let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController")
+        let searchView = searchViewController.view
+        searchViewController.willMoveToParentViewController(self)
+        self.view.addSubview(searchView)
+        searchView.frame = CGRectInset(UIScreen.mainScreen().bounds, 0, 32)
+        searchView.frame.origin.y = self.view.frame.maxY
+        searchView.alpha = 0
+        self.addChildViewController(searchViewController)
+        searchViewController.didMoveToParentViewController(searchViewController)
+        return searchViewController as! SearchViewController
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         animatingSearchBar = TBAnimatingSearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
+        
+        animatingSearchBar.textDidChange = { (text) in
+            self.searchViewController.searchText = text
+        }
+        
         animatingSearchBar.stateChangeDidComplete = { (state) in
-            guard let child = self.childViewControllers.first else {
-                if state != TBAnimatingSearchBarState.Expanded {
-                    return
-                }
-                
-                self.searchViewController.willMoveToParentViewController(self)
-                self.view.addSubview(self.searchViewController.view)
-                self.searchViewController.view.frame = CGRectOffset(self.searchViewController.view.frame, 0, self.searchViewController.view.frame.height)
-                self.addChildViewController(self.searchViewController)
-                self.searchViewController.didMoveToParentViewController(self.searchViewController)
-                
+            if state == TBAnimatingSearchBarState.Expanded {
+                self.searchViewController.view.alpha = 1
                 UIView.animateWithDuration(0.35, animations: { () -> Void in
-                    self.searchViewController.view.frame = CGRectOffset(self.searchViewController.view.frame, 0, -self.searchViewController.view.frame.height + 64)
-                    })
-                
-                self.animatingSearchBar.textDidChange = { (text) in
-                    self.searchViewController.refreshSearchResults(text)
-                }
-
-                return
+                    self.searchViewController.view.frame.origin.y = 64
+                })
+            } else if self.searchViewController.view.alpha == 1.0 {
+                UIView.animateWithDuration(0.35, animations: { () -> Void in
+                    self.searchViewController.view.frame.origin.y = self.view.frame.maxY
+                    }, completion: { (finished) in
+                        self.searchViewController.view.alpha = 0
+                })
             }
-            
-            child.willMoveToParentViewController(nil)
-            UIView.animateWithDuration(0.35, animations: { () -> Void in
-                child.view.frame = CGRectOffset(child.view.frame, 0, child.view.frame.height)
-                }, completion: { (finished) in
-
-                    child.view.removeFromSuperview()
-                    child.removeFromParentViewController()
-                    child.didMoveToParentViewController(nil)
-            })
         }
         
         view.addSubview(animatingSearchBar)
@@ -263,30 +264,25 @@ class HikesViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        do {
-            return try Realm().objects(Hike).count
-        } catch {
-            return 0
-        }
+        return dataSource.count
     }
         
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(HikeCollectionViewCellIdentifier, forIndexPath: indexPath) as! HikeCollectionViewCell
         
-        do {
-            let hike = try Realm().objects(Hike)[indexPath.row]
-            cell.titleLabel!.text = hike.name
-            cell.subtitleLabel!.text = hike.locality
-            cell.rightLabel!.text = String(format: "%.1f mi", hike.distance/1.6)
-            
-            if let url = hike.images.first?.urlForImageSize(.Medium) {
-                cell.imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named:"the-narrows")!)
-            }
-            
-            cell.contentView.backgroundColor = UIColor.purpleColor()
-        } catch {
+        guard let hike = dataSource[indexPath] else {
             return cell
         }
+        
+        cell.titleLabel!.text = hike.name
+        cell.subtitleLabel!.text = hike.locality
+        cell.rightLabel!.text = String(format: "%.1f mi", hike.distance/1.6)
+        
+        if let url = hike.images.first?.urlForImageSize(.Medium) {
+            cell.imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named:"the-narrows")!)
+        }
+        
+        cell.contentView.backgroundColor = UIColor.purpleColor()
         
         return cell
     }

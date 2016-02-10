@@ -31,10 +31,67 @@ private var _mapping: [String: String] = {
         "images": ImagesRemoteKey]
 }()
 
-extension String {
-    func stringByStrippingHTML() -> String {
-        let string = self.stringByReplacingOccurrencesOfString("<[^>]*>", withString: "", options: .RegularExpressionSearch, range: nil)
-        return string.stringByReplacingOccurrencesOfString("(\\r|\\n){3,}", withString: "\n\n", options: .RegularExpressionSearch, range: nil)
+protocol TBDataSource {
+    typealias ObjectType
+    typealias ResultType
+    
+    var predicate: NSPredicate? { get set }
+    var sortDescriptors: [SortDescriptor]? { get set }
+    var count: Int { get }
+    subscript(indexPath: NSIndexPath) -> ObjectType? { get }
+    mutating func fetch(completion: ((ResultType?)->())?)
+}
+
+import RealmSwift
+
+struct HikesDataSource: TBDataSource {
+    private var internalObjects: ResultType!
+    
+    // MARK: - Protocol
+    
+    typealias ObjectType = Hike
+    typealias ResultType = Results<Hike>
+    
+    init(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor]? = nil) {
+        self.predicate = predicate
+        self.sortDescriptors = sortDescriptors
+        fetch()
+    }
+    
+    var predicate: NSPredicate?
+    var sortDescriptors: [SortDescriptor]?
+    
+    var count: Int {
+        return internalObjects.count
+    }
+    
+    subscript (indexPath: NSIndexPath) -> ObjectType? {
+        guard internalObjects.indices.contains(indexPath.row) else {
+            return nil
+        }
+        return internalObjects[indexPath.row]
+    }
+    
+    // MARK: - Public
+    
+    mutating func fetch(completion: ((ResultType?)->())? = nil) {
+        do {
+            if let predicate = predicate, let sortDescriptors = sortDescriptors {
+                internalObjects = try Realm().objects(Hike).filter(predicate).sorted(sortDescriptors)
+                completion?(internalObjects)
+            } else if let predicate = predicate {
+                internalObjects = try Realm().objects(Hike).filter(predicate)
+                completion?(internalObjects)
+            } else if let sortDescriptors = sortDescriptors {
+                internalObjects = try Realm().objects(Hike).sorted(sortDescriptors)
+                completion?(internalObjects)
+            } else {
+                internalObjects = try Realm().objects(Hike)
+                completion?(internalObjects)
+            }
+        } catch {
+            completion?(nil)
+        }
     }
 }
 

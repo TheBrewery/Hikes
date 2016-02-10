@@ -10,52 +10,53 @@ import Foundation
 import RealmSwift
 import RBQFetchedResultsController
 
+private func runOnMainThread(block: () -> Void) {
+    if NSThread.isMainThread() {
+        block()
+    } else {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            block()
+        })
+    }
+}
+
 class HikesSearchCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 }
 
 class SearchViewController: UITableViewController {
-    var sortPropertyKey: String? {
+    
+    var dataSource = SearchDataSource()
+    
+    var searchText = String() {
         didSet {
-            self.refreshSearchResults()
+            refreshSearchResults()
         }
     }
     
-    var sortAscending: Bool = true {
-        didSet {
-            self.refreshSearchResults()
-        }
-    }
-    
-    var realmConfiguration: Realm.Configuration {
-        set {
-            self.internalConfiguration = newValue
-        }
-        get {
-            if let configuration = self.internalConfiguration {
-                return configuration
-            }
-            
-            return Realm.Configuration.defaultConfiguration
-        }
-    }
-    
-    /// The Realm in which the given entity resides in
-    var realm: Realm {
-        return try! Realm(configuration: self.realmConfiguration)
-    }
+    private let searchQueue: NSOperationQueue = {
+        let queue = NSOperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+
     
     // MARK: Methods
     
     /// Performs the search again with the current text input and base predicate
-    func refreshSearchResults(searchString: String? = nil) {
-        let predicate = self.searchPredicate(searchString)
+    func refreshSearchResults() {
+        self.dataSource.searchText = searchText
         
         let searchOperation = NSBlockOperation { [weak self] () -> Void in
-            
             if let strongSelf = self {
-                strongSelf.updateFetchedResultsController(predicate)
+                strongSelf.dataSource.fetch()
+                
+                if strongSelf.isViewLoaded() {
+                    runOnMainThread({ [weak strongSelf] () -> Void in
+                        strongSelf?.tableView.reloadData()
+                    })
+                }
             }
         }
         
@@ -78,159 +79,132 @@ class SearchViewController: UITableViewController {
         
         self.refreshSearchResults()
     }
-    
-    // MARK: Private
-    
-    private var internalConfiguration: Realm.Configuration?
-    
-    private let searchQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-    
-    private lazy var fetchedResultsController: RBQFetchedResultsController = {
-        let controller = RBQFetchedResultsController()
-        return controller
-    }()
-    
-    private var rlmRealm: RLMRealm {
-        let configuration = self.toRLMConfiguration(self.realmConfiguration)
-        return try! RLMRealm(configuration: configuration)
+}
+
+extension Hike {
+    func titleForSearchText(searchText: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: name.capitalizedString)
+        
+        do {
+            let regex = try NSRegularExpression(pattern: searchText, options: NSRegularExpressionOptions.CaseInsensitive)
+            for match in regex.matchesInString(name, options: NSMatchingOptions.ReportCompletion, range: NSMakeRange(0, name.characters.count)) {
+                attributedString.addAttributes([NSBackgroundColorAttributeName : UIColor.yellowColor()], range: match.range)
+            }
+            
+        } catch {
+            
+        }
+        return attributedString
     }
     
-    private func updateFetchedResultsController(predicate: NSPredicate?) {
-        if let fetchRequest = self.searchFetchRequest("Hike", inRealm: self.rlmRealm, predicate: predicate, sortPropertyKey: self.sortPropertyKey, sortAscending: self.sortAscending) {
-            
-            self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: nil, andPeformFetch: true)
-            
-            if self.isViewLoaded() {
-                self.runOnMainThread({ [weak self] () -> Void in
-                    self?.tableView.reloadData()
-                    })
+    func descriptionForSearchText(searchText: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: strippedDescription)
+        
+        do {
+            let regex = try NSRegularExpression(pattern: searchText, options: NSRegularExpressionOptions.CaseInsensitive)
+            for match in regex.matchesInString(strippedDescription, options: NSMatchingOptions.ReportCompletion, range: NSMakeRange(0, strippedDescription.characters.count)) {
+                attributedString.addAttributes([NSBackgroundColorAttributeName : UIColor.yellowColor()], range: match.range)
             }
+            
+        } catch {
+            
+        }
+        return attributedString
+    }
+}
+
+struct SearchDataSource: TBDataSource {
+    private var internalObjects: ResultType!
+    
+    // MARK: - Protocol
+    
+    typealias ObjectType = (titleAttributedString: NSAttributedString, descriptionAttributedString: NSAttributedString)
+    typealias ResultType = [(titleAttributedString: NSAttributedString, descriptionAttributedString: NSAttributedString)]
+    
+    init(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor]? = nil) {
+        self.predicate = predicate
+        self.sortDescriptors = sortDescriptors
+        fetch()
+    }
+    
+    var predicate: NSPredicate?
+    var sortDescriptors: [SortDescriptor]?
+    var searchText = "" {
+        didSet {
+            predicate = searchPredicate(searchText)
         }
     }
+    
+    var count: Int {
+        return internalObjects.count
+    }
+    
+    subscript (indexPath: NSIndexPath) -> ObjectType? {
+        guard internalObjects.indices.contains(indexPath.row) else {
+            return nil
+        }
+        return internalObjects[indexPath.row]
+    }
+    
+    // MARK: Private
     
     private func searchPredicate(text: String?) -> NSPredicate? {
         guard let searchText = text where !searchText.isEmpty else {
             return nil
         }
         return NSPredicate(format: "name contains[c] %@ OR descriptionHtml contains[c] %@", argumentArray: [searchText, searchText])
-
-        
-//            let nameExpression = NSExpression(forKeyPath: "name")
-//            let decriptionHtmlExpression = NSExpression(forKeyPath: "descriptonHtml")
-//            let textExpression = NSExpression(forConstantValue: text)
-//            
-//            let operatorType = NSPredicateOperatorType.ContainsPredicateOperatorType
-//            
-//            let options = NSComparisonPredicateOptions.CaseInsensitivePredicateOption
-            
-//            let namePredicate =
-//            NSComparisonPredicate(leftExpression: nameExpression, rightExpression: text, modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: operatorType, options: options)
-//            let namePredicate = NSComparisonPredicate(leftExpression: leftExpression, rightExpression: rightExpression, modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: operatorType, options: options)
-//            
-//            
-//            if (self.basePredicate != nil) {
-//                
-//                let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [self.basePredicate!, filterPredicate])
-//                
-//                return compoundPredicate
-//            }
-            
-//            return filterPredicate
     }
     
-    private func searchFetchRequest(entityName: String?, inRealm realm: RLMRealm?, predicate: NSPredicate?, sortPropertyKey: String?, sortAscending: Bool) -> RBQFetchRequest? {
-        
-        if entityName != nil && realm != nil {
-            
-            let fetchRequest = RBQFetchRequest(entityName: entityName!, inRealm: realm!, predicate: predicate)
-            
-            if (sortPropertyKey != nil) {
-                
-                let sort = RLMSortDescriptor(property: sortPropertyKey!, ascending: sortAscending)
-                
-                fetchRequest.sortDescriptors = [sort]
+    // MARK: - Public
+    
+    mutating func fetch(completion: ((ResultType?)->())? = nil) {
+        do {
+            var fetchedObjects: Results<Hike>
+            if let predicate = predicate, let sortDescriptors = sortDescriptors {
+                fetchedObjects = try Realm().objects(Hike).filter(predicate).sorted(sortDescriptors)
+            } else if let predicate = predicate {
+                fetchedObjects = try Realm().objects(Hike).filter(predicate)
+            } else if let sortDescriptors = sortDescriptors {
+                fetchedObjects = try Realm().objects(Hike).sorted(sortDescriptors)
+            } else {
+                fetchedObjects = try Realm().objects(Hike)
             }
             
-            return fetchRequest
-        }
-        
-        return nil
-    }
-    
-    private func toRLMConfiguration(configuration: Realm.Configuration) -> RLMRealmConfiguration {
-        let rlmConfiguration = RLMRealmConfiguration()
-        
-        if (configuration.path != nil) {
-            rlmConfiguration.path = configuration.path
-        }
-        
-        if (configuration.inMemoryIdentifier != nil) {
-            rlmConfiguration.inMemoryIdentifier = configuration.inMemoryIdentifier
-        }
-        
-        rlmConfiguration.encryptionKey = configuration.encryptionKey
-        rlmConfiguration.readOnly = configuration.readOnly
-        rlmConfiguration.schemaVersion = configuration.schemaVersion
-        return rlmConfiguration
-    }
-    
-    private func runOnMainThread(block: () -> Void) {
-        if NSThread.isMainThread() {
-            block()
-        }
-        else {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                block()
+            internalObjects = fetchedObjects.map({ (hike) -> (titleAttributedString: NSAttributedString, descriptionAttributedString: NSAttributedString) in
+                return (hike.titleForSearchText(searchText), hike.descriptionForSearchText(searchText))
             })
+            
+            completion?(internalObjects)
+
+        } catch {
+            completion?(nil)
         }
     }
 }
 
 // MARK: UITableViewDelegate
+
 extension SearchViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 128.0
     }
-    
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-//        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Object
-        
-//        self.resultsDelegate.searchViewController(self, willSelectObject: object, atIndexPath: indexPath)
-        
-        return indexPath
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-//        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Object
-        
-//        self.resultsDelegate.searchViewController(self, didSelectObject: object, atIndexPath: indexPath)
-    }
 }
 
 // MARK: UITableViewControllerDataSource
+
 extension SearchViewController {
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.fetchedResultsController.numberOfSections()
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.fetchedResultsController.numberOfRowsForSectionIndex(section)
+        return self.dataSource.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("HikeSearchCell", forIndexPath: indexPath) as! HikesSearchCell
 
-        if let hike = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Hike {
-            cell.titleLabel.text = hike.name.capitalizedString
-            cell.descriptionLabel.text = hike.strippedDescription
+        if let data = dataSource[indexPath] {
+            cell.titleLabel.attributedText = data.titleAttributedString
+            cell.descriptionLabel.attributedText = data.descriptionAttributedString
         }
-            
+        
         return cell
     }
 }
