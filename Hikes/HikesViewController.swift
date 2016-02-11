@@ -3,10 +3,10 @@ import RealmSwift
 import AlamofireImage
 
 class HikeCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var imageView: UIImageView?
-    @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var subtitleLabel: UILabel?
-    @IBOutlet weak var rightLabel: UILabel?
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var rightLabel: UILabel!
 }
 
 class HikesViewController: UIViewController {
@@ -65,6 +65,20 @@ class HikesViewController: UIViewController {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         animatingSearchBar.contentOffsetDidChange(scrollView.contentOffset)
+        
+        for cell in self.collectionView.visibleCells() as! [HikeCollectionViewCell] {
+    
+            let bounds = self.collectionView.bounds
+            let boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+            let cellCenter = cell.center
+            let offsetFromCenter = CGPointMake(boundsCenter.x - cellCenter.x, boundsCenter.y - cellCenter.y)
+            
+            let cellSize = cell.bounds.size
+            let maxVerticalOffset = (bounds.size.height / 2) + (cellSize.height / 2)
+            let scaleFactor = 25.0 / maxVerticalOffset
+            
+            cell.imageView.frame.origin.y = -offsetFromCenter.y * scaleFactor - 25.0
+        }
     }
 }
 
