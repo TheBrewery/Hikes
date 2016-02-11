@@ -16,6 +16,7 @@
 		0D6AE3381B85A0E0000B0A07 /* HikesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */; };
 		0D99240B1C63EEF20009027D /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D99240A1C63EEF20009027D /* FontAwesome.otf */; };
 		0DBC11061C6BD1270057C7F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11051C6BD1270057C7F6 /* String+Extensions.swift */; };
+		0DBC110A1C6BEF090057C7F6 /* TBAnimatingSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11091C6BEF090057C7F6 /* TBAnimatingSearchBar.swift */; };
 		0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A381B85B775008F6246 /* Realm.framework */; };
 		0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A391B85B775008F6246 /* RealmSwift.framework */; };
 		0DE33A3C1B85B82F008F6246 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A331B85B1F7008F6246 /* Alamofire.framework */; };
@@ -51,6 +52,7 @@
 		0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesTests.swift; sourceTree = "<group>"; };
 		0D99240A1C63EEF20009027D /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		0DBC11051C6BD1270057C7F6 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		0DBC11091C6BEF090057C7F6 /* TBAnimatingSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAnimatingSearchBar.swift; sourceTree = "<group>"; };
 		0DE33A331B85B1F7008F6246 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0DE33A381B85B775008F6246 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		0DE33A391B85B775008F6246 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */,
 				0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */,
+				0DBC11091C6BEF090057C7F6 /* TBAnimatingSearchBar.swift */,
 				0DE811701C64F14000D4B446 /* SearchViewController.swift */,
 				0DE811721C6555A900D4B446 /* HikeViewController.swift */,
 				0DE33A3D1B85BBC7008F6246 /* Hike.swift */,
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DE811711C64F14000D4B446 /* SearchViewController.swift in Sources */,
+				0DBC110A1C6BEF090057C7F6 /* TBAnimatingSearchBar.swift in Sources */,
 				0DE811731C6555A900D4B446 /* HikeViewController.swift in Sources */,
 				0D6AE3201B85A0E0000B0A07 /* AppDelegate.swift in Sources */,
 				0DE33A3E1B85BBC7008F6246 /* Hike.swift in Sources */,
