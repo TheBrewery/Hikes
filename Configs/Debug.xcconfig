@@ -1,0 +1,8 @@
+#include "Pods/Target Support Files/Pods/Pods.debug.xcconfig"
+
+BUNDLE_IDENTIFIER = io.thebrewery.hikes.debug
+PRODUCT_NAME = Hikes β
+EXCLUDED_SOURCE_FILE_NAMES = TBReleaseConstants.swift
+
+//CODE_SIGN_IDENTITY[sdk=*]=iPhone Developer
+//PROVISIONING_PROFILE[sdk=*]=

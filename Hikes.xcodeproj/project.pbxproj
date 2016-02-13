@@ -8,24 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		01D3C6889F62F5590AAFB5C2 /* Pods_Hikes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0742EA245428C9CC65C42AC2 /* Pods_Hikes.framework */; };
-		0D4E3B901C64589200E24F99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D4E3B8F1C64589200E24F99 /* Images.xcassets */; };
 		0D6AE3201B85A0E0000B0A07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */; };
-		0D6AE3221B85A0E0000B0A07 /* HikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */; };
-		0D6AE3271B85A0E0000B0A07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AE3251B85A0E0000B0A07 /* Main.storyboard */; };
-		0D6AE32C1B85A0E0000B0A07 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AE32A1B85A0E0000B0A07 /* LaunchScreen.xib */; };
 		0D6AE3381B85A0E0000B0A07 /* HikesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */; };
-		0D99240B1C63EEF20009027D /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D99240A1C63EEF20009027D /* FontAwesome.otf */; };
-		0DBC11061C6BD1270057C7F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11051C6BD1270057C7F6 /* String+Extensions.swift */; };
-		0DBC110A1C6BEF090057C7F6 /* TBAnimatingSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11091C6BEF090057C7F6 /* TBAnimatingSearchBar.swift */; };
+		0DBC11251C6D2E670057C7F6 /* HikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11101C6D2E670057C7F6 /* HikesViewController.swift */; };
+		0DBC11261C6D2E670057C7F6 /* HikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11111C6D2E670057C7F6 /* HikeViewController.swift */; };
+		0DBC11271C6D2E670057C7F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11121C6D2E670057C7F6 /* SearchViewController.swift */; };
+		0DBC11281C6D2E670057C7F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11141C6D2E670057C7F6 /* String+Extensions.swift */; };
+		0DBC11291C6D2E670057C7F6 /* UIFont+Iconic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11151C6D2E670057C7F6 /* UIFont+Iconic.swift */; };
+		0DBC112A1C6D2E670057C7F6 /* Hike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11171C6D2E670057C7F6 /* Hike.swift */; };
+		0DBC112B1C6D2E670057C7F6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11181C6D2E670057C7F6 /* Image.swift */; };
+		0DBC112C1C6D2E670057C7F6 /* TBObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11191C6D2E670057C7F6 /* TBObject.swift */; };
+		0DBC112D1C6D2E670057C7F6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC111B1C6D2E670057C7F6 /* LaunchScreen.xib */; };
+		0DBC112E1C6D2E670057C7F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC111D1C6D2E670057C7F6 /* Main.storyboard */; };
+		0DBC112F1C6D2E670057C7F6 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC111F1C6D2E670057C7F6 /* FontAwesome.otf */; };
+		0DBC11301C6D2E670057C7F6 /* hikes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC11201C6D2E670057C7F6 /* hikes.json */; };
+		0DBC11311C6D2E670057C7F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC11211C6D2E670057C7F6 /* Images.xcassets */; };
+		0DBC11321C6D2E670057C7F6 /* open-iconic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC11221C6D2E670057C7F6 /* open-iconic.otf */; };
+		0DBC11331C6D2E670057C7F6 /* TBAnimatingSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11241C6D2E670057C7F6 /* TBAnimatingSearchBar.swift */; };
+		0DBC11351C6D30C10057C7F6 /* UIFont+FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11341C6D30C10057C7F6 /* UIFont+FontAwesome.swift */; };
+		0DBC11371C6E3D9A0057C7F6 /* TBCircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11361C6E3D9A0057C7F6 /* TBCircularButton.swift */; };
+		0DBC11391C6E3DC40057C7F6 /* UIColor+Hikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11381C6E3DC40057C7F6 /* UIColor+Hikes.swift */; };
+		0DBC113B1C6E3DDD0057C7F6 /* UIFont+Hikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC113A1C6E3DDD0057C7F6 /* UIFont+Hikes.swift */; };
+		0DBC11431C6E3E5B0057C7F6 /* TBDebugConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC113F1C6E3E5B0057C7F6 /* TBDebugConstants.swift */; };
+		0DBC11441C6E3E5B0057C7F6 /* TBReleaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11401C6E3E5B0057C7F6 /* TBReleaseConstants.swift */; };
 		0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A381B85B775008F6246 /* Realm.framework */; };
 		0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A391B85B775008F6246 /* RealmSwift.framework */; };
 		0DE33A3C1B85B82F008F6246 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A331B85B1F7008F6246 /* Alamofire.framework */; };
-		0DE33A3E1B85BBC7008F6246 /* Hike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE33A3D1B85BBC7008F6246 /* Hike.swift */; };
-		0DE33A401B85C03F008F6246 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE33A3F1B85C03F008F6246 /* Image.swift */; };
-		0DE33A421B85C0A0008F6246 /* hikes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DE33A411B85C0A0008F6246 /* hikes.json */; };
-		0DE33A441B85C627008F6246 /* TBObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE33A431B85C627008F6246 /* TBObject.swift */; };
-		0DE811711C64F14000D4B446 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE811701C64F14000D4B446 /* SearchViewController.swift */; };
-		0DE811731C6555A900D4B446 /* HikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE811721C6555A900D4B446 /* HikeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,28 +48,38 @@
 
 /* Begin PBXFileReference section */
 		0742EA245428C9CC65C42AC2 /* Pods_Hikes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hikes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D4E3B8F1C64589200E24F99 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0D6AE31A1B85A0E0000B0A07 /* Hikes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hikes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D6AE31A1B85A0E0000B0A07 /* Hikes β.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hikes β.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6AE31E1B85A0E0000B0A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesViewController.swift; sourceTree = "<group>"; };
-		0D6AE3261B85A0E0000B0A07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0D6AE32B1B85A0E0000B0A07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0D6AE3311B85A0E0000B0A07 /* HikesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HikesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6AE3361B85A0E0000B0A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesTests.swift; sourceTree = "<group>"; };
-		0D99240A1C63EEF20009027D /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
-		0DBC11051C6BD1270057C7F6 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		0DBC11091C6BEF090057C7F6 /* TBAnimatingSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAnimatingSearchBar.swift; sourceTree = "<group>"; };
+		0DBC11101C6D2E670057C7F6 /* HikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikesViewController.swift; sourceTree = "<group>"; };
+		0DBC11111C6D2E670057C7F6 /* HikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikeViewController.swift; sourceTree = "<group>"; };
+		0DBC11121C6D2E670057C7F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0DBC11141C6D2E670057C7F6 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		0DBC11151C6D2E670057C7F6 /* UIFont+Iconic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Iconic.swift"; sourceTree = "<group>"; };
+		0DBC11171C6D2E670057C7F6 /* Hike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hike.swift; sourceTree = "<group>"; };
+		0DBC11181C6D2E670057C7F6 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		0DBC11191C6D2E670057C7F6 /* TBObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBObject.swift; sourceTree = "<group>"; };
+		0DBC111C1C6D2E670057C7F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0DBC111E1C6D2E670057C7F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0DBC111F1C6D2E670057C7F6 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		0DBC11201C6D2E670057C7F6 /* hikes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hikes.json; sourceTree = "<group>"; };
+		0DBC11211C6D2E670057C7F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0DBC11221C6D2E670057C7F6 /* open-iconic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-iconic.otf"; sourceTree = "<group>"; };
+		0DBC11241C6D2E670057C7F6 /* TBAnimatingSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAnimatingSearchBar.swift; sourceTree = "<group>"; };
+		0DBC11341C6D30C10057C7F6 /* UIFont+FontAwesome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+FontAwesome.swift"; sourceTree = "<group>"; };
+		0DBC11361C6E3D9A0057C7F6 /* TBCircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBCircularButton.swift; sourceTree = "<group>"; };
+		0DBC11381C6E3DC40057C7F6 /* UIColor+Hikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hikes.swift"; sourceTree = "<group>"; };
+		0DBC113A1C6E3DDD0057C7F6 /* UIFont+Hikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Hikes.swift"; sourceTree = "<group>"; };
+		0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		0DBC113F1C6E3E5B0057C7F6 /* TBDebugConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBDebugConstants.swift; sourceTree = "<group>"; };
+		0DBC11401C6E3E5B0057C7F6 /* TBReleaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBReleaseConstants.swift; sourceTree = "<group>"; };
 		0DE33A331B85B1F7008F6246 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0DE33A381B85B775008F6246 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		0DE33A391B85B775008F6246 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		0DE33A3D1B85BBC7008F6246 /* Hike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hike.swift; sourceTree = "<group>"; };
-		0DE33A3F1B85C03F008F6246 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		0DE33A411B85C0A0008F6246 /* hikes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hikes.json; sourceTree = "<group>"; };
-		0DE33A431B85C627008F6246 /* TBObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBObject.swift; sourceTree = "<group>"; };
-		0DE811701C64F14000D4B446 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		0DE811721C6555A900D4B446 /* HikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikeViewController.swift; sourceTree = "<group>"; };
 		6F4031A0A68D5FBA2EC8E72E /* Pods-Hikes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hikes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.debug.xcconfig"; sourceTree = "<group>"; };
 		CB8102FD706F2D8A9A88B085 /* Pods-Hikes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hikes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +109,7 @@
 		0D6AE3111B85A0DF000B0A07 = {
 			isa = PBXGroup;
 			children = (
+				0DBC113C1C6E3E5B0057C7F6 /* Configs */,
 				0D6AE31C1B85A0E0000B0A07 /* Hikes */,
 				0D6AE3341B85A0E0000B0A07 /* HikesTests */,
 				0D6AE31B1B85A0E0000B0A07 /* Products */,
@@ -102,7 +121,7 @@
 		0D6AE31B1B85A0E0000B0A07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0D6AE31A1B85A0E0000B0A07 /* Hikes.app */,
+				0D6AE31A1B85A0E0000B0A07 /* Hikes β.app */,
 				0D6AE3311B85A0E0000B0A07 /* HikesTests.xctest */,
 			);
 			name = Products;
@@ -111,20 +130,12 @@
 		0D6AE31C1B85A0E0000B0A07 /* Hikes */ = {
 			isa = PBXGroup;
 			children = (
+				0DBC110F1C6D2E670057C7F6 /* Controllers */,
+				0DBC11131C6D2E670057C7F6 /* Extensions */,
+				0DBC11161C6D2E670057C7F6 /* Models */,
+				0DBC111A1C6D2E670057C7F6 /* Resources */,
+				0DBC11231C6D2E670057C7F6 /* Views */,
 				0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */,
-				0D6AE3211B85A0E0000B0A07 /* HikesViewController.swift */,
-				0DBC11091C6BEF090057C7F6 /* TBAnimatingSearchBar.swift */,
-				0DE811701C64F14000D4B446 /* SearchViewController.swift */,
-				0DE811721C6555A900D4B446 /* HikeViewController.swift */,
-				0DE33A3D1B85BBC7008F6246 /* Hike.swift */,
-				0DBC11051C6BD1270057C7F6 /* String+Extensions.swift */,
-				0DE33A431B85C627008F6246 /* TBObject.swift */,
-				0DE33A3F1B85C03F008F6246 /* Image.swift */,
-				0D6AE3251B85A0E0000B0A07 /* Main.storyboard */,
-				0D6AE32A1B85A0E0000B0A07 /* LaunchScreen.xib */,
-				0D4E3B8F1C64589200E24F99 /* Images.xcassets */,
-				0D99240A1C63EEF20009027D /* FontAwesome.otf */,
-				0DE33A411B85C0A0008F6246 /* hikes.json */,
 				0D6AE31D1B85A0E0000B0A07 /* Supporting Files */,
 			);
 			path = Hikes;
@@ -153,6 +164,71 @@
 				0D6AE3361B85A0E0000B0A07 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0DBC110F1C6D2E670057C7F6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC11101C6D2E670057C7F6 /* HikesViewController.swift */,
+				0DBC11111C6D2E670057C7F6 /* HikeViewController.swift */,
+				0DBC11121C6D2E670057C7F6 /* SearchViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0DBC11131C6D2E670057C7F6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC11141C6D2E670057C7F6 /* String+Extensions.swift */,
+				0DBC11151C6D2E670057C7F6 /* UIFont+Iconic.swift */,
+				0DBC11341C6D30C10057C7F6 /* UIFont+FontAwesome.swift */,
+				0DBC11381C6E3DC40057C7F6 /* UIColor+Hikes.swift */,
+				0DBC113A1C6E3DDD0057C7F6 /* UIFont+Hikes.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0DBC11161C6D2E670057C7F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC11171C6D2E670057C7F6 /* Hike.swift */,
+				0DBC11181C6D2E670057C7F6 /* Image.swift */,
+				0DBC11191C6D2E670057C7F6 /* TBObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0DBC111A1C6D2E670057C7F6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC111B1C6D2E670057C7F6 /* LaunchScreen.xib */,
+				0DBC111D1C6D2E670057C7F6 /* Main.storyboard */,
+				0DBC111F1C6D2E670057C7F6 /* FontAwesome.otf */,
+				0DBC11201C6D2E670057C7F6 /* hikes.json */,
+				0DBC11211C6D2E670057C7F6 /* Images.xcassets */,
+				0DBC11221C6D2E670057C7F6 /* open-iconic.otf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0DBC11231C6D2E670057C7F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC11241C6D2E670057C7F6 /* TBAnimatingSearchBar.swift */,
+				0DBC11361C6E3D9A0057C7F6 /* TBCircularButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DBC113C1C6E3E5B0057C7F6 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */,
+				0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */,
+				0DBC113F1C6E3E5B0057C7F6 /* TBDebugConstants.swift */,
+				0DBC11401C6E3E5B0057C7F6 /* TBReleaseConstants.swift */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 		42595D21F1D327D21D5277F3 /* Frameworks */ = {
@@ -195,7 +271,7 @@
 			);
 			name = Hikes;
 			productName = Hikes;
-			productReference = 0D6AE31A1B85A0E0000B0A07 /* Hikes.app */;
+			productReference = 0D6AE31A1B85A0E0000B0A07 /* Hikes β.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0D6AE3301B85A0E0000B0A07 /* HikesTests */ = {
@@ -223,7 +299,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "The Brewery";
 				TargetAttributes = {
 					0D6AE3191B85A0DF000B0A07 = {
@@ -260,11 +336,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D6AE3271B85A0E0000B0A07 /* Main.storyboard in Resources */,
-				0D4E3B901C64589200E24F99 /* Images.xcassets in Resources */,
-				0D99240B1C63EEF20009027D /* FontAwesome.otf in Resources */,
-				0D6AE32C1B85A0E0000B0A07 /* LaunchScreen.xib in Resources */,
-				0DE33A421B85C0A0008F6246 /* hikes.json in Resources */,
+				0DBC112D1C6D2E670057C7F6 /* LaunchScreen.xib in Resources */,
+				0DBC11311C6D2E670057C7F6 /* Images.xcassets in Resources */,
+				0DBC112E1C6D2E670057C7F6 /* Main.storyboard in Resources */,
+				0DBC11301C6D2E670057C7F6 /* hikes.json in Resources */,
+				0DBC11321C6D2E670057C7F6 /* open-iconic.otf in Resources */,
+				0DBC112F1C6D2E670057C7F6 /* FontAwesome.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,15 +407,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DE811711C64F14000D4B446 /* SearchViewController.swift in Sources */,
-				0DBC110A1C6BEF090057C7F6 /* TBAnimatingSearchBar.swift in Sources */,
-				0DE811731C6555A900D4B446 /* HikeViewController.swift in Sources */,
+				0DBC11371C6E3D9A0057C7F6 /* TBCircularButton.swift in Sources */,
+				0DBC11391C6E3DC40057C7F6 /* UIColor+Hikes.swift in Sources */,
+				0DBC11281C6D2E670057C7F6 /* String+Extensions.swift in Sources */,
+				0DBC112B1C6D2E670057C7F6 /* Image.swift in Sources */,
 				0D6AE3201B85A0E0000B0A07 /* AppDelegate.swift in Sources */,
-				0DE33A3E1B85BBC7008F6246 /* Hike.swift in Sources */,
-				0DBC11061C6BD1270057C7F6 /* String+Extensions.swift in Sources */,
-				0D6AE3221B85A0E0000B0A07 /* HikesViewController.swift in Sources */,
-				0DE33A441B85C627008F6246 /* TBObject.swift in Sources */,
-				0DE33A401B85C03F008F6246 /* Image.swift in Sources */,
+				0DBC11261C6D2E670057C7F6 /* HikeViewController.swift in Sources */,
+				0DBC112A1C6D2E670057C7F6 /* Hike.swift in Sources */,
+				0DBC11441C6E3E5B0057C7F6 /* TBReleaseConstants.swift in Sources */,
+				0DBC11271C6D2E670057C7F6 /* SearchViewController.swift in Sources */,
+				0DBC11251C6D2E670057C7F6 /* HikesViewController.swift in Sources */,
+				0DBC112C1C6D2E670057C7F6 /* TBObject.swift in Sources */,
+				0DBC11331C6D2E670057C7F6 /* TBAnimatingSearchBar.swift in Sources */,
+				0DBC11351C6D30C10057C7F6 /* UIFont+FontAwesome.swift in Sources */,
+				0DBC11431C6E3E5B0057C7F6 /* TBDebugConstants.swift in Sources */,
+				0DBC11291C6D2E670057C7F6 /* UIFont+Iconic.swift in Sources */,
+				0DBC113B1C6E3DDD0057C7F6 /* UIFont+Hikes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,20 +445,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0D6AE3251B85A0E0000B0A07 /* Main.storyboard */ = {
+		0DBC111B1C6D2E670057C7F6 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0D6AE3261B85A0E0000B0A07 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0D6AE32A1B85A0E0000B0A07 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0D6AE32B1B85A0E0000B0A07 /* Base */,
+				0DBC111C1C6D2E670057C7F6 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		0DBC111D1C6D2E670057C7F6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DBC111E1C6D2E670057C7F6 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -401,6 +485,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -463,7 +548,7 @@
 		};
 		0D6AE33C1B85A0E0000B0A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F4031A0A68D5FBA2EC8E72E /* Pods-Hikes.debug.xcconfig */;
+			baseConfigurationReference = 0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -474,7 +559,8 @@
 				);
 				INFOPLIST_FILE = Hikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -482,7 +568,7 @@
 		};
 		0D6AE33D1B85A0E0000B0A07 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB8102FD706F2D8A9A88B085 /* Pods-Hikes.release.xcconfig */;
+			baseConfigurationReference = 0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -493,7 +579,8 @@
 				);
 				INFOPLIST_FILE = Hikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -513,6 +600,7 @@
 				);
 				INFOPLIST_FILE = HikesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hikes.app/Hikes";
 			};
@@ -528,6 +616,7 @@
 				);
 				INFOPLIST_FILE = HikesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hikes.app/Hikes";
 			};

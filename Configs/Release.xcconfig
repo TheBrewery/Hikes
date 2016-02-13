@@ -1,0 +1,8 @@
+#include "Pods/Target Support Files/Pods/Pods.release.xcconfig"
+
+BUNDLE_IDENTIFIER = io.thebrewery.hikes
+PRODUCT_NAME = Hikes
+EXCLUDED_SOURCE_FILE_NAMES = FLEX* TLDebugConstants.swift
+
+//CODE_SIGN_IDENTITY[sdk=*]=iOS Distribution
+//PROVISIONING_PROFILE[sdk=*]=
