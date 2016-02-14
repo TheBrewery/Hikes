@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		01D3C6889F62F5590AAFB5C2 /* Pods_Hikes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0742EA245428C9CC65C42AC2 /* Pods_Hikes.framework */; };
+		0D2CD48B1C6EED3300FAF640 /* TBCircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11361C6E3D9A0057C7F6 /* TBCircularButton.swift */; };
+		0D2CD48F1C6EEDFC00FAF640 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2CD48E1C6EEDFC00FAF640 /* UIColor+Extensions.swift */; };
 		0D6AE3201B85A0E0000B0A07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */; };
-		0D6AE3381B85A0E0000B0A07 /* HikesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */; };
 		0DBC11251C6D2E670057C7F6 /* HikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11101C6D2E670057C7F6 /* HikesViewController.swift */; };
 		0DBC11261C6D2E670057C7F6 /* HikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11111C6D2E670057C7F6 /* HikeViewController.swift */; };
 		0DBC11271C6D2E670057C7F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11121C6D2E670057C7F6 /* SearchViewController.swift */; };
@@ -26,7 +27,6 @@
 		0DBC11321C6D2E670057C7F6 /* open-iconic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC11221C6D2E670057C7F6 /* open-iconic.otf */; };
 		0DBC11331C6D2E670057C7F6 /* TBAnimatingSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11241C6D2E670057C7F6 /* TBAnimatingSearchBar.swift */; };
 		0DBC11351C6D30C10057C7F6 /* UIFont+FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11341C6D30C10057C7F6 /* UIFont+FontAwesome.swift */; };
-		0DBC11371C6E3D9A0057C7F6 /* TBCircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11361C6E3D9A0057C7F6 /* TBCircularButton.swift */; };
 		0DBC11391C6E3DC40057C7F6 /* UIColor+Hikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11381C6E3DC40057C7F6 /* UIColor+Hikes.swift */; };
 		0DBC113B1C6E3DDD0057C7F6 /* UIFont+Hikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC113A1C6E3DDD0057C7F6 /* UIFont+Hikes.swift */; };
 		0DBC11431C6E3E5B0057C7F6 /* TBDebugConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC113F1C6E3E5B0057C7F6 /* TBDebugConstants.swift */; };
@@ -36,24 +36,12 @@
 		0DE33A3C1B85B82F008F6246 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A331B85B1F7008F6246 /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		0D6AE3321B85A0E0000B0A07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0D6AE3121B85A0DF000B0A07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0D6AE3191B85A0DF000B0A07;
-			remoteInfo = Hikes;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0742EA245428C9CC65C42AC2 /* Pods_Hikes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hikes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D2CD48E1C6EEDFC00FAF640 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		0D6AE31A1B85A0E0000B0A07 /* Hikes β.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hikes β.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6AE31E1B85A0E0000B0A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D6AE31F1B85A0E0000B0A07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0D6AE3311B85A0E0000B0A07 /* HikesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HikesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D6AE3361B85A0E0000B0A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesTests.swift; sourceTree = "<group>"; };
 		0DBC11101C6D2E670057C7F6 /* HikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikesViewController.swift; sourceTree = "<group>"; };
 		0DBC11111C6D2E670057C7F6 /* HikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikeViewController.swift; sourceTree = "<group>"; };
 		0DBC11121C6D2E670057C7F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -96,13 +84,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0D6AE32E1B85A0E0000B0A07 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -111,7 +92,6 @@
 			children = (
 				0DBC113C1C6E3E5B0057C7F6 /* Configs */,
 				0D6AE31C1B85A0E0000B0A07 /* Hikes */,
-				0D6AE3341B85A0E0000B0A07 /* HikesTests */,
 				0D6AE31B1B85A0E0000B0A07 /* Products */,
 				42595D21F1D327D21D5277F3 /* Frameworks */,
 				7DBC78872B717CC79ED2CA77 /* Pods */,
@@ -122,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				0D6AE31A1B85A0E0000B0A07 /* Hikes β.app */,
-				0D6AE3311B85A0E0000B0A07 /* HikesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,23 +128,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0D6AE3341B85A0E0000B0A07 /* HikesTests */ = {
-			isa = PBXGroup;
-			children = (
-				0D6AE3371B85A0E0000B0A07 /* HikesTests.swift */,
-				0D6AE3351B85A0E0000B0A07 /* Supporting Files */,
-			);
-			path = HikesTests;
-			sourceTree = "<group>";
-		};
-		0D6AE3351B85A0E0000B0A07 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0D6AE3361B85A0E0000B0A07 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		0DBC110F1C6D2E670057C7F6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +141,7 @@
 		0DBC11131C6D2E670057C7F6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0D2CD48E1C6EEDFC00FAF640 /* UIColor+Extensions.swift */,
 				0DBC11141C6D2E670057C7F6 /* String+Extensions.swift */,
 				0DBC11151C6D2E670057C7F6 /* UIFont+Iconic.swift */,
 				0DBC11341C6D30C10057C7F6 /* UIFont+FontAwesome.swift */,
@@ -274,24 +237,6 @@
 			productReference = 0D6AE31A1B85A0E0000B0A07 /* Hikes β.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0D6AE3301B85A0E0000B0A07 /* HikesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0D6AE33E1B85A0E0000B0A07 /* Build configuration list for PBXNativeTarget "HikesTests" */;
-			buildPhases = (
-				0D6AE32D1B85A0E0000B0A07 /* Sources */,
-				0D6AE32E1B85A0E0000B0A07 /* Frameworks */,
-				0D6AE32F1B85A0E0000B0A07 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0D6AE3331B85A0E0000B0A07 /* PBXTargetDependency */,
-			);
-			name = HikesTests;
-			productName = HikesTests;
-			productReference = 0D6AE3311B85A0E0000B0A07 /* HikesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -305,10 +250,6 @@
 					0D6AE3191B85A0DF000B0A07 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = XL7WH63756;
-					};
-					0D6AE3301B85A0E0000B0A07 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 0D6AE3191B85A0DF000B0A07;
 					};
 				};
 			};
@@ -326,7 +267,6 @@
 			projectRoot = "";
 			targets = (
 				0D6AE3191B85A0DF000B0A07 /* Hikes */,
-				0D6AE3301B85A0E0000B0A07 /* HikesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -342,13 +282,6 @@
 				0DBC11301C6D2E670057C7F6 /* hikes.json in Resources */,
 				0DBC11321C6D2E670057C7F6 /* open-iconic.otf in Resources */,
 				0DBC112F1C6D2E670057C7F6 /* FontAwesome.otf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0D6AE32F1B85A0E0000B0A07 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,7 +340,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DBC11371C6E3D9A0057C7F6 /* TBCircularButton.swift in Sources */,
 				0DBC11391C6E3DC40057C7F6 /* UIColor+Hikes.swift in Sources */,
 				0DBC11281C6D2E670057C7F6 /* String+Extensions.swift in Sources */,
 				0DBC112B1C6D2E670057C7F6 /* Image.swift in Sources */,
@@ -416,33 +348,19 @@
 				0DBC112A1C6D2E670057C7F6 /* Hike.swift in Sources */,
 				0DBC11441C6E3E5B0057C7F6 /* TBReleaseConstants.swift in Sources */,
 				0DBC11271C6D2E670057C7F6 /* SearchViewController.swift in Sources */,
+				0D2CD48B1C6EED3300FAF640 /* TBCircularButton.swift in Sources */,
 				0DBC11251C6D2E670057C7F6 /* HikesViewController.swift in Sources */,
 				0DBC112C1C6D2E670057C7F6 /* TBObject.swift in Sources */,
 				0DBC11331C6D2E670057C7F6 /* TBAnimatingSearchBar.swift in Sources */,
 				0DBC11351C6D30C10057C7F6 /* UIFont+FontAwesome.swift in Sources */,
 				0DBC11431C6E3E5B0057C7F6 /* TBDebugConstants.swift in Sources */,
 				0DBC11291C6D2E670057C7F6 /* UIFont+Iconic.swift in Sources */,
+				0D2CD48F1C6EEDFC00FAF640 /* UIColor+Extensions.swift in Sources */,
 				0DBC113B1C6E3DDD0057C7F6 /* UIFont+Hikes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0D6AE32D1B85A0E0000B0A07 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0D6AE3381B85A0E0000B0A07 /* HikesTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0D6AE3331B85A0E0000B0A07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0D6AE3191B85A0DF000B0A07 /* Hikes */;
-			targetProxy = 0D6AE3321B85A0E0000B0A07 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0DBC111B1C6D2E670057C7F6 /* LaunchScreen.xib */ = {
@@ -466,6 +384,7 @@
 /* Begin XCBuildConfiguration section */
 		0D6AE3391B85A0E0000B0A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -511,6 +430,7 @@
 		};
 		0D6AE33A1B85A0E0000B0A07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -548,15 +468,12 @@
 		};
 		0D6AE33C1B85A0E0000B0A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */;
+			baseConfigurationReference = 6F4031A0A68D5FBA2EC8E72E /* Pods-Hikes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Hikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
@@ -568,57 +485,18 @@
 		};
 		0D6AE33D1B85A0E0000B0A07 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */;
+			baseConfigurationReference = CB8102FD706F2D8A9A88B085 /* Pods-Hikes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Hikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		0D6AE33F1B85A0E0000B0A07 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = HikesTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hikes.app/Hikes";
-			};
-			name = Debug;
-		};
-		0D6AE3401B85A0E0000B0A07 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = HikesTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hikes.app/Hikes";
 			};
 			name = Release;
 		};
@@ -639,15 +517,6 @@
 			buildConfigurations = (
 				0D6AE33C1B85A0E0000B0A07 /* Debug */,
 				0D6AE33D1B85A0E0000B0A07 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0D6AE33E1B85A0E0000B0A07 /* Build configuration list for PBXNativeTarget "HikesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0D6AE33F1B85A0E0000B0A07 /* Debug */,
-				0D6AE3401B85A0E0000B0A07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

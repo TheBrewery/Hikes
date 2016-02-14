@@ -1,4 +1,4 @@
-#include "Pods/Target Support Files/Pods/Pods.release.xcconfig"
+#include "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.release.xcconfig"
 
 BUNDLE_IDENTIFIER = io.thebrewery.hikes
 PRODUCT_NAME = Hikes

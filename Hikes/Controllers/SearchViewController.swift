@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import RBQFetchedResultsController
 
 private func runOnMainThread(block: () -> Void) {
     if NSThread.isMainThread() {
@@ -26,7 +25,6 @@ class HikesSearchCell: UITableViewCell {
 }
 
 class SearchViewController: UITableViewController {
-    
     var dataSource = SearchDataSource()
     
     var searchText = String() {
