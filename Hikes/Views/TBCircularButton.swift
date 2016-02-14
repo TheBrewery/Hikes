@@ -2,12 +2,8 @@
 import UIKit
 
 class TLCircularIconButton: UIControl {
-    private var startColor = UIColor.yellowPrimary()
-    private var endColor = UIColor.yellowSecondary()
-    
     private var borderWidth: CGFloat = 0.0
     private let titleLabel = UILabel()
-    private var gradientLayer = TLBaseGradientLayer()
     
     private let backgroundView = UIView()
     
@@ -61,13 +57,13 @@ class TLCircularIconButton: UIControl {
     override var highlighted: Bool {
         didSet {
             if self.highlighted {
-                gradientLayer.colors = [startColor.lighterColorForColor().CGColor, endColor.lighterColorForColor().CGColor]
+                backgroundColor = UIColor.tbLightGreenColor().lighterColorForColor()
                 layer.shadowColor = UIColor.blackColor().CGColor
                 layer.shadowRadius = 2.0
                 layer.shadowOffset = CGSize(width: 0, height: 1)
                 layer.shadowOpacity = 0.75
             } else {
-                gradientLayer.colors = [startColor.CGColor, endColor.CGColor]
+                backgroundColor = UIColor.tbLightGreenColor()
                 layer.shadowColor = UIColor.blackColor().CGColor
                 layer.shadowRadius = 2.0
                 layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -79,7 +75,7 @@ class TLCircularIconButton: UIControl {
     // MARK: - Private
     
     private func initialize() {
-        titleLabel.font = UIFont.iconFontOfSize(20.0)
+        titleLabel.font = UIFont.iconicFontOfSize(20.0)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.clipsToBounds = true
@@ -101,9 +97,6 @@ class TLCircularIconButton: UIControl {
         
         backgroundView.frame = titleLabel.frame
         
-        gradientLayer.frame = titleLabel.frame
-        
-        backgroundView.layer.addSublayer(gradientLayer)
         backgroundView.layer.cornerRadius = titleLabel.frame.width/2.0
         backgroundView.clipsToBounds = true
         backgroundView.userInteractionEnabled = false

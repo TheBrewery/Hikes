@@ -1,7 +1,5 @@
 import UIKit
 
-let hikesGreen = UIColor(red:0.28, green:0.56, blue:0, alpha:1)
-
 enum TBAnimatingSearchBarState {
     case Expanded
     case Collapsed
@@ -81,14 +79,14 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
         iconLabel = UILabel(frame: CGRect(x: 0, y: 0, width: backgroundView.frame.height, height: backgroundView.frame.height))
         iconLabel.font = UIFont(name: "FontAwesome", size: 16)!
         iconLabel.text = "\u{f002}"
-        iconLabel.textColor = hikesGreen
+        iconLabel.textColor = UIColor.tbDarkGreenColor()
         iconLabel.textAlignment = NSTextAlignment.Center
         
         textField = TBTextField(frame: CGRect(x: iconLabel.frame.width - placeholderOffsetX, y: 0, width: backgroundView.frame.width - iconLabel.frame.height, height: backgroundView.frame.height))
         textField.font = UIFont(name: "AvenirNext-Medium", size: 16)!
         textField.attributedPlaceholder = NSAttributedString(string: "Find Your Adventure", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSFontAttributeName: UIFont(name: "Avenir Next", size: 16)!])
-        textField.tintColor = hikesGreen
-        textField.textColor = hikesGreen
+        textField.tintColor = UIColor.tbDarkGreenColor()
+        textField.textColor = UIColor.tbDarkGreenColor()
         textField.returnKeyType = .Search
         textField.userInteractionEnabled = false
         textField.delegate = self

@@ -1115,7 +1115,7 @@ public enum FontAwesome: String {
     case UserTimes = "\u{f235}"
     case Adjust = "\u{f042}"
     case CommentO = "\u{f0e5}"
-    case 500Px = "\u{f26e}"
+    case FA500Px = "\u{f26e}"
     case FileImageO, FilePhotoO, FilePictureO = "\u{f1c5}"
     case OptinMonster = "\u{f23c}"
     case Paypal = "\u{f1ed}"
