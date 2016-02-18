@@ -1,7 +1,7 @@
-#include "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.release.xcconfig"
+#include "Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage.release.xcconfig"
 
-BUNDLE_IDENTIFIER = io.thebrewery.hikes
-PRODUCT_NAME = Hikes
+BUNDLE_IDENTIFIER = io.thebrewery.world_heritage
+PRODUCT_NAME = World Heritage
 EXCLUDED_SOURCE_FILE_NAMES = FLEX* TLDebugConstants.swift
 
 //CODE_SIGN_IDENTITY[sdk=*]=iOS Distribution

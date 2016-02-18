@@ -1,7 +1,7 @@
-#include "Pods/Target Support Files/Pods-Hikes/Pods-Hikes.debug.xcconfig"
+#include "Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage.debug.xcconfig"
 
-BUNDLE_IDENTIFIER = io.thebrewery.hikes.debug
-PRODUCT_NAME = Hikes β
+BUNDLE_IDENTIFIER = io.thebrewery.world_heritage.debug
+PRODUCT_NAME = WHS β
 EXCLUDED_SOURCE_FILE_NAMES = TBReleaseConstants.swift
 
 //CODE_SIGN_IDENTITY[sdk=*]=iPhone Developer
