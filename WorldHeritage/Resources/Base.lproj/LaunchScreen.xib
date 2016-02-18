@@ -11,14 +11,23 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="the-narrows" translatesAutoresizingMaskIntoConstraints="NO" id="0b9-1e-mDh">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colosseum" translatesAutoresizingMaskIntoConstraints="NO" id="0b9-1e-mDh">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Dkr-Dh-ubL">
+                    <rect key="frame" x="120" y="120" width="240" height="240"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="rjh-Ce-lXi"/>
+                        <constraint firstAttribute="height" constant="240" id="v8t-fk-VLJ"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="0b9-1e-mDh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Wt-ww-M73"/>
                 <constraint firstAttribute="bottom" secondItem="0b9-1e-mDh" secondAttribute="bottom" id="AhE-l3-fa3"/>
+                <constraint firstItem="Dkr-Dh-ubL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YjY-wz-go0"/>
+                <constraint firstItem="Dkr-Dh-ubL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cDf-25-bnI"/>
                 <constraint firstItem="0b9-1e-mDh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oz4-3d-dnH"/>
                 <constraint firstAttribute="trailing" secondItem="0b9-1e-mDh" secondAttribute="trailing" id="te9-2b-kju"/>
             </constraints>
@@ -28,6 +37,7 @@
         </view>
     </objects>
     <resources>
-        <image name="the-narrows" width="1600" height="1063"/>
+        <image name="colosseum" width="1280" height="751"/>
+        <image name="logo" width="480" height="481"/>
     </resources>
 </document>

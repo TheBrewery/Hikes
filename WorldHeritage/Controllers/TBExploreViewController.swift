@@ -2,7 +2,7 @@ import UIKit
 import RealmSwift
 import AlamofireImage
 
-class HikeCollectionViewCell: UICollectionViewCell {
+class TBSiteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -112,7 +112,7 @@ extension HikesViewController: UICollectionViewDataSource {
         cell.rightLabel!.text = String(format: "%.1f mi", hike.distance/1.6)
         
         if let url = hike.images.first?.urlForImageSize(.Medium) {
-            cell.imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named:"the-narrows")!)
+            cell.imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named:"petra")!)
         }
                 
         return cell

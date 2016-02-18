@@ -7,3 +7,18 @@
 //
 
 import Foundation
+import UIKit
+
+extension UIFont {
+    class func regularFontOfSize(fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "GillSans", size: fontSize)!
+    }
+
+    class func lightFontOfSize(fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "GillSans", size: fontSize)!
+    }
+
+    class func boldFontOfSize(fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "GillSans", size: fontSize)!
+    }
+}

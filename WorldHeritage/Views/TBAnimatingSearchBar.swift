@@ -77,8 +77,8 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
         cancelButton.alpha = 0
         
         iconLabel = UILabel(frame: CGRect(x: 0, y: 0, width: backgroundView.frame.height, height: backgroundView.frame.height))
-        iconLabel.font = UIFont(name: "FontAwesome", size: 16)!
-        iconLabel.text = "\u{f002}"
+//        iconLabel.font = UIFont(name: "FontAwesome", size: 16)!
+//        iconLabel.text = "\u{f002}"
         iconLabel.textColor = UIColor.tbDarkGreenColor()
         iconLabel.textAlignment = NSTextAlignment.Center
         

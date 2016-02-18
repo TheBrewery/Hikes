@@ -23,37 +23,37 @@ class TLCircularIconButton: UIControl {
         initialize()
     }
     
-    convenience init(icon: FontAwesome, frame: CGRect, target: AnyObject?, action: Selector, startColor start: UIColor? = nil, endColor end: UIColor? = nil) {
-        self.init(frame: frame)
-        self.icon = icon
-        self.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
-        
-        //        TODO clean this up
-        //        if let start = start {
-        //            startColor = start
-        //        }
-        //
-        //        if let end = end {
-        //            endColor = end
-        //        }
-        
-        //        gradientLayer.removeFromSuperlayer()
-        //        gradientLayer = TLBaseGradientLayer(startColor: startColor, endColor: endColor)
-        //        gradientLayer.frame = titleLabel.frame
-        //        backgroundView.layer.addSublayer(gradientLayer)
-    }
-    
-    var icon: FontAwesome? {
-        get {
-            guard let text = titleLabel.text else {
-                return nil
-            }
-            return FontAwesome(rawValue: text)
-        } set {
-            titleLabel.text = newValue?.rawValue
-        }
-    }
-    
+//    convenience init(icon: FontAwesome, frame: CGRect, target: AnyObject?, action: Selector, startColor start: UIColor? = nil, endColor end: UIColor? = nil) {
+//        self.init(frame: frame)
+//        self.icon = icon
+//        self.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        //        TODO clean this up
+//        //        if let start = start {
+//        //            startColor = start
+//        //        }
+//        //
+//        //        if let end = end {
+//        //            endColor = end
+//        //        }
+//        
+//        //        gradientLayer.removeFromSuperlayer()
+//        //        gradientLayer = TLBaseGradientLayer(startColor: startColor, endColor: endColor)
+//        //        gradientLayer.frame = titleLabel.frame
+//        //        backgroundView.layer.addSublayer(gradientLayer)
+//    }
+//    
+//    var icon: FontAwesome? {
+//        get {
+//            guard let text = titleLabel.text else {
+//                return nil
+//            }
+//            return FontAwesome(rawValue: text)
+//        } set {
+//            titleLabel.text = newValue?.rawValue
+//        }
+//    }
+//    
     override var highlighted: Bool {
         didSet {
             if self.highlighted {
@@ -75,7 +75,7 @@ class TLCircularIconButton: UIControl {
     // MARK: - Private
     
     private func initialize() {
-        titleLabel.font = UIFont.iconicFontOfSize(20.0)
+//        titleLabel.font = UIFont.iconicFontOfSize(20.0)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.clipsToBounds = true

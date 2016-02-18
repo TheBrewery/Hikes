@@ -8,19 +8,21 @@
 
 import UIKit
 import RealmSwift
+import MapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        customizeAppearance()
         if let path = NSBundle.mainBundle().pathForResource("hikes", ofType: "json") {
             do {
                 let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 let jsonResult = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! [[String: AnyObject]]
-                
+
                 let _realm = try Realm()
                 for dictionary in jsonResult {
                     try _realm.write({
@@ -31,8 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("LOAD ERROR")
             }
         }
-        
+
+        TBLocationManager.authorize()
+
         return true
+    }
+
+    func customizeAppearance() {
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.regularFontOfSize(10.0)], forState: UIControlState.Normal)
     }
 
     func applicationWillResignActive(application: UIApplication) {
