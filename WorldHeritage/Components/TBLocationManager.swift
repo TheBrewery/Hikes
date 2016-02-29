@@ -8,7 +8,7 @@ extension CLLocationCoordinate2D {
     }
 }
 
-enum TLLocationServicesStatus {
+enum TBLocationServicesStatus {
     case Authorized
     case Unauthorized
     case Disabled

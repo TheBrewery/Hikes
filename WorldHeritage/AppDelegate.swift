@@ -9,38 +9,53 @@
 import UIKit
 import RealmSwift
 import MapKit
+import ObjectMapper
+
+let RealmDataBaseDidLoadNotification = "RealmDataBaseDidLoadNotification"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let statusBarView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.ExtraLight))
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        customizeAppearance()
-        if let path = NSBundle.mainBundle().pathForResource("hikes", ofType: "json") {
-            do {
-                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                let jsonResult = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! [[String: AnyObject]]
-
-                let _realm = try Realm()
-                for dictionary in jsonResult {
-                    try _realm.write({
-                        _realm.create(Hike.self, value: Hike.map(dictionary), update: true)
-                    })
-                }
-            } catch {
-                print("LOAD ERROR")
-            }
-        }
 
         TBLocationManager.authorize()
+        
+        customizeAppearance()
+        
+        executeOn(.Background) {
+            if let path = NSBundle.mainBundle().pathForResource("sorted_sites", ofType: "json") {
+                do {
+                    let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                    let jsonResult = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! [[String: AnyObject]]
+                    
+                    let _realm = try Realm()
+                    try jsonResult.generate().forEach({ (dictionary) -> () in
+                        try _realm.write({
+                            _realm.create(Site.self, value: Mapper<Site>().map(dictionary)!, update: true)
+                        })
+                    })
+                    
+                    executeOn(.Main) {
+                        NSNotificationCenter.defaultCenter().postNotificationName(RealmDataBaseDidLoadNotification, object: nil)
+                    }
+                } catch {
+                    print("LOAD ERROR")
+                }
+            }
+        }
 
         return true
     }
 
     func customizeAppearance() {
-        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.regularFontOfSize(10.0)], forState: UIControlState.Normal)
+        statusBarView.frame = UIApplication.sharedApplication().statusBarFrame
+        window?.addSubview(statusBarView)
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.regularFontOfSize(11.0)], forState: UIControlState.Normal)
+        UITabBar.appearance().tintColor = UIColor.whDarkBlueColor()
     }
 
     func applicationWillResignActive(application: UIApplication) {

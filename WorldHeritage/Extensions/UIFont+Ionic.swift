@@ -744,6 +744,10 @@ public let IonicDictionary: [String: String] = [
 ]
 
 public enum Ionic: String {
+    func attributedStringWithFontSize(fontSize: CGFloat) -> NSAttributedString {
+        return NSAttributedString(string: self.rawValue, attributes: [NSFontAttributeName : UIFont.ionicFontOfSize(fontSize)])
+    }
+    
     case AndroidFolder = "\u{f2e0}"
     case IosToggle = "\u{f4c3}"
     case IosInfinite = "\u{f44a}"

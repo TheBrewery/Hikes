@@ -17,6 +17,23 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
     }
     
     class TBControl: UIControl {
+//        private let backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+//        
+//        private func commonInit() {
+//            backgroundView.frame = frame
+//            addSubview(backgroundView)
+//        }
+//        
+//        override init(frame: CGRect) {
+//            super.init(frame: frame)
+//            commonInit()
+//        }
+//
+//        required init?(coder aDecoder: NSCoder) {
+//            super.init(coder: aDecoder)
+//            commonInit()
+//        }
+        
         override var highlighted: Bool {
             didSet {
                 UIView.animateWithDuration(0.25) {
@@ -56,9 +73,6 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        statusBarView = UIView(frame: UIApplication.sharedApplication().statusBarFrame)
-//        statusBarView.backgroundColor = UIColor.whiteColor()
-        
         backgroundView = TBControl(frame: CGRect(x: 20, y: 40, width: frame.width - 40, height: viewHeight) )
         backgroundView.layer.cornerRadius = 3
         backgroundView.backgroundColor = UIColor.whiteColor()
@@ -77,16 +91,15 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
         cancelButton.alpha = 0
         
         iconLabel = UILabel(frame: CGRect(x: 0, y: 0, width: backgroundView.frame.height, height: backgroundView.frame.height))
-//        iconLabel.font = UIFont(name: "FontAwesome", size: 16)!
-//        iconLabel.text = "\u{f002}"
-        iconLabel.textColor = UIColor.tbDarkGreenColor()
+        iconLabel.textColor = UIColor.whDarkBlueColor()
+        iconLabel.attributedText = Ionic.IosSearch.attributedStringWithFontSize(20)
         iconLabel.textAlignment = NSTextAlignment.Center
         
         textField = TBTextField(frame: CGRect(x: iconLabel.frame.width - placeholderOffsetX, y: 0, width: backgroundView.frame.width - iconLabel.frame.height, height: backgroundView.frame.height))
         textField.font = UIFont(name: "AvenirNext-Medium", size: 16)!
         textField.attributedPlaceholder = NSAttributedString(string: "Find Your Adventure", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSFontAttributeName: UIFont(name: "Avenir Next", size: 16)!])
-        textField.tintColor = UIColor.tbDarkGreenColor()
-        textField.textColor = UIColor.tbDarkGreenColor()
+        textField.tintColor = UIColor.whDarkBlueColor()
+        textField.textColor = UIColor.whDarkBlueColor()
         textField.returnKeyType = .Search
         textField.userInteractionEnabled = false
         textField.delegate = self
@@ -96,13 +109,18 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
         backgroundView.addSubview(cancelButton)
         
         addSubview(backgroundView)
-//        addSubview(statusBarView)
         addSubview(activityIndicator)
         
-        NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
-            if let textField = notification.object as? UITextField {
-                self.textDidChange?(textField.text!)
-            }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldTextDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func textFieldTextDidChange(notification: NSNotification) {
+        if let textField = notification.object as? UITextField where textField == self.textField {
+            self.textDidChange?(textField.text!)
         }
     }
     
@@ -123,12 +141,7 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
         guard respondsToContentOffset else {
             return
         }
-        
-        if contentOffset.y > 30 {
-            barState = .Collapsed
-        } else {
-            barState = .Floating
-        }
+        barState = contentOffset.y > 30 ? .Collapsed : .Floating
     }
     
     func animateSizeForState(barState: TBAnimatingSearchBarState) {

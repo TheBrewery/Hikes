@@ -2,7 +2,7 @@
 
 BUNDLE_IDENTIFIER = io.thebrewery.world_heritage
 PRODUCT_NAME = World Heritage
-EXCLUDED_SOURCE_FILE_NAMES = FLEX* TLDebugConstants.swift
+EXCLUDED_SOURCE_FILE_NAMES = FLEX* WHDebugConstants.swift
 
 //CODE_SIGN_IDENTITY[sdk=*]=iOS Distribution
 //PROVISIONING_PROFILE[sdk=*]=

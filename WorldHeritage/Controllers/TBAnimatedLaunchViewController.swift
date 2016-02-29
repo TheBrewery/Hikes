@@ -49,7 +49,7 @@ class TBAnimatedImageView: UIImageView {
     }
 }
 
-class TBAnimatedLaunchViewController: UIViewController {
+class TBAnimatedLaunchViewController: TBBaseViewController {
     var images = [UIImage(named: "colosseum")!, UIImage(named: "giza")!, UIImage(named: "petra")!, UIImage(named: "great_wall")!, UIImage(named: "machu_picchu")!, UIImage(named: "taj_mahal")!]
 
     @IBOutlet weak var logoImageView: UIImageView!
@@ -57,6 +57,8 @@ class TBAnimatedLaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        preferredBlurredStatusBarStyleBarStyle = .NoneLightContent
 
         logoImageView.layer.shadowOffset = CGSize(width: 0, height: 1)
         logoImageView.layer.shadowOpacity = 0.16
@@ -75,9 +77,5 @@ class TBAnimatedLaunchViewController: UIViewController {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.viewControllers.removeAtIndex(0)
-    }
-
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
 }

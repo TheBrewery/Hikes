@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 import RealmSwift
 
 private let baseImageUrlString = "http://assets.hike.io/hike-images/"
@@ -36,17 +37,13 @@ private var _mapping: [String: String] = {
         "attributionUrlString": "attribution_link"]
     }()
 
-class Image : TBObject {
+class Image : TBRealmObject {
     dynamic var type: String = ImageType.Generic.rawValue
     dynamic var path: String = ""
     dynamic var descriptionHtml: String = ""
     dynamic var width: Float = 0.0
     dynamic var height: Float = 0.0
     dynamic var attributionUrlString: String = ""
-    
-    override class func mapping() -> [String: String] {
-        return _mapping
-    }
     
     func urlForImageSize (size: ImageSize = ImageSize.Medium) -> NSURL {
         switch size {

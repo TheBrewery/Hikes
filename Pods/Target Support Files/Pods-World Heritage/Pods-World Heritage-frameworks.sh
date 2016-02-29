@@ -84,14 +84,24 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-World Heritage/ABFRealmMapView.framework"
   install_framework "Pods-World Heritage/Alamofire.framework"
   install_framework "Pods-World Heritage/AlamofireImage.framework"
+  install_framework "Pods-World Heritage/ObjectMapper.framework"
+  install_framework "Pods-World Heritage/RBQFetchedResultsController.framework"
   install_framework "Pods-World Heritage/Realm.framework"
+  install_framework "Pods-World Heritage/RealmMapView.framework"
   install_framework "Pods-World Heritage/RealmSwift.framework"
+  install_framework "Pods-World Heritage/SwiftFetchedResultsController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-World Heritage/ABFRealmMapView.framework"
   install_framework "Pods-World Heritage/Alamofire.framework"
   install_framework "Pods-World Heritage/AlamofireImage.framework"
+  install_framework "Pods-World Heritage/ObjectMapper.framework"
+  install_framework "Pods-World Heritage/RBQFetchedResultsController.framework"
   install_framework "Pods-World Heritage/Realm.framework"
+  install_framework "Pods-World Heritage/RealmMapView.framework"
   install_framework "Pods-World Heritage/RealmSwift.framework"
+  install_framework "Pods-World Heritage/SwiftFetchedResultsController.framework"
 fi
