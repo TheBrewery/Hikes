@@ -35,12 +35,11 @@ class TBHeaderView: UIView {
                 return
             }
 
-//            TODO
-//            titleLabel.text = hike.name
-//
-//            if let url = hike.images.first?.urlForImageSize(.Medium) {
-//                imageView.af_setImageWithURL(url, placeholderImage: UIImage(named:"the-narrows")!)
-//            }
+            titleLabel.text = site.name
+
+            if let url = site.images.first?.urlForImageSize(.Medium) {
+                imageView.af_setImageWithURL(url, placeholderImage: UIImage(named:"the-narrows")!)
+            }
         }
     }
 

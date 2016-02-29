@@ -10,8 +10,11 @@ import Foundation
 import UIKit
 import MapKit
 import RealmSwift
+import FBAnnotationClusteringSwift
 
 class TBMapViewController: TBBaseViewController {
+    let clusteringManager = FBClusteringManager()
+
     var dataSource = SitesRealmDataSource()
 
     @IBOutlet var mapView: MKMapView!
@@ -69,13 +72,16 @@ class TBMapViewController: TBBaseViewController {
                 return
             }
             
+            var annotations = [MKAnnotation]()
             for site in _self.dataSource.fetchedResults {
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = CLLocationCoordinate2DMake(site.lat, site.lng)
                 annotation.title = site.name
                 annotation.subtitle = site.location
-                _self.mapView.addAnnotation(annotation)
+                annotations.append(annotation)
             }
+            
+            _self.clusteringManager.addAnnotations(annotations)
         }
     }
     
@@ -89,4 +95,33 @@ class TBMapViewController: TBBaseViewController {
         }
         mapView.setCenterCoordinate(coordinate, animated: true)
     }
+}
+
+extension TBMapViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
+        NSOperationQueue().addOperationWithBlock({
+            let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+            let mapRectWidth:Double = self.mapView.visibleMapRect.size.width
+            let scale:Double = mapBoundsWidth / mapRectWidth
+            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
+            self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.mapView)
+        })
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        var reuseId = ""
+        if annotation.isKindOfClass(FBAnnotationCluster) {
+            reuseId = "Cluster"
+            var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+            clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
+            return clusterView
+        } else {
+            reuseId = "Pin"
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.pinTintColor = UIColor.whDarkBlueColor()
+            return pinView
+        }
+    }
+    
 }

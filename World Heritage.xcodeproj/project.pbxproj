@@ -512,6 +512,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WorldHeritage/Info.plist";
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thebrewery.WorldHeritage;
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
@@ -530,6 +531,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/WorldHeritage/Info.plist";
 				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thebrewery.WorldHeritage;
 				PRODUCT_NAME = "$(PRODUCT_NAME)";

@@ -1,42 +1,28 @@
 PODS:
-  - ABFRealmMapView (1.7.3):
-    - RBQFetchedResultsController (>= 2.0)
-    - Realm (>= 0.96)
   - Alamofire (3.1.5)
   - AlamofireImage (2.2.0):
     - Alamofire (~> 3.1)
+  - FBAnnotationClusteringSwift (1.0.0)
   - ObjectMapper (1.0.1)
-  - RBQFetchedResultsController (3.0.1):
-    - Realm (>= 0.95)
-  - Realm (0.98.0):
-    - Realm/Headers (= 0.98.0)
-  - Realm/Headers (0.98.0)
-  - RealmMapView (1.7.3):
-    - ABFRealmMapView (>= 1.7.3)
-    - RealmSwift (>= 0.96)
-    - SwiftFetchedResultsController (>= 2.4.3)
-  - RealmSwift (0.98.0):
-    - Realm (= 0.98.0)
-  - SwiftFetchedResultsController (3.0.1):
-    - RBQFetchedResultsController (>= 3.0.1)
-    - RealmSwift (>= 0.96)
+  - Realm (0.98.3):
+    - Realm/Headers (= 0.98.3)
+  - Realm/Headers (0.98.3)
+  - RealmSwift (0.98.3):
+    - Realm (= 0.98.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.1.4)
   - AlamofireImage (~> 2.2.0)
+  - FBAnnotationClusteringSwift (~> 1.0.0)
   - ObjectMapper (~> 1.0.1)
-  - RealmMapView
   - RealmSwift (~> 0.97)
 
 SPEC CHECKSUMS:
-  ABFRealmMapView: e3d18e6a2df1713c07b4e518504558ecbadc9968
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AlamofireImage: bedb8a4bdfb98eda81ba12952fba6e9e90420922
+  FBAnnotationClusteringSwift: b06550cf23e0508da6f501af0aa7f7ba894baed9
   ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
-  RBQFetchedResultsController: 4b8a80647859241abdb3da04b486a6ad02dd5093
-  Realm: 28efc598b8b1b378d27a222d9fc037a29ae68642
-  RealmMapView: 2a3de4d3434e8e0778075d1a9cf34e12161a3daf
-  RealmSwift: 7ef4b9ee449d711cd5a7d69a3af1cc5cd0efb619
-  SwiftFetchedResultsController: 646da58a5cde2293b692f5c8283d1db001d720bc
+  Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
+  RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31
 
 COCOAPODS: 0.39.0
