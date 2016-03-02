@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 import RealmSwift
+import MapKit
 
 struct SitesRealmDataSource: TBRealmDataSource {
     typealias ObjectType = Site
@@ -19,7 +20,7 @@ struct SitesRealmDataSource: TBRealmDataSource {
 
     var fetchedResults: Results<ObjectType>!
     var fetchedObjects = [ReturnType]()
-    
+
     init(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor]? = nil) {
         self.predicate = predicate
         self.sortDescriptors = sortDescriptors
@@ -38,10 +39,10 @@ class Site: TBRealmObject, Mappable {
 
     dynamic var lat: Double = 0.0
     dynamic var lng: Double = 0.0
-    
+
     dynamic var extensionType: Int = 0
     dynamic var revision: Int = 0
-    
+
     dynamic var countries: String = ""
     dynamic var category: String = ""
     dynamic var historicalDescription: String = ""
@@ -55,21 +56,26 @@ class Site: TBRealmObject, Mappable {
     dynamic var transboundary: String = ""
     dynamic var fullDescription: String = ""
     dynamic var justification: String = ""
-    
+    dynamic var saved: Bool = false
+
     let images = List<Image>()
-    
+
     var criteria: [String]? {
         return [criteriaString]
     }
-    
+
     var url: NSURL? {
         return NSURL(string: urlString)
     }
-    
+
     var imageUrl: NSURL? {
         return NSURL(string: imageUrlString)
     }
-    
+
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(lat, lng)
+    }
+
     func mapping(map: Map) {
         identifier <- map["id_number"]
         name <- map["site"]
@@ -93,7 +99,7 @@ class Site: TBRealmObject, Mappable {
         lat <- (map["latitude"], StringToDoubleTransform)
         lng <- (map["longitude"], StringToDoubleTransform)
     }
-    
+
     required convenience init?(_ map: Map) {
         self.init()
         mapping(map)

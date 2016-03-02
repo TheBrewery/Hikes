@@ -22,73 +22,68 @@ class TBMapViewController: TBBaseViewController {
     lazy var recenterButton: TBCircularIconButton = {
         let buttonSize = CGSize(width: 50, height: 50)
         let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
-        
+
         let button = TBCircularIconButton(icon: Ionic.Pinpoint, frame: buttonFrame, target: self, action: "recenterMap")
-        
+
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: buttonSize.height)
         let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: buttonSize.width)
         button.addConstraints([heightConstraint, widthConstraint])
-        
+
         self.view.addSubview(button)
         let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: -20)
         let bottomConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: -69)
         self.view.addConstraints([horizontalConstraint, bottomConstraint])
         return button
     }()
-    
+
     lazy var searchButton: TBCircularIconButton = {
         let buttonSize = CGSize(width: 50, height: 50)
         let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
-        
+
         let button = TBCircularIconButton(icon: Ionic.IosSearch, frame: buttonFrame, target: self, action: "search")
         button.iconColor = UIColor.whiteColor()
         button.color = UIColor.whDarkBlueColor()
-        
+
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: buttonSize.height)
         let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: buttonSize.width)
         button.addConstraints([heightConstraint, widthConstraint])
-        
+
         self.view.addSubview(button)
         let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: -20)
         let bottomConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: -79 - buttonSize.height)
         self.view.addConstraints([horizontalConstraint, bottomConstraint])
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredBlurredStatusBarStyleBarStyle = .LightDefault
-        
+
         view.addSubview(recenterButton)
         view.addSubview(searchButton)
-        
+
         dataSource.fetch { [weak self] (objects) -> () in
-//            TODO fix objects
             guard let _self = self else {
                 return
             }
-            
+
             var annotations = [MKAnnotation]()
             for site in _self.dataSource.fetchedResults {
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2DMake(site.lat, site.lng)
-                annotation.title = site.name
-                annotation.subtitle = site.location
-                annotations.append(annotation)
+                annotations.append(WHSiteAnnotation(site: site))
             }
-            
+
             _self.clusteringManager.addAnnotations(annotations)
         }
     }
-    
+
     func search() {
-        
+
     }
-    
+
     func recenterMap() {
         guard let coordinate = mapView.userLocation.location?.coordinate else {
             return
@@ -97,31 +92,102 @@ class TBMapViewController: TBBaseViewController {
     }
 }
 
+class WHSiteAnnotation: NSObject, MKAnnotation {
+    var site: Site!
+
+    init(site: Site) {
+        self.site = site
+    }
+
+    var coordinate: CLLocationCoordinate2D {
+        return site.coordinate
+    }
+
+    var title: String? {
+        return site.name
+    }
+
+    var subtitle: String? {
+        return site.location.isEmpty ? site.countries : site.location
+    }
+}
+
+class WHSiteAnnotationView: MKAnnotationView {
+    var icon = Ionic.IosLocation {
+        didSet {
+            self.image = UIImage.imageWithIcon(icon, fontSize: fontSize, color: iconTintColor)
+        }
+    }
+
+    var fontSize: CGFloat = 40.0 {
+        didSet {
+            self.image = UIImage.imageWithIcon(icon, fontSize: fontSize, color: iconTintColor)
+        }
+    }
+
+    var iconTintColor: UIColor {
+        guard let annotation = annotation as? WHSiteAnnotation else {
+            return UIColor.redColor()
+        }
+
+        return annotation.site.category.lowercaseString == "natural" ? UIColor.greenColor() : UIColor.whDarkBlueColor()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.image = UIImage.imageWithIcon(icon, fontSize: fontSize, color: iconTintColor)
+        self.rightCalloutAccessoryView = UIView()
+    }
+
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        self.image = UIImage.imageWithIcon(icon, fontSize: fontSize, color: iconTintColor)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 extension TBMapViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         NSOperationQueue().addOperationWithBlock({
             let mapBoundsWidth = Double(self.mapView.bounds.size.width)
             let mapRectWidth:Double = self.mapView.visibleMapRect.size.width
             let scale:Double = mapBoundsWidth / mapRectWidth
-            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
-            self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.mapView)
+
+            executeOn(.Main, block: {
+                let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
+                self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.mapView)
+            })
         })
     }
-    
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+
         var reuseId = ""
         if annotation.isKindOfClass(FBAnnotationCluster) {
             reuseId = "Cluster"
             var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-            clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
+            if clusterView == nil {
+                clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId)
+            } else {
+                clusterView?.annotation = annotation
+            }
             return clusterView
         } else {
             reuseId = "Pin"
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.pinTintColor = UIColor.whDarkBlueColor()
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? WHSiteAnnotationView
+            if pinView == nil {
+                pinView = WHSiteAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView?.canShowCallout = true
+            } else {
+                pinView?.annotation = annotation
+            }
             return pinView
         }
     }
-    
 }

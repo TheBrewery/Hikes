@@ -13,14 +13,18 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.1.4)
   - AlamofireImage (~> 2.2.0)
-  - FBAnnotationClusteringSwift (~> 1.0.0)
+  - FBAnnotationClusteringSwift (from `../FBAnnotationClusteringSwift/`)
   - ObjectMapper (~> 1.0.1)
   - RealmSwift (~> 0.97)
+
+EXTERNAL SOURCES:
+  FBAnnotationClusteringSwift:
+    :path: "../FBAnnotationClusteringSwift/"
 
 SPEC CHECKSUMS:
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AlamofireImage: bedb8a4bdfb98eda81ba12952fba6e9e90420922
-  FBAnnotationClusteringSwift: b06550cf23e0508da6f501af0aa7f7ba894baed9
+  FBAnnotationClusteringSwift: 96038ecc3d8525a7153b4f4dcfaeab3bd70a8c01
   ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
   Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
   RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31

@@ -14,40 +14,27 @@ private let mainThreadRealm = try! Realm()
 protocol TBRealmDataSource {
     typealias ObjectType : Object
     typealias ReturnType
-    
+
     var predicate: NSPredicate? { get set }
     var sortDescriptors: [SortDescriptor]? { get set }
-    
+
     var fetchedResults: Results<ObjectType>! { get set }
     var fetchedObjects: [ReturnType] { get set }
-    
+
     init(predicate: NSPredicate?, sortDescriptors: [SortDescriptor]?)
 }
 
 extension TBRealmDataSource {
     var count: Int {
-        var count = 0
-        dispatch_sync(DispatchQueue(.Background)) {
-            if let fetchedResults = self.fetchedResults {
-                count = fetchedResults.count
-            }
-        }
-        return count
+        return fetchedResults.count
     }
-    
+
     subscript (indexPath: NSIndexPath) -> ObjectType? {
-        var object: ObjectType? = nil
-        dispatch_sync(DispatchQueue(.Background)) {
-            object = self.fetchedResults[indexPath.row]
-//            if let fetchedResults.indices.contains(indexPath.row) {
-//                count = fetchedResults.count
-//            }
-        }
-        return object
+        return self.fetchedResults[indexPath.row]
     }
-    
+
     // MARK: - Public
-    
+
     mutating func fetch(completion: (([ReturnType]?)->())? = nil) {
         if let predicate = predicate, let sortDescriptors = sortDescriptors {
             fetchedResults = mainThreadRealm.objects(ObjectType).filter(predicate).sorted(sortDescriptors)
@@ -58,7 +45,7 @@ extension TBRealmDataSource {
         } else {
             fetchedResults = mainThreadRealm.objects(ObjectType)
         }
-        
+
         fetchedObjects.removeAll()
         for result in fetchedResults {
             let typedResult = result as! ReturnType

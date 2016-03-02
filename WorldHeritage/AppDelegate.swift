@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import MapKit
 import ObjectMapper
+import FBAnnotationClusteringSwift
 
 let RealmDataBaseDidLoadNotification = "RealmDataBaseDidLoadNotification"
 
@@ -22,22 +23,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         TBLocationManager.authorize()
-        
+
         customizeAppearance()
-        
+
         executeOn(.Background) {
             if let path = NSBundle.mainBundle().pathForResource("sorted_sites", ofType: "json") {
                 do {
                     let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
                     let jsonResult = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! [[String: AnyObject]]
-                    
+
                     let _realm = try Realm()
                     try jsonResult.generate().forEach({ (dictionary) -> () in
                         try _realm.write({
                             _realm.create(Site.self, value: Mapper<Site>().map(dictionary)!, update: true)
                         })
                     })
-                    
+
                     executeOn(.Main) {
                         NSNotificationCenter.defaultCenter().postNotificationName(RealmDataBaseDidLoadNotification, object: nil)
                     }
@@ -53,9 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func customizeAppearance() {
         statusBarView.frame = UIApplication.sharedApplication().statusBarFrame
         window?.addSubview(statusBarView)
-        
+
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.regularFontOfSize(11.0)], forState: UIControlState.Normal)
         UITabBar.appearance().tintColor = UIColor.whDarkBlueColor()
+
+        FBAnnotationClusterView.appearance().font = UIFont.semiboldFontOfSize(16.0)
+        FBAnnotationClusterView.appearance().colors = [UIColor.whDarkBlueColor(), UIColor.whDarkBlueColor().lighterColorForColor(0.1)]
     }
 
     func applicationWillResignActive(application: UIApplication) {
