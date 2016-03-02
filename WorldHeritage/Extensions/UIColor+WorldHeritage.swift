@@ -12,4 +12,9 @@ extension UIColor {
     class func whDarkBlueColor() -> UIColor {
         return UIColor.fromHex("0764A7")
     }
+
+    class func whRedColor() -> UIColor {
+//        rgb 255 89 89
+        return UIColor.fromHex("FF5959")
+    }
 }

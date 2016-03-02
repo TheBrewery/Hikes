@@ -8,14 +8,44 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class WHSiteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var rightLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
+
+    private func updateSaveButton() {
+        let attributedString = site.saved ? Ionic.IosHeart.attributedStringWithFontSize(28) : Ionic.IosHeartOutline.attributedStringWithFontSize(28)
+        let textColor = site.saved ? UIColor.whRedColor() : UIColor.whiteColor()
+        let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
+        mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: NSMakeRange(0, attributedString.length))
+        saveButton.setAttributedTitle(mutableAttributedString, forState: .Normal)
+    }
 
     private let gradientLayer = CAGradientLayer()
+
+    var site: Site! {
+        didSet {
+            titleLabel.text = site.name
+            titleLabel.font = UIFont.regularFontOfSize(20)
+            titleLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
+            titleLabel.layer.shadowOpacity = 0.32
+
+            subtitleLabel.text = site.countries
+            subtitleLabel.font = UIFont.lightFontOfSize(18)
+
+            saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+            saveButton.layer.shadowOpacity = 0.32
+            saveButton.backgroundColor = UIColor.clearColor()
+            updateSaveButton()
+
+            if let url = site.imageUrl {
+                imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named:"petra")!)
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +55,9 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
         gradientLayer.colors = [UIColor(white: 0, alpha: 0).CGColor, UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.6).CGColor]
 
         contentView.layer.insertSublayer(gradientLayer, below: titleLabel.layer)
+
+        contentView.addSubview(saveButton)
+        saveButton.addTarget(self, action: "updateSaved", forControlEvents: .TouchUpInside)
     }
 
     override func layoutSubviews() {
@@ -39,15 +72,27 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
         }
         self.imageView.frame.origin.y = parallaxAttributes.parallaxOffset.y
     }
+
+    // MARK: - Private
+
+    @IBAction func updateSaved() {
+        do {
+            try Realm().write {
+                site.saved = !site.saved
+            }
+        } catch {
+
+        }
+        self.updateSaveButton()
+    }
 }
 
 class WHSitesViewController: TBBaseViewController {
     let WHSiteCollectionViewCellIdentifier = "WHSiteCollectionViewCellIdentifier"
 
-    let dataSource = SitesRealmDataSource()
+    var dataSource = SitesRealmDataSource()
 
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -58,6 +103,17 @@ class WHSitesViewController: TBBaseViewController {
         preferredBlurredStatusBarStyleBarStyle = .LightDefault
 
         NSNotificationCenter.defaultCenter().addObserver(self.collectionView, selector: "reloadData", name: RealmDataBaseDidLoadNotification, object: nil)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        dataSource.fetch { [weak self] (objects) -> () in
+            guard let _self = self else {
+                return
+            }
+            _self.collectionView.reloadData()
+        }
     }
 }
 
@@ -86,21 +142,7 @@ extension WHSitesViewController: UICollectionViewDataSource {
             return cell
         }
 
-        //        TODO
-        let attributedString = NSMutableAttributedString(string: site.name, attributes: [NSFontAttributeName: UIFont.regularFontOfSize(24)])
-        attributedString.appendAttributedString(NSAttributedString(string: " " + site.countries, attributes: [NSFontAttributeName: UIFont.lightFontOfSize(24)]))
-        cell.titleLabel.attributedText = attributedString
-        cell.titleLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
-        cell.titleLabel.layer.shadowOpacity = 0.32
-
-        cell.rightLabel.attributedText = Ionic.Heart.attributedStringWithFontSize(28)
-        cell.rightLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
-        cell.rightLabel.layer.shadowOpacity = 0.32
-
-        if let url = site.imageUrl {
-            cell.imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named:"petra")!)
-        }
-
+        cell.site = site
         return cell
     }
 }

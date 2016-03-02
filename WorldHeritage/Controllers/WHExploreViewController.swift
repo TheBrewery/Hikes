@@ -40,10 +40,6 @@ class WHExploreViewController: WHSitesViewController {
         return searchViewController as! WHSearchViewController
     }()
 
-    func filter() {
-
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,6 +74,12 @@ class WHExploreViewController: WHSitesViewController {
         }
 
         view.addSubview(animatingSearchBar)
+    }
+
+    // MARK: - Actions
+
+    func filter() {
+
     }
 
     // MARK: - UIScrollViewDelegate

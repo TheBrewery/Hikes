@@ -33,15 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let jsonResult = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! [[String: AnyObject]]
 
                     let _realm = try Realm()
+
+                    guard _realm.objects(Site).count == 0 else {
+                        return NSNotificationCenter.defaultCenter().postNotificationName(RealmDataBaseDidLoadNotification, object: nil)
+                    }
+
                     try jsonResult.generate().forEach({ (dictionary) -> () in
                         try _realm.write({
                             _realm.create(Site.self, value: Mapper<Site>().map(dictionary)!, update: true)
                         })
                     })
 
-                    executeOn(.Main) {
-                        NSNotificationCenter.defaultCenter().postNotificationName(RealmDataBaseDidLoadNotification, object: nil)
-                    }
+                    NSNotificationCenter.defaultCenter().postNotificationName(RealmDataBaseDidLoadNotification, object: nil)
                 } catch {
                     print("LOAD ERROR")
                 }

@@ -9,11 +9,6 @@ typealias TBVoidWithAnyObjectClosure = (AnyObject) -> ()
 typealias TBVoidWithCountOrErrorClosure = (Int, NSError?) -> ()
 typealias TBVoidWithFramesClosure = (beginFrame: CGRect, endFrame: CGRect) -> ()
 
-func dispatchAfter(delay: NSTimeInterval, queue: dispatch_queue_t! = dispatch_get_main_queue(), closure: TBVoidClosure) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, queue, closure)
-}
-
 var TBUnknownError: NSError {
     return NSError(domain: "io.thebrewery", code: 915, userInfo: nil)
 }
@@ -37,10 +32,17 @@ func DispatchQueue(type: DispatchQueueType) -> dispatch_queue_t {
 }
 
 
-func executeOn(type: DispatchQueueType, block: TBVoidClosure) {
+func executeOn(type: DispatchQueueType, afterDelay delay: NSTimeInterval? = 0.0, block: TBVoidClosure) {
+    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay! * Double(NSEC_PER_SEC)))
+
     guard type == .Main && NSThread.isMainThread() else {
-        return dispatch_async(DispatchQueue(type), block)
+        return dispatch_after(time, DispatchQueue(type), block)
     }
-    block()
+
+    guard delay != 0.0 else {
+        return block()
+    }
+
+    dispatch_after(time, DispatchQueue(type), block)
 }
 
