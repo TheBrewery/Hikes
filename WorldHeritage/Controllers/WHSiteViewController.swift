@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import MapKit
 
 class TBHeaderView: UIView {
     var imageView: UIImageView!
@@ -51,14 +51,18 @@ class TBHeaderView: UIView {
 
 
 class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
-//    @IBOutlet weak var headerView: TBHeaderView!
+    @IBOutlet weak var headerView: TBHeaderView!
+    var viewHasLaidOutContraints = false
 
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var rightLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var gainLabel: UILabel!
-    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapViewContainer: UIView!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var descriptionLabelHeightConstraint: NSLayoutConstraint!
 
     private var site: Site!
 
@@ -70,31 +74,42 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        preferredBlurredStatusBarStyleBarStyle = .LightDefault
-        
-//        subtitleLabel.text = site.locality
-//        rightLabel.text = String(format: "%.1f mi", hike.distance/1.6)
-//
-//        let locationAttributedString = NSMutableAttributedString(string: Iconic.Compass.rawValue, attributes: [NSFontAttributeName: UIFont.iconicFontOfSize(20)])
-//        locationAttributedString.appendAttributedString(NSAttributedString(string: " \(hike.lat), \(hike.lng)"))
-//        locationLabel.attributedText = locationAttributedString
-//
-//        let gainAttributedString = NSMutableAttributedString(string: Iconic.ArrowTop.rawValue, attributes: [NSFontAttributeName: UIFont.iconicFontOfSize(20)])
-//        gainAttributedString.appendAttributedString(NSAttributedString(string: " \(hike.elevationGain)"))
-//        gainLabel.attributedText = gainAttributedString
-//
-//        let maxAttributedString = NSMutableAttributedString(string: Iconic.ArrowCircleTop.rawValue, attributes: [NSFontAttributeName: UIFont.iconicFontOfSize(20)])
-//        maxAttributedString.appendAttributedString(NSAttributedString(string: " \(hike.elevationMax)"))
-//        maxLabel.attributedText = maxAttributedString
+
+        preferredBlurredStatusBarStyleBarStyle = .NoneLightContent
+
+        if let url = site.imageUrl {
+            imageView.af_setImageWithURL(url)
+        }
+
+        mapView.centerCoordinate = site.coordinate
+        mapView.addAnnotation(WHSiteAnnotation(site: site))
+        mapView.userInteractionEnabled = false
+        mapViewContainer.layer.shadowOffset = CGSize(width: 0, height: 1)
+        mapViewContainer.layer.shadowOpacity = 0.32
+
+        backButton.setAttributedTitle(Ionic.ChevronLeft.attributedStringWithFontSize(30), forState: UIControlState.Normal)
+        backButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        backButton.layer.shadowOpacity = 0.32
+
+        shareButton.setAttributedTitle(Ionic.Share.attributedStringWithFontSize(30), forState: UIControlState.Normal)
+        shareButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        shareButton.layer.shadowOpacity = 0.32
 
         scrollView.contentInset.top = 136
+
+        let style = NSMutableParagraphStyle()
+        style.paragraphSpacing = 16.0
+
+        let trimmedDescription = site.fullDescription.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let attributes = [NSFontAttributeName : UIFont.lightFontOfSize(16.0), NSParagraphStyleAttributeName: style]
+        descriptionLabel.attributedText = NSAttributedString(string: trimmedDescription, attributes: attributes)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        scrollView.contentSize.height = view.frame.height
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        descriptionLabel.sizeToFit()
+        descriptionLabelHeightConstraint.constant = descriptionLabel.frame.height
+        scrollView.contentSize = CGSize(width: view.frame.width, height: descriptionLabel.frame.origin.y + descriptionLabel.frame.height + 12.0)
     }
 
     @IBAction func dismiss() {
@@ -105,5 +120,33 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
 //        headerView.contentOffset = scrollView.contentOffset
+        let contentOffset = scrollView.contentOffset
+        if contentOffset.y >= 40 {
+            visualEffectView.alpha = min(1, (contentOffset.y - 40.0)/40.0)
+        } else if contentOffset.y > -136 {
+            visualEffectView.alpha = 0
+        } else {
+            visualEffectView.alpha = min(1, -(136 + contentOffset.y)/40.0)
+            let scaleFactor = 1 + -(136 + contentOffset.y) / imageView.frame.height
+            imageView.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor)
+        }
+    }
+}
+
+extension WHSiteViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+
+        let reuseId = "Pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? WHSiteAnnotationView
+        if pinView == nil {
+            pinView = WHSiteAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView?.canShowCallout = true
+        } else {
+            pinView?.annotation = annotation
+        }
+        return pinView
     }
 }

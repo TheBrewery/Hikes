@@ -17,8 +17,11 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var saveButton: UIButton!
 
     private func updateSaveButton() {
-        let attributedString = site.saved ? Ionic.IosHeart.attributedStringWithFontSize(28) : Ionic.IosHeartOutline.attributedStringWithFontSize(28)
+        let attributedString = site.saved ? Ionic.IosHeart.attributedStringWithFontSize(32) : Ionic.IosHeartOutline.attributedStringWithFontSize(32)
         let textColor = site.saved ? UIColor.whRedColor() : UIColor.whiteColor()
+
+        print(site.name, site.saved)
+
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: NSMakeRange(0, attributedString.length))
         saveButton.setAttributedTitle(mutableAttributedString, forState: .Normal)
@@ -34,7 +37,7 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
             titleLabel.layer.shadowOpacity = 0.32
 
             subtitleLabel.text = site.countries
-            subtitleLabel.font = UIFont.lightFontOfSize(18)
+            subtitleLabel.font = UIFont.lightFontOfSize(20)
 
             saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
             saveButton.layer.shadowOpacity = 0.32
@@ -56,7 +59,6 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
         contentView.layer.insertSublayer(gradientLayer, below: titleLabel.layer)
 
-        contentView.addSubview(saveButton)
         saveButton.addTarget(self, action: "updateSaved", forControlEvents: .TouchUpInside)
     }
 

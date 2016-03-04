@@ -63,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FBAnnotationClusterView.appearance().font = UIFont.semiboldFontOfSize(16.0)
         FBAnnotationClusterView.appearance().colors = [UIColor.whDarkBlueColor(), UIColor.whDarkBlueColor().lighterColorForColor(0.1)]
+        FBAnnotationClusterView.appearance().size = CGSizeMake(30, 30)
     }
 
     func applicationWillResignActive(application: UIApplication) {
