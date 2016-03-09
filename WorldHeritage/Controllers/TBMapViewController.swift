@@ -25,6 +25,10 @@ class TBMapViewController: TBBaseViewController {
 
         let button = TBCircularIconButton(icon: Ionic.Pinpoint, frame: buttonFrame, target: self, action: "recenterMap")
 
+        let tapGesture = UITapGestureRecognizer(target: self, action: "zoomToLocation")
+        tapGesture.numberOfTapsRequired = 2
+        button.addGestureRecognizer(tapGesture)
+
         button.translatesAutoresizingMaskIntoConstraints = false
 
         let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: buttonSize.height)
@@ -61,6 +65,10 @@ class TBMapViewController: TBBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        mapView.showsScale = true
+        mapView.showsCompass = true
+
         preferredBlurredStatusBarStyleBarStyle = .LightDefault
 
         view.addSubview(recenterButton)
@@ -82,6 +90,14 @@ class TBMapViewController: TBBaseViewController {
 
     func search() {
 
+    }
+
+    func zoomToLocation() {
+        guard let coordinate = mapView.userLocation.location?.coordinate else {
+            return
+        }
+        let region = MKCoordinateRegionMakeWithDistance(coordinate, 3000, 3000)
+        mapView.setRegion(region, animated: true)
     }
 
     func recenterMap() {
@@ -180,13 +196,14 @@ extension TBMapViewController: MKMapViewDelegate {
             return clusterView
         } else {
             reuseId = "Pin"
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? WHSiteAnnotationView
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
             if pinView == nil {
-                pinView = WHSiteAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                 pinView?.canShowCallout = true
             } else {
                 pinView?.annotation = annotation
             }
+            pinView?.pinTintColor = (annotation as? WHSiteAnnotation)?.site.category == "Cultural" ? UIColor.whDarkBlueColor() : UIColor.whDarkGreenColor()
             return pinView
         }
     }

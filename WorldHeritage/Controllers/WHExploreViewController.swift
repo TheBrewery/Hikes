@@ -45,6 +45,9 @@ class WHExploreViewController: WHSitesViewController {
 
         view.addSubview(filterButton)
 
+        let layout = collectionView.collectionViewLayout as! TBParallaxFlowLayout
+        layout.sectionInset = UIEdgeInsets(top: 90.0, left: 0, bottom: 0, right: 0)
+
         animatingSearchBar = TBAnimatingSearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
 
         animatingSearchBar.textDidChange = { [weak self](text) in
@@ -62,18 +65,36 @@ class WHExploreViewController: WHSitesViewController {
             if state == TBAnimatingSearchBarState.Expanded {
                 _self.searchViewController.view.alpha = 1
                 UIView.animateWithDuration(0.35) {
+                    _self.searchViewController.beginAppearanceTransition(true, animated: false)
                     _self.searchViewController.view.frame.origin.y = 64
                 }
             } else if _self.searchViewController.view.alpha == 1.0 {
                 UIView.animateWithDuration(0.35, animations: {
                     _self.searchViewController.view.frame.origin.y = _self.parentViewController!.view.frame.maxY
                     }, completion: { (finished) in
+                        _self.searchViewController.beginAppearanceTransition(false, animated: false)
                         _self.searchViewController.view.alpha = 0
                 })
             }
         }
 
         view.addSubview(animatingSearchBar)
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if animatingSearchBar.barState == .Expanded {
+            self.searchViewController.beginAppearanceTransition(true, animated: animated)
+        }
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if animatingSearchBar.barState == .Expanded {
+            self.searchViewController.beginAppearanceTransition(false, animated: animated)
+        }
     }
 
     // MARK: - Actions

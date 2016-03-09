@@ -7,7 +7,7 @@ enum TBAnimatingSearchBarState {
 }
 
 private let placeholderOffsetX: CGFloat = 4.0
-private let viewHeight: CGFloat = 44.0
+private let viewHeight: CGFloat = 50.0
 
 class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
     class TBTextField: UITextField {
@@ -131,6 +131,12 @@ class TBAnimatingSearchBar: UIView, UITextFieldDelegate {
     func didTapCancelButton() {
         self.textField.userInteractionEnabled = false
         self.textField.text = nil
+        executeOn(.Main, afterDelay: 0.5) {[weak self] Void in
+            guard let _self = self else {
+                return
+            }
+            _self.textDidChange?("")
+        }
         
         barState = previousBarState
     }

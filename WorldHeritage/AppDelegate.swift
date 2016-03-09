@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FBAnnotationClusterView.appearance().font = UIFont.semiboldFontOfSize(16.0)
         FBAnnotationClusterView.appearance().colors = [UIColor.whDarkBlueColor(), UIColor.whDarkBlueColor().lighterColorForColor(0.1)]
-        FBAnnotationClusterView.appearance().size = CGSizeMake(30, 30)
+        FBAnnotationClusterView.appearance().size = CGSizeMake(25, 25)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -87,7 +87,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

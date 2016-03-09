@@ -10,17 +10,38 @@ import Foundation
 import UIKit
 import RealmSwift
 
+private let margin: CGFloat = 10.0
+private let imageHeight: CGFloat = 160.0
+
+extension CGRect {
+    mutating func divide(amount: CGFloat, edge: CGRectEdge) -> CGRect {
+        var slice = CGRectZero
+        CGRectDivide(self, &slice, &self, amount, edge)
+        return slice
+    }
+}
+
+class TBButton: UIButton {
+   override var highlighted: Bool {
+        didSet {
+            UIView.animateWithDuration(0.1) {
+                self.transform = self.highlighted ? CGAffineTransformMakeScale(0.8, 0.8) : CGAffineTransformIdentity
+                self.alpha = self.highlighted ? 0.5 : 1.0
+            }
+        }
+    }
+}
+
 class WHSiteCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var saveButton: UIButton!
+    var titleLabel: UILabel!
+    var subtitleLabel: UILabel!
+    var imageViewContainer: UIView!
+    var imageView: UIImageView!
+    var saveButton: TBButton!
 
     private func updateSaveButton() {
         let attributedString = site.saved ? Ionic.IosHeart.attributedStringWithFontSize(32) : Ionic.IosHeartOutline.attributedStringWithFontSize(32)
         let textColor = site.saved ? UIColor.whRedColor() : UIColor.whiteColor()
-
-        print(site.name, site.saved)
 
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: NSMakeRange(0, attributedString.length))
@@ -29,42 +50,111 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
     private let gradientLayer = CAGradientLayer()
 
+    private class func titleAttributedString(site: Site) -> NSAttributedString {
+        let color = UIColor.whDarkBlueColor()
+        let attributedString = NSMutableAttributedString(string: site.name, attributes: [NSFontAttributeName: UIFont.regularFontOfSize(20), NSForegroundColorAttributeName: color])
+        attributedString.appendAttributedString(NSAttributedString(string: " \(site.countries)", attributes: [NSFontAttributeName: UIFont.lightFontOfSize(20), NSForegroundColorAttributeName: color]))
+        return attributedString
+    }
+
+    private class func subtitleAttributedString(site: Site) -> NSAttributedString {
+        return NSAttributedString(string: site.location, attributes: [NSFontAttributeName: UIFont.lightFontOfSize(20), NSForegroundColorAttributeName: UIColor.darkTextColor()])
+    }
+
     var site: Site! {
         didSet {
-            titleLabel.text = site.name
-            titleLabel.font = UIFont.regularFontOfSize(20)
-            titleLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
-            titleLabel.layer.shadowOpacity = 0.32
+            titleLabel.attributedText = WHSiteCollectionViewCell.titleAttributedString(site)
+            subtitleLabel.attributedText = WHSiteCollectionViewCell.subtitleAttributedString(site)
 
-            subtitleLabel.text = site.countries
-            subtitleLabel.font = UIFont.lightFontOfSize(20)
+            titleLabel.frame.size.height = titleLabel.sizeThatFits(CGSize(width: titleLabel.frame.width, height: 9999)).height
+            imageViewContainer.frame.origin.y = titleLabel.frame.maxY + margin
+            subtitleLabel.frame.origin.y = imageViewContainer.frame.maxY + margin
+            subtitleLabel.frame.size.height = subtitleLabel.sizeThatFits(CGSize(width: subtitleLabel.frame.width, height: 9999)).height
 
-            saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-            saveButton.layer.shadowOpacity = 0.32
-            saveButton.backgroundColor = UIColor.clearColor()
             updateSaveButton()
 
             if let url = site.imageUrl {
-                imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named:"petra")!)
+                let image = UIImage.imageWithIcon(Ionic.Image, fontSize: 100.0, color: UIColor.lightGrayColor())
+                let trans = UIImageView.ImageTransition.CrossDissolve(0.2)
+
+                imageView.contentMode = .Center
+
+                imageView.af_setImageWithURL(url, placeholderImage: image, filter: nil, imageTransition: trans) { [weak self] (response) -> Void in
+                    guard let _self = self where response.result.isSuccess else {
+                        return
+                    }
+
+                    _self.imageView.contentMode = .ScaleAspectFill
+                }
             }
         }
     }
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        let insetRect = CGRectInset(bounds, margin, margin)
+
+        titleLabel = UILabel(frame: insetRect)
+        titleLabel.numberOfLines = 0
+        titleLabel.minimumScaleFactor = 0.75
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
+        titleLabel.layer.shadowOpacity = 0.16
+
+        subtitleLabel = UILabel(frame: insetRect)
+        subtitleLabel.numberOfLines = 0
+
+        let imageViewContainerFrame = CGRect(x: margin, y: 0, width: insetRect.width, height: imageHeight)
+        let buttonHeight: CGFloat = 50.0
+
+        imageView = UIImageView(frame: CGRect(x: 0, y: -30, width: insetRect.width, height: imageHeight + 60))
+        saveButton = TBButton(frame: CGRect(x: imageViewContainerFrame.width - buttonHeight, y: imageViewContainerFrame.height - buttonHeight, width: buttonHeight, height: buttonHeight))
+        saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        saveButton.layer.shadowOpacity = 0.16
+        saveButton.backgroundColor = UIColor.clearColor()
+        saveButton.addTarget(self, action: "updateSaved", forControlEvents: .TouchUpInside)
+
+        imageViewContainer = UIView(frame: imageViewContainerFrame)
+        imageViewContainer.clipsToBounds = true
+
+        imageViewContainer.addSubview(imageView)
+        imageViewContainer.addSubview(saveButton)
+
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(subtitleLabel)
+        contentView.addSubview(imageViewContainer)
+
+        backgroundColor = UIColor.whiteColor()
+        layer.shadowOffset = CGSize(width: 0, height: 1)
+        layer.shadowOpacity = 0.16
+        layer.masksToBounds = false
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
 
-        gradientLayer.startPoint = CGPoint(x: 0, y: 1)
-        gradientLayer.endPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.colors = [UIColor(white: 0, alpha: 0).CGColor, UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.6).CGColor]
+    private class func titleHeight(width: CGFloat, site: Site) -> CGFloat {
+        let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
+        return self.titleAttributedString(site).boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+    }
 
-        contentView.layer.insertSublayer(gradientLayer, below: titleLabel.layer)
+    private class func subtitleHeight(width: CGFloat, site: Site) -> CGFloat {
+        let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
+        return self.subtitleAttributedString(site).boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+    }
 
-        saveButton.addTarget(self, action: "updateSaved", forControlEvents: .TouchUpInside)
+    class func sizeThatFits(width: CGFloat, site: Site) -> CGSize {
+        return CGSize(width: width, height: margin * 4 + titleHeight(width, site: site) + imageHeight + subtitleHeight(width, site: site))
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height/2.0)
     }
 
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -93,6 +183,7 @@ class WHSitesViewController: TBBaseViewController {
     let WHSiteCollectionViewCellIdentifier = "WHSiteCollectionViewCellIdentifier"
 
     var dataSource = SitesRealmDataSource()
+    var cellSizeCache = [String: CGSize]()
 
     @IBOutlet var collectionView: UICollectionView!
 
@@ -103,6 +194,11 @@ class WHSitesViewController: TBBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredBlurredStatusBarStyleBarStyle = .LightDefault
+
+        collectionView.registerClass(WHSiteCollectionViewCell.self, forCellWithReuseIdentifier: WHSiteCollectionViewCellIdentifier)
+
+        let layout = collectionView.collectionViewLayout as! TBParallaxFlowLayout
+        layout.minimumLineSpacing = 20.0
 
         NSNotificationCenter.defaultCenter().addObserver(self.collectionView, selector: "reloadData", name: RealmDataBaseDidLoadNotification, object: nil)
     }
@@ -130,7 +226,14 @@ extension WHSitesViewController: UICollectionViewDataSource {
     // Mark - UICollectionViewDataSource
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.frame.width, 200)
+        let site = dataSource[indexPath]!
+        guard let size = cellSizeCache[site.identifier] else {
+            let newSize = WHSiteCollectionViewCell.sizeThatFits(collectionView.frame.width - 24.0, site: site)
+            cellSizeCache[site.identifier] = newSize
+            return newSize
+        }
+
+        return size
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

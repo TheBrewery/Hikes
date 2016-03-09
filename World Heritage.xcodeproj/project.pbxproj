@@ -38,17 +38,18 @@
 		0DBC11431C6E3E5B0057C7F6 /* WHDebugConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC113F1C6E3E5B0057C7F6 /* WHDebugConstants.swift */; };
 		0DBC11441C6E3E5B0057C7F6 /* WHReleaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11401C6E3E5B0057C7F6 /* WHReleaseConstants.swift */; };
 		0DD614F11C7605C00033BD9C /* WHSavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD614F01C7605C00033BD9C /* WHSavedViewController.swift */; };
-		0DD614F31C76B6970033BD9C /* UIViewController+WorldHeritage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD614F21C76B6970033BD9C /* UIViewController+WorldHeritage.swift */; };
 		0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A381B85B775008F6246 /* Realm.framework */; };
 		0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A391B85B775008F6246 /* RealmSwift.framework */; };
 		0DE33A3C1B85B82F008F6246 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A331B85B1F7008F6246 /* Alamofire.framework */; };
+		0DEFBB8B1C8ECFC30006E1A8 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFBB8A1C8ECFC30006E1A8 /* UILabel+Extensions.swift */; };
+		0DEFBBA01C901E010006E1A8 /* TBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFBB9F1C901E010006E1A8 /* TBBaseViewController.swift */; };
 		D91F51F8595EBBAE15BE7745 /* Pods_World_Heritage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CE657AFEA96A4F5ADE5B9C /* Pods_World_Heritage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D1A00B31C7230DE00AC64D3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D1A00B51C7230DE00AC64D3 /* WHExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHExploreViewController.swift; sourceTree = "<group>"; };
-		0D1A00B61C7230DE00AC64D3 /* WHSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHSiteViewController.swift; sourceTree = "<group>"; };
+		0D1A00B61C7230DE00AC64D3 /* WHSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WHSiteViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0D1A00B71C7230DE00AC64D3 /* WHSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHSearchViewController.swift; sourceTree = "<group>"; };
 		0D1A00B91C7230DE00AC64D3 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		0D1A00BA1C7230DE00AC64D3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -65,14 +66,14 @@
 		0D23EAFD1C859C6100E711B7 /* UIImage+Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Icons.swift"; sourceTree = "<group>"; };
 		0D23EAFF1C85E9AC00E711B7 /* TBParallaxFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBParallaxFlowLayout.swift; sourceTree = "<group>"; };
 		0D23EB011C85F1AA00E711B7 /* TBParallaxLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBParallaxLayoutAttributes.swift; sourceTree = "<group>"; };
-		0D23EB031C86A50E00E711B7 /* WHSitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHSitesViewController.swift; sourceTree = "<group>"; };
+		0D23EB031C86A50E00E711B7 /* WHSitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WHSitesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0D4EE3671C75D49E00C8BDF2 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 		0D4EE3691C75D4AD00C8BDF2 /* UIFont+Ionic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ionic.swift"; sourceTree = "<group>"; };
 		0D4EE36B1C75DB8E00C8BDF2 /* TBMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBMapViewController.swift; sourceTree = "<group>"; };
 		0D4EE36E1C75E0B900C8BDF2 /* TBClosureDeclarations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBClosureDeclarations.swift; sourceTree = "<group>"; };
 		0D4EE36F1C75E0B900C8BDF2 /* TBLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBLocationManager.swift; sourceTree = "<group>"; };
 		0D6AE31A1B85A0E0000B0A07 /* WHS β.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WHS β.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D761AC51C7813730052D50C /* sorted_sites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sorted_sites.json; sourceTree = "<group>"; };
+		0D761AC51C7813730052D50C /* sorted_sites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = sorted_sites.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		0D956E8F1C76CA71004A5D86 /* Site.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
 		0D956E911C76CC66004A5D86 /* TBRealmDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBRealmDataSource.swift; sourceTree = "<group>"; };
 		0DA362E81C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAnimatedLaunchViewController.swift; sourceTree = "<group>"; };
@@ -81,10 +82,11 @@
 		0DBC113F1C6E3E5B0057C7F6 /* WHDebugConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHDebugConstants.swift; sourceTree = "<group>"; };
 		0DBC11401C6E3E5B0057C7F6 /* WHReleaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHReleaseConstants.swift; sourceTree = "<group>"; };
 		0DD614F01C7605C00033BD9C /* WHSavedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHSavedViewController.swift; sourceTree = "<group>"; };
-		0DD614F21C76B6970033BD9C /* UIViewController+WorldHeritage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+WorldHeritage.swift"; sourceTree = "<group>"; };
 		0DE33A331B85B1F7008F6246 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0DE33A381B85B775008F6246 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		0DE33A391B85B775008F6246 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		0DEFBB8A1C8ECFC30006E1A8 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		0DEFBB9F1C901E010006E1A8 /* TBBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBBaseViewController.swift; sourceTree = "<group>"; };
 		529AD995455957671989297A /* Pods-World Heritage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage.release.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage.release.xcconfig"; sourceTree = "<group>"; };
 		95492B779A78C38358C2D36A /* Pods-World Heritage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage.debug.xcconfig"; sourceTree = "<group>"; };
 		B6CE657AFEA96A4F5ADE5B9C /* Pods_World_Heritage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_World_Heritage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				0DA362E81C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift */,
+				0DEFBB9F1C901E010006E1A8 /* TBBaseViewController.swift */,
 				0D4EE36B1C75DB8E00C8BDF2 /* TBMapViewController.swift */,
 				0D1A00B51C7230DE00AC64D3 /* WHExploreViewController.swift */,
 				0DD614F01C7605C00033BD9C /* WHSavedViewController.swift */,
@@ -143,7 +146,7 @@
 				0D4EE3691C75D4AD00C8BDF2 /* UIFont+Ionic.swift */,
 				0D1A00BD1C7230DE00AC64D3 /* UIFont+WorldHeritage.swift */,
 				0D23EAFD1C859C6100E711B7 /* UIImage+Icons.swift */,
-				0DD614F21C76B6970033BD9C /* UIViewController+WorldHeritage.swift */,
+				0DEFBB8A1C8ECFC30006E1A8 /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				0D1A00D41C7230DF00AC64D3 /* String+Extensions.swift in Sources */,
 				0DA362E91C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift in Sources */,
 				0D1A00E41C7230DF00AC64D3 /* TBAnimatingSearchBar.swift in Sources */,
+				0DEFBBA01C901E010006E1A8 /* TBBaseViewController.swift in Sources */,
 				0D1A00E51C7230DF00AC64D3 /* TBCircularIconButton.swift in Sources */,
 				0D4EE3711C75E0B900C8BDF2 /* TBClosureDeclarations.swift in Sources */,
 				0D4EE3721C75E0B900C8BDF2 /* TBLocationManager.swift in Sources */,
@@ -400,7 +404,7 @@
 				0D4EE36A1C75D4AD00C8BDF2 /* UIFont+Ionic.swift in Sources */,
 				0D1A00D81C7230DF00AC64D3 /* UIFont+WorldHeritage.swift in Sources */,
 				0D23EAFE1C859C6100E711B7 /* UIImage+Icons.swift in Sources */,
-				0DD614F31C76B6970033BD9C /* UIViewController+WorldHeritage.swift in Sources */,
+				0DEFBB8B1C8ECFC30006E1A8 /* UILabel+Extensions.swift in Sources */,
 				0DBC11431C6E3E5B0057C7F6 /* WHDebugConstants.swift in Sources */,
 				0D1A00D11C7230DF00AC64D3 /* WHExploreViewController.swift in Sources */,
 				0DBC11441C6E3E5B0057C7F6 /* WHReleaseConstants.swift in Sources */,
@@ -471,7 +475,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -510,7 +514,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
