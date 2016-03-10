@@ -27,6 +27,15 @@ class TBDropDownMenu: UIView {
 
     var isShowing = false {
         didSet {
+            let cornerRadiusAnimation = CABasicAnimation(keyPath: "cornerRadius")
+            cornerRadiusAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            cornerRadiusAnimation.fromValue = visualEffectView.layer.cornerRadius
+            cornerRadiusAnimation.toValue = isShowing ? 6.0 : 25.0
+            cornerRadiusAnimation.duration = 0.15
+
+            visualEffectView.layer.addAnimation(cornerRadiusAnimation, forKey: "cornerRadius")
+            visualEffectView.layer.cornerRadius = cornerRadiusAnimation.toValue as! CGFloat
+
             if isShowing {
                 for button in self.menuButtons {
                     button.center = self.mainMenuButton.center
@@ -34,8 +43,8 @@ class TBDropDownMenu: UIView {
                 }
 
                 UIView.animateWithDuration(0.15, animations: { () -> Void in
-                    self.visualEffectView.alpha = 1
                     self.mainMenuButton.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI_4), 0, 0, 1)
+                    self.visualEffectView.frame = CGRect(x: self.bounds.width - 60 - self.margin, y: 30, width: 60, height: 60)
                     }, completion: { (fin) -> Void in
 
                 })
@@ -43,9 +52,9 @@ class TBDropDownMenu: UIView {
                 UIView.animateWithDuration(0.2, delay: 0.15, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.85, options: .CurveEaseInOut, animations: { () -> Void in
                     for (index, button) in self.menuButtons.enumerate() {
                         if index == 0 {
-                            button.center.y = self.mainMenuButton.frame.maxY + button.frame.height/2.0 + 10.0
+                            button.center.y = self.mainMenuButton.frame.maxY + button.frame.height/2.0 + self.margin
                         } else {
-                            button.center.y = self.menuButtons[index - 1].frame.maxY + button.frame.height/2.0 + 10.0
+                            button.center.y = self.menuButtons[index - 1].frame.maxY + button.frame.height/2.0 + self.margin
                         }
                     }
                     }, completion: { (finished) -> Void in
@@ -62,8 +71,8 @@ class TBDropDownMenu: UIView {
                 })
 
                 UIView.animateWithDuration(0.2, animations: { () -> Void in
-                    self.visualEffectView.alpha = 0
                     self.mainMenuButton.layer.transform = CATransform3DIdentity
+                    self.visualEffectView.frame = CGRect(x: self.bounds.width - 50 - self.margin, y: 30, width: 50, height: 50)
                     }, completion: { (finished) -> Void in
                         for button in self.menuButtons {
                             button.hidden = true
@@ -74,11 +83,12 @@ class TBDropDownMenu: UIView {
     }
 
     lazy private var visualEffectView: UIVisualEffectView = {
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        visualEffectView.frame = self.bounds
-        visualEffectView.alpha = 0
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        visualEffectView.frame = CGRect(x: self.bounds.width - 50 - self.margin, y: 30, width: 50, height: 50)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapVisualEffectsViewButton")
         visualEffectView.addGestureRecognizer(tapGestureRecognizer)
+        visualEffectView.layer.masksToBounds = true
+        visualEffectView.layer.cornerRadius = 25.0
         return visualEffectView
     }()
     private var menuButtons = [UIButton]()
