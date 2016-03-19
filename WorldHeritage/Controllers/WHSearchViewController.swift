@@ -98,7 +98,12 @@ private extension SitesRealmDataSource {
 
 extension WHSearchViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 128.0
+        let site = dataSource[indexPath]!
+        let margin: CGFloat = 8.0
+        let descriptionHeight: CGFloat = 88.0
+        let boundingSize = CGRectInset(tableView.bounds, margin, 0).size
+        let titleHeight = site.titleAttributedString.boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+        return titleHeight + descriptionHeight + margin
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -118,8 +123,13 @@ extension WHSearchViewController {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("HikeSearchCell", forIndexPath: indexPath) as! HikesSearchCell
 
         if let site = dataSource[indexPath] {
-            cell.titleLabel.text = site.name
-            cell.descriptionLabel.text = site.shortDescription
+            cell.titleLabel.attributedText = site.titleAttributedString
+            cell.titleLabel.numberOfLines = 0
+            cell.titleLabel.sizeHeightToFit()
+
+            cell.descriptionLabel.attributedText = NSAttributedString(string: site.shortDescription, attributes: [NSFontAttributeName: UIFont.lightFontOfSize(16.0)])
+            cell.descriptionLabel.sizeHeightToFit()
+
             cell.selectionStyle = .Default
             let backgroundView = UIView(frame: cell.bounds)
             backgroundView.backgroundColor = UIColor.whDarkBlueColor().colorWithAlphaComponent(0.1)

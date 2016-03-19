@@ -63,6 +63,18 @@ class TBMapViewController: TBBaseViewController {
         return button
     }()
 
+    var showsRecenterButton = true {
+        didSet {
+            recenterButton.alpha = CGFloat(showsRecenterButton)
+        }
+    }
+
+    var showsSearchButton = true {
+        didSet {
+            searchButton.alpha = CGFloat(showsSearchButton)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,8 +83,8 @@ class TBMapViewController: TBBaseViewController {
 
         preferredBlurredStatusBarStyleBarStyle = .LightDefault
 
-        view.addSubview(recenterButton)
-        view.addSubview(searchButton)
+        recenterButton.alpha = 1
+        searchButton.alpha = 1
 
         dataSource.fetch { [weak self] (objects) -> () in
             guard let _self = self else {
@@ -88,11 +100,13 @@ class TBMapViewController: TBBaseViewController {
         }
     }
 
-    func search() {
+// MARK: - Private
+
+    @objc private func search() {
 
     }
 
-    func zoomToLocation() {
+    @objc private func zoomToLocation() {
         guard let coordinate = mapView.userLocation.location?.coordinate else {
             return
         }
@@ -100,7 +114,7 @@ class TBMapViewController: TBBaseViewController {
         mapView.setRegion(region, animated: true)
     }
 
-    func recenterMap() {
+    @objc private func recenterMap() {
         guard let coordinate = mapView.userLocation.location?.coordinate else {
             return
         }
@@ -165,6 +179,10 @@ class WHSiteAnnotationView: MKAnnotationView {
     }
 }
 
+private extension MKAnnotationView {
+
+}
+
 extension TBMapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         NSOperationQueue().addOperationWithBlock({
@@ -177,6 +195,15 @@ extension TBMapViewController: MKMapViewDelegate {
                 self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.mapView)
             })
         })
+    }
+
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let site = (view.annotation as? WHSiteAnnotation)?.site else {
+            return
+        }
+
+        let viewController = WHSiteViewController.createWith(site)
+        self.showViewController(viewController, sender: nil)
     }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -199,11 +226,19 @@ extension TBMapViewController: MKMapViewDelegate {
             var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
             if pinView == nil {
                 pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                pinView?.canShowCallout = true
             } else {
                 pinView?.annotation = annotation
             }
-            pinView?.pinTintColor = (annotation as? WHSiteAnnotation)?.site.category == "Cultural" ? UIColor.whDarkBlueColor() : UIColor.whDarkGreenColor()
+
+            pinView?.canShowCallout = true
+
+            let color = (annotation as? WHSiteAnnotation)?.site.category == "Cultural" ? UIColor.whDarkBlueColor() : UIColor.whDarkGreenColor()
+            let image = UIImage.imageWithIcon(Ionic.IosArrowRight, fontSize: 30.0, color: color)
+            let button = UIButton(frame: CGRect(origin: CGPointZero, size: image.size))
+            button.setImage(image, forState: .Normal)
+
+            pinView?.rightCalloutAccessoryView = button
+            pinView?.pinTintColor = color
             return pinView
         }
     }

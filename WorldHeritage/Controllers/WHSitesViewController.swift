@@ -50,20 +50,13 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
     private let gradientLayer = CAGradientLayer()
 
-    private class func titleAttributedString(site: Site) -> NSAttributedString {
-        let color = UIColor.whDarkBlueColor()
-        let attributedString = NSMutableAttributedString(string: site.name, attributes: [NSFontAttributeName: UIFont.regularFontOfSize(20), NSForegroundColorAttributeName: color])
-        attributedString.appendAttributedString(NSAttributedString(string: " \(site.countries)", attributes: [NSFontAttributeName: UIFont.lightFontOfSize(20), NSForegroundColorAttributeName: color]))
-        return attributedString
-    }
-
     private class func subtitleAttributedString(site: Site) -> NSAttributedString {
         return NSAttributedString(string: site.location, attributes: [NSFontAttributeName: UIFont.lightFontOfSize(20), NSForegroundColorAttributeName: UIColor.darkTextColor()])
     }
 
     var site: Site! {
         didSet {
-            titleLabel.attributedText = WHSiteCollectionViewCell.titleAttributedString(site)
+            titleLabel.attributedText = site.titleAttributedString
             subtitleLabel.attributedText = WHSiteCollectionViewCell.subtitleAttributedString(site)
 
             titleLabel.frame.size.height = titleLabel.sizeThatFits(CGSize(width: titleLabel.frame.width, height: 9999)).height
@@ -96,10 +89,6 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
         titleLabel = UILabel(frame: insetRect)
         titleLabel.numberOfLines = 0
-        titleLabel.minimumScaleFactor = 0.75
-        titleLabel.adjustsFontSizeToFitWidth = true
-        titleLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
-        titleLabel.layer.shadowOpacity = 0.16
 
         subtitleLabel = UILabel(frame: insetRect)
         subtitleLabel.numberOfLines = 0
@@ -141,7 +130,7 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
     private class func titleHeight(width: CGFloat, site: Site) -> CGFloat {
         let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
-        return self.titleAttributedString(site).boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+        return site.titleAttributedString.boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
     }
 
     private class func subtitleHeight(width: CGFloat, site: Site) -> CGFloat {
