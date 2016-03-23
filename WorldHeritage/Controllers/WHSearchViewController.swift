@@ -102,7 +102,7 @@ extension WHSearchViewController {
         let margin: CGFloat = 8.0
         let descriptionHeight: CGFloat = 88.0
         let boundingSize = CGRectInset(tableView.bounds, margin, 0).size
-        let titleHeight = site.titleAttributedString.boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+        let titleHeight = site.titleAttributedString().boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
         return titleHeight + descriptionHeight + margin
     }
 
@@ -123,7 +123,7 @@ extension WHSearchViewController {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("HikeSearchCell", forIndexPath: indexPath) as! HikesSearchCell
 
         if let site = dataSource[indexPath] {
-            cell.titleLabel.attributedText = site.titleAttributedString
+            cell.titleLabel.attributedText = site.titleAttributedString()
             cell.titleLabel.numberOfLines = 0
             cell.titleLabel.sizeHeightToFit()
 

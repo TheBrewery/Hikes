@@ -142,15 +142,14 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
             imageView.af_setImageWithURL(url)
         }
 
-        titleLabel.attributedText = site.titleAttributedString
+        titleLabel.attributedText = site.titleAttributedString()
         subtitleLabel.attributedText = WHSiteViewController.subtitleAttributedString(site)
 
         navigationTitleLabelTopContraint.constant = 44
 
-        navigationTitleLabel.text = site.name
+        navigationTitleLabel.attributedText = site.titleAttributedString(UIColor.whiteColor())
         navigationTitleLabel.alpha = 0
         navigationTitleLabel.transform = CGAffineTransformMakeScale(0.8, 0.8)
-        navigationTitleLabel.font = UIFont.semiboldFontOfSize(20.0)
         navigationTitleLabel.minimumScaleFactor = 0.8
         navigationTitleLabel.adjustsFontSizeToFitWidth = true
         navigationTitleLabel.layer.shadowOffset = CGSize(width: 0, height: 1)

@@ -138,8 +138,7 @@ class Site: TBRealmObject, Mappable {
 
 
 extension Site {
-    var titleAttributedString: NSAttributedString {
-        let color = UIColor.whDarkBlueColor()
+    func titleAttributedString(color: UIColor = UIColor.whDarkBlueColor()) -> NSAttributedString {
         let trimmedName = name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let formattedCountries = " \(countries.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))"
         let attributedString = NSMutableAttributedString(string: trimmedName, attributes: [NSFontAttributeName: UIFont.regularFontOfSize(20), NSForegroundColorAttributeName: color])

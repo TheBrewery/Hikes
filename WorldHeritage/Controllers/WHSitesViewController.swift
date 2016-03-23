@@ -56,7 +56,7 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
     var site: Site! {
         didSet {
-            titleLabel.attributedText = site.titleAttributedString
+            titleLabel.attributedText = site.titleAttributedString()
             subtitleLabel.attributedText = WHSiteCollectionViewCell.subtitleAttributedString(site)
 
             titleLabel.frame.size.height = titleLabel.sizeThatFits(CGSize(width: titleLabel.frame.width, height: 9999)).height
@@ -67,12 +67,12 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
             updateSaveButton()
 
             if let url = site.imageUrl {
-                let image = UIImage.imageWithIcon(Ionic.Image, fontSize: 100.0, color: UIColor.lightGrayColor())
+//                let image = UIImage.imageWithIcon(Ionic.Image, fontSize: 100.0, color: UIColor.lightGrayColor())
                 let trans = UIImageView.ImageTransition.CrossDissolve(0.2)
 
                 imageView.contentMode = .Center
 
-                imageView.af_setImageWithURL(url, placeholderImage: image, filter: nil, imageTransition: trans) { [weak self] (response) -> Void in
+                imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: trans) { [weak self] (response) -> Void in
                     guard let _self = self where response.result.isSuccess else {
                         return
                     }
@@ -97,6 +97,8 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
         let buttonHeight: CGFloat = 50.0
 
         imageView = UIImageView(frame: CGRect(x: 0, y: -30, width: insetRect.width, height: imageHeight + 60))
+        imageView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        
         saveButton = TBButton(frame: CGRect(x: imageViewContainerFrame.width - buttonHeight, y: imageViewContainerFrame.height - buttonHeight, width: buttonHeight, height: buttonHeight))
         saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
         saveButton.layer.shadowOpacity = 0.16
@@ -130,7 +132,7 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
     private class func titleHeight(width: CGFloat, site: Site) -> CGFloat {
         let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
-        return site.titleAttributedString.boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+        return site.titleAttributedString().boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
     }
 
     private class func subtitleHeight(width: CGFloat, site: Site) -> CGFloat {
