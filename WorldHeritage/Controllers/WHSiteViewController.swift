@@ -206,20 +206,35 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let contentOffset = scrollView.contentOffset
-        if contentOffset.y >= 26 {
-            let alpha = min(1, (contentOffset.y - 26.0)/26.0)
-            visualEffectView.alpha = alpha
-            navigationTitleLabel.alpha = alpha
-            let transform = 0.8 + alpha/5.0
+        let imageViewContainer = imageView.superview!
+
+        if contentOffset.y >= 0 {
+            if view.subviews.indexOf(imageViewContainer) < view.subviews.indexOf(scrollView) {
+                view.insertSubview(imageViewContainer, aboveSubview: mapView)
+                imageViewContainer.clipsToBounds = true
+            }
+
+            visualEffectView.alpha = min(1, (contentOffset.y)/44.0)
+
+            let titleAlpha = min(1, (contentOffset.y - 26.0)/26.0)
+            navigationTitleLabel.alpha = titleAlpha
+            let transform = 0.8 + titleAlpha/5.0
             navigationTitleLabel.transform = CGAffineTransformMakeScale(transform, transform)
             navigationTitleLabelTopContraint.constant = max(56-contentOffset.y, 0)
-        } else if contentOffset.y > -136 {
-            visualEffectView.alpha = 0
-            navigationTitleLabel.alpha = 0
         } else {
-            visualEffectView.alpha = min(1, -(136 + contentOffset.y)/40.0)
-            let scaleFactor = 1 + -(136 + contentOffset.y) / imageView.frame.height
-            imageView.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor)
+            navigationTitleLabel.alpha = 0
+            visualEffectView.alpha = 0
+
+            if view.subviews.indexOf(imageViewContainer) > view.subviews.indexOf(scrollView) {
+                view.insertSubview(imageViewContainer, belowSubview: scrollView)
+                imageViewContainer.clipsToBounds = false
+            }
+
+            if contentOffset.y < -136 {
+                visualEffectView.alpha = min(1, -(136 + contentOffset.y)/40.0)
+                let scaleFactor = 1 + -(136 + contentOffset.y) / imageView.frame.height
+                imageView.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor)
+            }
         }
     }
 

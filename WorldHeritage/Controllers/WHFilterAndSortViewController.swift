@@ -31,17 +31,33 @@ class WHFilterAndSortViewController: TBBaseViewController {
         return button
     }()
 
-    var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+
+//    let sortDescriptor: NSSortDescriptor!
+    let sortKeys = ["date", "distance", "name", "region", "country"]
+
+//    struct filter {
+//        let key: String
+//        let values: [String]
+//
+//        var predicate: NSPredicate {
+//            let predicates = values.map {
+//                return NSPredicate(format: "criteria == @%", argumentArray: [$0])
+//            }
+//            return NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+//        }
+//    }
+//
+//    let filters = ["criteria", "regions", "countries", "years"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.lightGrayColor()
 
-        tableView = UITableView(frame: view.bounds)
-        view.addSubview(tableView)
-
         closeButton is TBCircularIconButton
+
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "SortCell")
     }
 
     @objc private func didTapCloseButton() {
@@ -54,11 +70,30 @@ extension WHFilterAndSortViewController: UITableViewDelegate {
 }
 
 extension WHFilterAndSortViewController: UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
 
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 ? 1 : sortKeys.count
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerLabel = UILabel(frame: CGRect(x: 20, y: 0, width: tableView.frame.width - 20, height: 20))
+        headerLabel.text = "Sort"
+        return headerLabel
+    }
+
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        var cell = tableView.dequeueReusableCellWithIdentifier("SortCell", forIndexPath: indexPath)
+
+//        if cell == nil {
+//            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "")
+//        }
+
+        cell.textLabel?.text = sortKeys[indexPath.row]
+
+        return cell
     }
 }

@@ -38,6 +38,7 @@
 		0DA362E91C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA362E81C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift */; };
 		0DBC11431C6E3E5B0057C7F6 /* WHDebugConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC113F1C6E3E5B0057C7F6 /* WHDebugConstants.swift */; };
 		0DBC11441C6E3E5B0057C7F6 /* WHReleaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11401C6E3E5B0057C7F6 /* WHReleaseConstants.swift */; };
+		0DBE86AA1CA31CDE00608050 /* UIImage+Tinted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBE86A91CA31CDE00608050 /* UIImage+Tinted.swift */; };
 		0DD614F11C7605C00033BD9C /* WHSavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD614F01C7605C00033BD9C /* WHSavedViewController.swift */; };
 		0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A381B85B775008F6246 /* Realm.framework */; };
 		0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE33A391B85B775008F6246 /* RealmSwift.framework */; };
@@ -85,6 +86,7 @@
 		0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		0DBC113F1C6E3E5B0057C7F6 /* WHDebugConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHDebugConstants.swift; sourceTree = "<group>"; };
 		0DBC11401C6E3E5B0057C7F6 /* WHReleaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHReleaseConstants.swift; sourceTree = "<group>"; };
+		0DBE86A91CA31CDE00608050 /* UIImage+Tinted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Tinted.swift"; sourceTree = "<group>"; };
 		0DD614F01C7605C00033BD9C /* WHSavedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHSavedViewController.swift; sourceTree = "<group>"; };
 		0DE33A331B85B1F7008F6246 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0DE33A381B85B775008F6246 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				0D4EE3691C75D4AD00C8BDF2 /* UIFont+Ionic.swift */,
 				0D1A00BD1C7230DE00AC64D3 /* UIFont+WorldHeritage.swift */,
 				0D23EAFD1C859C6100E711B7 /* UIImage+Icons.swift */,
+				0DBE86A91CA31CDE00608050 /* UIImage+Tinted.swift */,
 				0DEFBB8A1C8ECFC30006E1A8 /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
@@ -415,6 +418,7 @@
 				0D4EE36A1C75D4AD00C8BDF2 /* UIFont+Ionic.swift in Sources */,
 				0D1A00D81C7230DF00AC64D3 /* UIFont+WorldHeritage.swift in Sources */,
 				0D23EAFE1C859C6100E711B7 /* UIImage+Icons.swift in Sources */,
+				0DBE86AA1CA31CDE00608050 /* UIImage+Tinted.swift in Sources */,
 				0DEFBB8B1C8ECFC30006E1A8 /* UILabel+Extensions.swift in Sources */,
 				0DBC11431C6E3E5B0057C7F6 /* WHDebugConstants.swift in Sources */,
 				0D1A00D11C7230DF00AC64D3 /* WHExploreViewController.swift in Sources */,

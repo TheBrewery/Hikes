@@ -67,12 +67,16 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
             updateSaveButton()
 
             if let url = site.imageUrl {
-//                let image = UIImage.imageWithIcon(Ionic.Image, fontSize: 100.0, color: UIColor.lightGrayColor())
+                let images = ["taj_mahal", "petra", "machu_picchu", "great_wall", "giza", "colosseum"]
+                let index = abs(site.name.hash) % 5
+
+                let image = UIImage(named: images[index])
+
                 let trans = UIImageView.ImageTransition.CrossDissolve(0.2)
 
                 imageView.contentMode = .Center
 
-                imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: trans) { [weak self] (response) -> Void in
+                imageView.af_setImageWithURL(url, placeholderImage: image, filter: nil, imageTransition: trans) { [weak self] (response) -> Void in
                     guard let _self = self where response.result.isSuccess else {
                         return
                     }
@@ -98,7 +102,7 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
         imageView = UIImageView(frame: CGRect(x: 0, y: -30, width: insetRect.width, height: imageHeight + 60))
         imageView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-        
+
         saveButton = TBButton(frame: CGRect(x: imageViewContainerFrame.width - buttonHeight, y: imageViewContainerFrame.height - buttonHeight, width: buttonHeight, height: buttonHeight))
         saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
         saveButton.layer.shadowOpacity = 0.16

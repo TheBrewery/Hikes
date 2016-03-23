@@ -100,7 +100,8 @@ class WHExploreViewController: WHSitesViewController {
     // MARK: - Actions
 
     func filter() {
-        self.navigationController?.showDetailViewController(WHFilterAndSortViewController(), sender: nil)
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("WHFilterAndSortViewController") as! WHFilterAndSortViewController
+        self.navigationController?.showDetailViewController(viewController, sender: nil)
     }
 
     // MARK: - UIScrollViewDelegate
