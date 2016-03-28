@@ -317,43 +317,6 @@
             </objects>
             <point key="canvasLocation" x="-599" y="764"/>
         </scene>
-        <!--Filter And Sort View Controller-->
-        <scene sceneID="Q8N-tU-vpR">
-            <objects>
-                <viewController storyboardIdentifier="WHFilterAndSortViewController" id="kYq-Iw-60f" customClass="WHFilterAndSortViewController" customModule="WHS_β" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5WD-CW-JHP"/>
-                        <viewControllerLayoutGuide type="bottom" id="F7W-nu-Tnh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Rpe-Dy-vRf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="G7U-Fe-lOz">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="kYq-Iw-60f" id="FeY-jf-KUO"/>
-                                    <outlet property="delegate" destination="kYq-Iw-60f" id="sg0-t5-xoI"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="G7U-Fe-lOz" firstAttribute="leading" secondItem="Rpe-Dy-vRf" secondAttribute="leadingMargin" constant="-20" id="Gm3-ID-ZqH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="G7U-Fe-lOz" secondAttribute="trailing" constant="-20" id="jCW-Ws-JUY"/>
-                            <constraint firstItem="F7W-nu-Tnh" firstAttribute="top" secondItem="G7U-Fe-lOz" secondAttribute="bottom" id="kaM-0r-dWf"/>
-                            <constraint firstItem="G7U-Fe-lOz" firstAttribute="top" secondItem="Rpe-Dy-vRf" secondAttribute="topMargin" id="ln6-zy-7Si"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="G7U-Fe-lOz" id="Fbf-nd-FMh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0gJ-Hr-RpX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-474" y="1497"/>
-        </scene>
         <!--Site View Controller-->
         <scene sceneID="UPR-2p-R9a">
             <objects>
