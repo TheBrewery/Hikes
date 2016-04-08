@@ -11,16 +11,16 @@ import UIKit
 import RealmSwift
 
 class WHSortTableViewCell: UITableViewCell {
-    var property: String!
+    var property = "date"
     var ascending = true
-    
+
     var sortDescriptor: SortDescriptor {
         return SortDescriptor(property: property, ascending: ascending)
     }
 }
 
 class WHFilterTableViewCell: UITableViewCell {
-    
+
 }
 
 class WHFilterAndSortViewController: TBBaseViewController {
@@ -43,7 +43,7 @@ class WHFilterAndSortViewController: TBBaseViewController {
 
     var tableView: UITableView!
 
-    let sortProperties: [(title: String, property: String)] = [("Inscription Date", "date"), ("Distance", "distance"), ("Site Name", "name"), ("Region", "region"), ("Country", "country")]
+    let sortProperties: [(title: String, property: String)] = [("Inscription Date", "identifier"), ("Distance", "distance"), ("Site Name", "name"), ("Region", "region"), ("Country", "countries")]
 
 //    struct filter {
 //        let key: String
@@ -58,12 +58,12 @@ class WHFilterAndSortViewController: TBBaseViewController {
 //    }
 //
 //    let filters = ["criteria", "regions", "countries", "years"]
-    
+
     var sortOrFilterDidChange: ((NSPredicate?, [SortDescriptor]?) -> ())?
-    
+
     var filterPredicate: NSPredicate?
     var sortDescriptors: [SortDescriptor]?
-    
+
     init(filterPredicate: NSPredicate?, sortDescriptors: [SortDescriptor]?) {
         super.init(nibName: nil, bundle: nil)
         self.filterPredicate = filterPredicate
@@ -73,17 +73,17 @@ class WHFilterAndSortViewController: TBBaseViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func loadView() {
         view = UIView(frame: UIScreen.mainScreen().bounds)
-        
+
         tableView = UITableView(frame: view.bounds, style: UITableViewStyle.Grouped)
         tableView.delegate = self
         tableView.dataSource = self
 
         view.addSubview(tableView)
         view.addSubview(closeButton)
-        
+
         let horizontalConstraint = NSLayoutConstraint(item: closeButton, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 20)
         let bottomConstraint = NSLayoutConstraint(item: closeButton, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 30)
         self.view.addConstraints([horizontalConstraint, bottomConstraint])
@@ -91,10 +91,10 @@ class WHFilterAndSortViewController: TBBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = UIColor.lightGrayColor()
 
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "SortCell")
+        tableView.registerClass(WHSortTableViewCell.self, forCellReuseIdentifier: "SortCell")
     }
 
     @objc private func didTapCloseButton() {
@@ -108,21 +108,21 @@ extension WHFilterAndSortViewController: UITableViewDelegate {
         guard let cell = tableView.cellForRowAtIndexPath(indexPath) as? WHSortTableViewCell else {
             return
         }
-        
+
         guard var sortDescriptors = sortDescriptors else {
             return self.sortDescriptors = [cell.sortDescriptor]
         }
-        
+
         guard let index = sortDescriptors.indexOf(cell.sortDescriptor) else {
-            return sortDescriptors.append(cell.sortDescriptor)
+            return self.sortDescriptors = [cell.sortDescriptor]
         }
-        
+
         if cell.ascending {
             cell.ascending = false
         } else {
             sortDescriptors.removeAtIndex(index)
         }
-        
+
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 }
@@ -143,22 +143,18 @@ extension WHFilterAndSortViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("SortCell", forIndexPath: indexPath)
-
-//        if cell == nil {
-//            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "")
-//        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("SortCell", forIndexPath: indexPath) as! WHSortTableViewCell
         cell.textLabel?.text = sortProperties[indexPath.row].title
-        
+        cell.property = sortProperties[indexPath.row].property
+
         guard let sortDescriptors = sortDescriptors else {
             return cell
         }
-        
-        
+
         guard let ascending = sortDescriptors.filter({ $0.property == sortProperties[indexPath.row].property }).first?.ascending else {
             return cell
         }
-        
+
         let icon = ascending ? Ionic.ArrowDownA : Ionic.ArrowUpA
         cell.detailTextLabel?.attributedText = icon.attributedStringWithFontSize(20)
 

@@ -38,6 +38,7 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
     var imageViewContainer: UIView!
     var imageView: UIImageView!
     var saveButton: TBButton!
+    private var labelContainerView = UIView()
 
     private func updateSaveButton() {
         let attributedString = site.saved ? Ionic.IosHeart.attributedStringWithFontSize(32) : Ionic.IosHeartOutline.attributedStringWithFontSize(32)
@@ -51,32 +52,36 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
     private let gradientLayer = CAGradientLayer()
 
     private class func subtitleAttributedString(site: Site) -> NSAttributedString {
-        return NSAttributedString(string: site.location, attributes: [NSFontAttributeName: UIFont.lightFontOfSize(20), NSForegroundColorAttributeName: UIColor.darkTextColor()])
+        return NSAttributedString(string: site.location, attributes: [NSFontAttributeName: UIFont.lightFontOfSize(18), NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
 
     var site: Site! {
         didSet {
-            titleLabel.attributedText = site.titleAttributedString()
+            titleLabel.attributedText = site.titleAttributedString(UIColor.whiteColor())
             subtitleLabel.attributedText = WHSiteCollectionViewCell.subtitleAttributedString(site)
 
-            titleLabel.frame.size.height = titleLabel.sizeThatFits(CGSize(width: titleLabel.frame.width, height: 9999)).height
-            imageViewContainer.frame.origin.y = titleLabel.frame.maxY + margin
-            subtitleLabel.frame.origin.y = imageViewContainer.frame.maxY + margin
-            subtitleLabel.frame.size.height = subtitleLabel.sizeThatFits(CGSize(width: subtitleLabel.frame.width, height: 9999)).height
+            let titleLabelHeight = titleLabel.sizeThatFits(CGSize(width: titleLabel.frame.width, height: 9999)).height
+            titleLabel.frame.size.height = titleLabelHeight
+
+            let subtitleLabelHeight = subtitleLabel.sizeThatFits(CGSize(width: subtitleLabel.frame.width, height: 9999)).height
+            subtitleLabel.frame = CGRect(x: 0, y: titleLabelHeight + 12, width: labelContainerView.frame.width, height: subtitleLabelHeight)
+
+            labelContainerView.frame.size.height = subtitleLabel.frame.maxY
+            labelContainerView.center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
 
             updateSaveButton()
 
             if let url = site.imageUrl {
-                let images = ["taj_mahal", "petra", "machu_picchu", "great_wall", "giza", "colosseum"]
-                let index = abs(site.name.hash) % 5
-
-                let image = UIImage(named: images[index])
+//                let images = ["taj_mahal", "petra", "machu_picchu", "great_wall", "giza", "colosseum"]
+//                let index = abs(site.name.hash) % 5
+//
+//                let image = UIImage(named: images[index])
 
                 let trans = UIImageView.ImageTransition.CrossDissolve(0.2)
 
                 imageView.contentMode = .Center
 
-                imageView.af_setImageWithURL(url, placeholderImage: image, filter: nil, imageTransition: trans) { [weak self] (response) -> Void in
+                imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: trans) { [weak self] (response) -> Void in
                     guard let _self = self where response.result.isSuccess else {
                         return
                     }
@@ -93,15 +98,20 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
 
         titleLabel = UILabel(frame: insetRect)
         titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .Center
 
         subtitleLabel = UILabel(frame: insetRect)
         subtitleLabel.numberOfLines = 0
+        subtitleLabel.textAlignment = .Center
 
-        let imageViewContainerFrame = CGRect(x: margin, y: 0, width: insetRect.width, height: imageHeight)
+        labelContainerView.frame = bounds
+        labelContainerView.addSubview(titleLabel)
+        labelContainerView.addSubview(subtitleLabel)
+
+        let imageViewContainerFrame = self.bounds //CGRect(x: margin, y: 0, width: insetRect.width, height: imageHeight)
         let buttonHeight: CGFloat = 50.0
 
-        imageView = UIImageView(frame: CGRect(x: 0, y: -30, width: insetRect.width, height: imageHeight + 60))
-        imageView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        imageView = UIImageView(frame: CGRectInset(imageViewContainerFrame, 0, -30))
 
         saveButton = TBButton(frame: CGRect(x: imageViewContainerFrame.width - buttonHeight, y: imageViewContainerFrame.height - buttonHeight, width: buttonHeight, height: buttonHeight))
         saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -112,12 +122,15 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
         imageViewContainer = UIView(frame: imageViewContainerFrame)
         imageViewContainer.clipsToBounds = true
 
+        let tintView = UIView(frame: imageViewContainer.bounds)
+        tintView.backgroundColor = UIColor(white: 0.0, alpha: 0.45)
+
         imageViewContainer.addSubview(imageView)
+        imageViewContainer.addSubview(tintView)
         imageViewContainer.addSubview(saveButton)
 
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(subtitleLabel)
         contentView.addSubview(imageViewContainer)
+        contentView.addSubview(labelContainerView)
 
         backgroundColor = UIColor.whiteColor()
         layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -134,19 +147,19 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    private class func titleHeight(width: CGFloat, site: Site) -> CGFloat {
-        let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
-        return site.titleAttributedString().boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
-    }
+//    private class func titleHeight(width: CGFloat, site: Site) -> CGFloat {
+//        let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
+//        return site.titleAttributedString().boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+//    }
+//
+//    private class func subtitleHeight(width: CGFloat, site: Site) -> CGFloat {
+//        let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
+//        return self.subtitleAttributedString(site).boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
+//    }
 
-    private class func subtitleHeight(width: CGFloat, site: Site) -> CGFloat {
-        let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
-        return self.subtitleAttributedString(site).boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height
-    }
-
-    class func sizeThatFits(width: CGFloat, site: Site) -> CGSize {
-        return CGSize(width: width, height: margin * 4 + titleHeight(width, site: site) + imageHeight + subtitleHeight(width, site: site))
-    }
+//    class func sizeThatFits(width: CGFloat, site: Site) -> CGSize {
+//        return CGSize(width: width, height: margin * 4 + titleHeight(width, site: site) + imageHeight + subtitleHeight(width, site: site))
+//    }
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -221,14 +234,14 @@ extension WHSitesViewController: UICollectionViewDataSource {
     // Mark - UICollectionViewDataSource
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let site = dataSource[indexPath]!
-        guard let size = cellSizeCache[site.identifier] else {
-            let newSize = WHSiteCollectionViewCell.sizeThatFits(collectionView.frame.width - 24.0, site: site)
-            cellSizeCache[site.identifier] = newSize
-            return newSize
-        }
+//        let site = dataSource[indexPath]!
+//        guard let size = cellSizeCache[site.identifier] else {
+//            let newSize = WHSiteCollectionViewCell.sizeThatFits(collectionView.frame.width, site: site)
+//            cellSizeCache[site.identifier] = newSize
+//            return newSize
+//        }
 
-        return size
+        return CGSize(width: collectionView.frame.width, height: 240)
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
