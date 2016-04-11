@@ -1,0 +1,6 @@
+framework module Pods_World_Heritage_UITests {
+  umbrella header "Pods-World Heritage UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

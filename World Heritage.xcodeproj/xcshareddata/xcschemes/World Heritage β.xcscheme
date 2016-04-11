@@ -52,6 +52,26 @@
                ReferencedContainer = "container:World Heritage.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0D1700A61CBB49AF007D0738"
+               BuildableName = "World Heritage UITests.xctest"
+               BlueprintName = "World Heritage UITests"
+               ReferencedContainer = "container:World Heritage.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0D1700B41CBB49C3007D0738"
+               BuildableName = "World Heritage Tests.xctest"
+               BlueprintName = "World Heritage Tests"
+               ReferencedContainer = "container:World Heritage.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

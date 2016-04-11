@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D1700B81CBB49C3007D0738 /* World_Heritage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1700B71CBB49C3007D0738 /* World_Heritage_Tests.swift */; };
+		0D1700C61CBB49F1007D0738 /* World_Heritage_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1700C51CBB49F1007D0738 /* World_Heritage_UITests.swift */; };
 		0D1A00D01C7230DF00AC64D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1A00B31C7230DE00AC64D3 /* AppDelegate.swift */; };
 		0D1A00D11C7230DF00AC64D3 /* WHExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1A00B51C7230DE00AC64D3 /* WHExploreViewController.swift */; };
 		0D1A00D21C7230DF00AC64D3 /* WHSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1A00B61C7230DE00AC64D3 /* WHSiteViewController.swift */; };
@@ -47,10 +49,36 @@
 		0DEFBBA01C901E010006E1A8 /* TBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFBB9F1C901E010006E1A8 /* TBBaseViewController.swift */; };
 		0DEFBBA21C911FF30006E1A8 /* TBDropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFBBA11C911FF30006E1A8 /* TBDropDownMenu.swift */; };
 		0DEFBBA41C91952D0006E1A8 /* criteria.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DEFBBA31C91952D0006E1A8 /* criteria.json */; };
+		7F14C9B1E29B677EFAB1EB37 /* Pods_World_Heritage_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E42B58959F3D869760082 /* Pods_World_Heritage_UITests.framework */; };
+		8DDD2DB246ACA4AC8AAE0EBE /* Pods_World_Heritage_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D40ABC736A47DE9235751C4 /* Pods_World_Heritage_Tests.framework */; };
+		C53C46FD834BCE9CC616E21A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB373670E61C30DD2498AD4 /* Pods.framework */; };
 		D91F51F8595EBBAE15BE7745 /* Pods_World_Heritage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CE657AFEA96A4F5ADE5B9C /* Pods_World_Heritage.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0D1700BA1CBB49C3007D0738 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D6AE3121B85A0DF000B0A07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D6AE3191B85A0DF000B0A07;
+			remoteInfo = "World Heritage";
+		};
+		0D1700C81CBB49F1007D0738 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D6AE3121B85A0DF000B0A07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D6AE3191B85A0DF000B0A07;
+			remoteInfo = "World Heritage";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0D1700B51CBB49C3007D0738 /* World Heritage Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "World Heritage Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D1700B71CBB49C3007D0738 /* World_Heritage_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World_Heritage_Tests.swift; sourceTree = "<group>"; };
+		0D1700B91CBB49C3007D0738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D1700C31CBB49F1007D0738 /* World Heritage UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "World Heritage UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D1700C51CBB49F1007D0738 /* World_Heritage_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World_Heritage_UITests.swift; sourceTree = "<group>"; };
+		0D1700C71CBB49F1007D0738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D1A00B31C7230DE00AC64D3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D1A00B51C7230DE00AC64D3 /* WHExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHExploreViewController.swift; sourceTree = "<group>"; };
 		0D1A00B61C7230DE00AC64D3 /* WHSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WHSiteViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -95,12 +123,35 @@
 		0DEFBB9F1C901E010006E1A8 /* TBBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBBaseViewController.swift; sourceTree = "<group>"; };
 		0DEFBBA11C911FF30006E1A8 /* TBDropDownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TBDropDownMenu.swift; path = WorldHeritage/Views/TBDropDownMenu.swift; sourceTree = SOURCE_ROOT; };
 		0DEFBBA31C91952D0006E1A8 /* criteria.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = criteria.json; sourceTree = "<group>"; };
+		101E42B58959F3D869760082 /* Pods_World_Heritage_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_World_Heritage_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D40ABC736A47DE9235751C4 /* Pods_World_Heritage_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_World_Heritage_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34A8DA62248B0F6EDEF47175 /* Pods-World Heritage UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage UITests/Pods-World Heritage UITests.release.xcconfig"; sourceTree = "<group>"; };
 		529AD995455957671989297A /* Pods-World Heritage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage.release.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage.release.xcconfig"; sourceTree = "<group>"; };
+		6B4D25C997A072D6C52853CA /* Pods-World Heritage Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage Tests/Pods-World Heritage Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		72A07429513F117D8F634932 /* Pods-World Heritage Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage Tests/Pods-World Heritage Tests.release.xcconfig"; sourceTree = "<group>"; };
+		8CB373670E61C30DD2498AD4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95492B779A78C38358C2D36A /* Pods-World Heritage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage.debug.xcconfig"; sourceTree = "<group>"; };
 		B6CE657AFEA96A4F5ADE5B9C /* Pods_World_Heritage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_World_Heritage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA43B56F2BC984E20C60F5B /* Pods-World Heritage UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Heritage UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-World Heritage UITests/Pods-World Heritage UITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0D1700B21CBB49C3007D0738 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DDD2DB246ACA4AC8AAE0EBE /* Pods_World_Heritage_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D1700C01CBB49F1007D0738 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F14C9B1E29B677EFAB1EB37 /* Pods_World_Heritage_UITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0D6AE3171B85A0DF000B0A07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,12 +160,31 @@
 				D91F51F8595EBBAE15BE7745 /* Pods_World_Heritage.framework in Frameworks */,
 				0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */,
 				0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */,
+				C53C46FD834BCE9CC616E21A /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D1700B61CBB49C3007D0738 /* World Heritage Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0D1700B91CBB49C3007D0738 /* Info.plist */,
+				0D1700B71CBB49C3007D0738 /* World_Heritage_Tests.swift */,
+			);
+			path = "World Heritage Tests";
+			sourceTree = "<group>";
+		};
+		0D1700C41CBB49F1007D0738 /* World Heritage UITests */ = {
+			isa = PBXGroup;
+			children = (
+				0D1700C71CBB49F1007D0738 /* Info.plist */,
+				0D1700C51CBB49F1007D0738 /* World_Heritage_UITests.swift */,
+			);
+			path = "World Heritage UITests";
+			sourceTree = "<group>";
+		};
 		0D1A00B21C7230DE00AC64D3 /* WorldHeritage */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +283,8 @@
 				42595D21F1D327D21D5277F3 /* Frameworks */,
 				D3A9B8F31C01F8656592DA61 /* Pods */,
 				0D6AE31B1B85A0E0000B0A07 /* Products */,
+				0D1700B61CBB49C3007D0738 /* World Heritage Tests */,
+				0D1700C41CBB49F1007D0738 /* World Heritage UITests */,
 				0D1A00B21C7230DE00AC64D3 /* WorldHeritage */,
 			);
 			sourceTree = "<group>";
@@ -221,6 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				0D6AE31A1B85A0E0000B0A07 /* WHS β.app */,
+				0D1700B51CBB49C3007D0738 /* World Heritage Tests.xctest */,
+				0D1700C31CBB49F1007D0738 /* World Heritage UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -243,6 +317,9 @@
 				B6CE657AFEA96A4F5ADE5B9C /* Pods_World_Heritage.framework */,
 				0DE33A381B85B775008F6246 /* Realm.framework */,
 				0DE33A391B85B775008F6246 /* RealmSwift.framework */,
+				8CB373670E61C30DD2498AD4 /* Pods.framework */,
+				1D40ABC736A47DE9235751C4 /* Pods_World_Heritage_Tests.framework */,
+				101E42B58959F3D869760082 /* Pods_World_Heritage_UITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -252,6 +329,10 @@
 			children = (
 				95492B779A78C38358C2D36A /* Pods-World Heritage.debug.xcconfig */,
 				529AD995455957671989297A /* Pods-World Heritage.release.xcconfig */,
+				6B4D25C997A072D6C52853CA /* Pods-World Heritage Tests.debug.xcconfig */,
+				72A07429513F117D8F634932 /* Pods-World Heritage Tests.release.xcconfig */,
+				FAA43B56F2BC984E20C60F5B /* Pods-World Heritage UITests.debug.xcconfig */,
+				34A8DA62248B0F6EDEF47175 /* Pods-World Heritage UITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -259,6 +340,47 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0D1700B41CBB49C3007D0738 /* World Heritage Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D1700BC1CBB49C3007D0738 /* Build configuration list for PBXNativeTarget "World Heritage Tests" */;
+			buildPhases = (
+				852E03D003BB2F4B10481BFE /* Check Pods Manifest.lock */,
+				0D1700B11CBB49C3007D0738 /* Sources */,
+				0D1700B21CBB49C3007D0738 /* Frameworks */,
+				0D1700B31CBB49C3007D0738 /* Resources */,
+				70A778FB12CD338F5F48B1F5 /* Embed Pods Frameworks */,
+				0904F312670D2625F25AD42D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D1700BB1CBB49C3007D0738 /* PBXTargetDependency */,
+			);
+			name = "World Heritage Tests";
+			productName = "World Heritage Tests";
+			productReference = 0D1700B51CBB49C3007D0738 /* World Heritage Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0D1700C21CBB49F1007D0738 /* World Heritage UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D1700CA1CBB49F1007D0738 /* Build configuration list for PBXNativeTarget "World Heritage UITests" */;
+			buildPhases = (
+				846E9C6AD28B166821796221 /* Check Pods Manifest.lock */,
+				0D1700BF1CBB49F1007D0738 /* Sources */,
+				0D1700C01CBB49F1007D0738 /* Frameworks */,
+				0D1700C11CBB49F1007D0738 /* Resources */,
+				D183794B161F04F926BE3B50 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D1700C91CBB49F1007D0738 /* PBXTargetDependency */,
+			);
+			name = "World Heritage UITests";
+			productName = "World Heritage UITests";
+			productReference = 0D1700C31CBB49F1007D0738 /* World Heritage UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		0D6AE3191B85A0DF000B0A07 /* World Heritage */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D6AE33B1B85A0E0000B0A07 /* Build configuration list for PBXNativeTarget "World Heritage" */;
@@ -286,10 +408,18 @@
 		0D6AE3121B85A0DF000B0A07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "The Brewery";
 				TargetAttributes = {
+					0D1700B41CBB49C3007D0738 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 0D6AE3191B85A0DF000B0A07;
+					};
+					0D1700C21CBB49F1007D0738 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 0D6AE3191B85A0DF000B0A07;
+					};
 					0D6AE3191B85A0DF000B0A07 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = XL7WH63756;
@@ -310,11 +440,27 @@
 			projectRoot = "";
 			targets = (
 				0D6AE3191B85A0DF000B0A07 /* World Heritage */,
+				0D1700B41CBB49C3007D0738 /* World Heritage Tests */,
+				0D1700C21CBB49F1007D0738 /* World Heritage UITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0D1700B31CBB49C3007D0738 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D1700C11CBB49F1007D0738 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0D6AE3181B85A0DF000B0A07 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,6 +477,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0904F312670D2625F25AD42D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-World Heritage Tests/Pods-World Heritage Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0DE980AA1C81933500954651 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -345,6 +506,51 @@
 			shellPath = /bin/sh;
 			shellScript = "PLIST_PATH=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\nif [ $ALLOWS_ARBITRARY_LOADS ]; then\n    /usr/libexec/PlistBuddy -c \"delete :NSAppTransportSecurity\" \"$PLIST_PATH\"\n    /usr/libexec/PlistBuddy -c \"add :NSAppTransportSecurity:NSAllowsArbitraryLoads bool YES\" \"$PLIST_PATH\"\nfi";
 		};
+		70A778FB12CD338F5F48B1F5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-World Heritage Tests/Pods-World Heritage Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		846E9C6AD28B166821796221 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		852E03D003BB2F4B10481BFE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		B0529B87B033019109C5D1F9 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,7 +563,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CBAA30731FBD7D816880DA2C /* Check Pods Manifest.lock */ = {
@@ -375,6 +581,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		D183794B161F04F926BE3B50 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-World Heritage UITests/Pods-World Heritage UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F9591FC7292581B976E1C3B5 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,12 +608,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0D1700B11CBB49C3007D0738 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D1700B81CBB49C3007D0738 /* World_Heritage_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D1700BF1CBB49F1007D0738 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D1700C61CBB49F1007D0738 /* World_Heritage_UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0D6AE3161B85A0DF000B0A07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,6 +670,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0D1700BB1CBB49C3007D0738 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D6AE3191B85A0DF000B0A07 /* World Heritage */;
+			targetProxy = 0D1700BA1CBB49C3007D0738 /* PBXContainerItemProxy */;
+		};
+		0D1700C91CBB49F1007D0738 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D6AE3191B85A0DF000B0A07 /* World Heritage */;
+			targetProxy = 0D1700C81CBB49F1007D0738 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		0D1A00C51C7230DE00AC64D3 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
@@ -453,6 +703,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0D1700BD1CBB49C3007D0738 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B4D25C997A072D6C52853CA /* Pods-World Heritage Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "World Heritage Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.World-Heritage-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WHS β.app/WHS β";
+			};
+			name = Debug;
+		};
+		0D1700BE1CBB49C3007D0738 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72A07429513F117D8F634932 /* Pods-World Heritage Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "World Heritage Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.World-Heritage-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WHS β.app/WHS β";
+			};
+			name = Release;
+		};
+		0D1700CB1CBB49F1007D0738 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAA43B56F2BC984E20C60F5B /* Pods-World Heritage UITests.debug.xcconfig */;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "World Heritage UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.World-Heritage-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "World Heritage";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		0D1700CC1CBB49F1007D0738 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34A8DA62248B0F6EDEF47175 /* Pods-World Heritage UITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "World Heritage UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.World-Heritage-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "World Heritage";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		0D6AE3391B85A0E0000B0A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */;
@@ -539,7 +847,7 @@
 		};
 		0D6AE33C1B85A0E0000B0A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95492B779A78C38358C2D36A /* Pods-World Heritage.debug.xcconfig */;
+			baseConfigurationReference = 0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -559,7 +867,7 @@
 		};
 		0D6AE33D1B85A0E0000B0A07 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 529AD995455957671989297A /* Pods-World Heritage.release.xcconfig */;
+			baseConfigurationReference = 0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -579,6 +887,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0D1700BC1CBB49C3007D0738 /* Build configuration list for PBXNativeTarget "World Heritage Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D1700BD1CBB49C3007D0738 /* Debug */,
+				0D1700BE1CBB49C3007D0738 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D1700CA1CBB49F1007D0738 /* Build configuration list for PBXNativeTarget "World Heritage UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D1700CB1CBB49F1007D0738 /* Debug */,
+				0D1700CC1CBB49F1007D0738 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0D6AE3151B85A0DF000B0A07 /* Build configuration list for PBXProject "World Heritage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

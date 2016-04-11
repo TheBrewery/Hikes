@@ -1,4 +1,4 @@
-#include "Pods/Target Support Files/Pods-World Heritage/Pods-World Heritage.debug.xcconfig"
+#include "Pods/Target Support Files/Pods/Pods.debug.xcconfig"
 
 BUNDLE_IDENTIFIER = io.thebrewery.world_heritage.debug
 PRODUCT_NAME = WHS β
