@@ -31,9 +31,9 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
         let buttonSize = CGSize(width: 50, height: 50)
         let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
 
-        let button = TBCircularIconButton(icon: Ionic.Pinpoint, frame: buttonFrame, target: self, action: "recenterMapToCurrentLocation")
+        let button = TBCircularIconButton(icon: Ionic.Pinpoint, frame: buttonFrame, target: self, action: #selector(WHSiteViewController.recenterMapToCurrentLocation))
 
-        let tapGesture = UITapGestureRecognizer(target: self, action: "zoomToCurrentLocation")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(WHSiteViewController.zoomToCurrentLocation))
         tapGesture.numberOfTapsRequired = 2
         button.addGestureRecognizer(tapGesture)
 
@@ -54,7 +54,7 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
         let buttonSize = CGSize(width: 50, height: 50)
         let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
 
-        let button = TBCircularIconButton(icon: Ionic.Close, frame: buttonFrame, target: self, action: "didTapMapViewContainer")
+        let button = TBCircularIconButton(icon: Ionic.Close, frame: buttonFrame, target: self, action: #selector(WHSiteViewController.didTapMapViewContainer))
         button.iconColor = UIColor.whiteColor()
         button.color = UIColor.whDarkBlueColor()
 
@@ -160,7 +160,7 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
         mapView.showsUserLocation = true
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(site.coordinate, 50000, 50000), animated: true)
 
-        let tapGestureReconginzer = UITapGestureRecognizer(target: self, action: "didTapMapViewContainer")
+        let tapGestureReconginzer = UITapGestureRecognizer(target: self, action: #selector(WHSiteViewController.didTapMapViewContainer))
         mapViewContainer.addGestureRecognizer(tapGestureReconginzer)
         mapViewContainer.layer.shadowOffset = CGSize(width: 0, height: 1)
         mapViewContainer.layer.shadowOpacity = 0.16
@@ -295,7 +295,7 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
 
     private func setupMenuButtons() {
         let shareButton = UIButton(frame: CGRect(x: 0, y: 30, width: 50, height: 50))
-        shareButton.addTarget(self, action: "didTapShareButton", forControlEvents: .TouchUpInside)
+        shareButton.addTarget(self, action: #selector(WHSiteViewController.didTapShareButton), forControlEvents: .TouchUpInside)
         shareButton.setAttributedTitle(Ionic.IosUploadOutline.attributedStringWithFontSize(30.0), forState: .Normal)
         shareButton.backgroundColor = UIColor.whiteColor()
         shareButton.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -303,7 +303,7 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
         shareButton.layer.cornerRadius = 25.0
 
         let linkButton = UIButton(frame: CGRect(x: 0, y: 30, width: 50, height: 50))
-        linkButton.addTarget(self, action: "didTapLinkButton", forControlEvents: .TouchUpInside)
+        linkButton.addTarget(self, action: #selector(WHSiteViewController.didTapLinkButton), forControlEvents: .TouchUpInside)
         linkButton.setAttributedTitle(Ionic.Link.attributedStringWithFontSize(30.0), forState: .Normal)
         linkButton.backgroundColor = UIColor.whiteColor()
         linkButton.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -311,7 +311,7 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
         linkButton.layer.cornerRadius = 25.0
 
         saveButton = UIButton(frame: CGRect(x: 0, y: 30, width: 50, height: 50))
-        saveButton.addTarget(self, action: "didTapSaveButton", forControlEvents: .TouchUpInside)
+        saveButton.addTarget(self, action: #selector(WHSiteViewController.didTapSaveButton), forControlEvents: .TouchUpInside)
         saveButton.backgroundColor = UIColor.whiteColor()
         saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
         saveButton.layer.shadowOpacity = 0.16

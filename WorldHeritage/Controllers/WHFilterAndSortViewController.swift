@@ -28,7 +28,7 @@ class WHFilterAndSortViewController: TBBaseViewController {
         let buttonSize = CGSize(width: 50, height: 50)
         let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
 
-        let button = TBCircularIconButton(icon: Ionic.Close, frame: buttonFrame, target: self, action: "didTapCloseButton")
+        let button = TBCircularIconButton(icon: Ionic.Close, frame: buttonFrame, target: self, action: #selector(WHFilterAndSortViewController.didTapCloseButton))
         button.iconColor = UIColor.whiteColor()
         button.color = UIColor.whDarkBlueColor()
 

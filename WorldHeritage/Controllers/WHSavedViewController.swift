@@ -78,7 +78,7 @@ class WHSavedViewController: WHSitesViewController {
 
         view.addSubview(emptyLabel)
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapEmptyLabel")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WHSavedViewController.didTapEmptyLabel))
         emptyLabel.addGestureRecognizer(tapGestureRecognizer)
         emptyLabel.userInteractionEnabled = true
     }

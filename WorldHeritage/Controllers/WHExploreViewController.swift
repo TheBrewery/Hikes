@@ -9,7 +9,7 @@ class WHExploreViewController: WHSitesViewController {
         let buttonSize = CGSize(width: 50, height: 50)
         let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
 
-        let button = TBCircularIconButton(icon: Ionic.AndroidFunnel, frame: buttonFrame, target: self, action: "filter")
+        let button = TBCircularIconButton(icon: Ionic.AndroidFunnel, frame: buttonFrame, target: self, action: #selector(WHExploreViewController.filter))
 
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -101,16 +101,16 @@ class WHExploreViewController: WHSitesViewController {
 
     func filter() {
         let filterViewController = WHFilterAndSortViewController(filterPredicate: dataSource.predicate, sortDescriptors: dataSource.sortDescriptors)
-        
+
         filterViewController.sortOrFilterDidChange = { [weak self] (predicate, sortDescriptors) -> Void in
             guard let _self = self else {
                 return
             }
-            
+
             _self.dataSource.predicate = predicate
             _self.dataSource.sortDescriptors = sortDescriptors
         }
-        
+
         self.navigationController?.showDetailViewController(filterViewController, sender: nil)
     }
 

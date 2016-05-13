@@ -23,9 +23,9 @@ class TBMapViewController: TBBaseViewController {
         let buttonSize = CGSize(width: 50, height: 50)
         let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
 
-        let button = TBCircularIconButton(icon: Ionic.Pinpoint, frame: buttonFrame, target: self, action: "recenterMap")
+        let button = TBCircularIconButton(icon: Ionic.Pinpoint, frame: buttonFrame, target: self, action: #selector(TBMapViewController.recenterMap))
 
-        let tapGesture = UITapGestureRecognizer(target: self, action: "zoomToLocation")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TBMapViewController.zoomToLocation))
         tapGesture.numberOfTapsRequired = 2
         button.addGestureRecognizer(tapGesture)
 

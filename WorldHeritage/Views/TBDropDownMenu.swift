@@ -12,7 +12,7 @@ import UIKit
 class TBDropDownMenu: UIView {
     lazy var mainMenuButton: UIButton = {
         let button = UIButton(frame: CGRect(x: self.bounds.width - 50 - self.margin, y: 36, width: 50, height: 50))
-        button.addTarget(self, action: "didTapMainMenuButton", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(TBDropDownMenu.didTapMainMenuButton), forControlEvents: .TouchUpInside)
         button.setAttributedTitle(Ionic.IosPlusEmpty.attributedStringWithFontSize(30.0), forState: .Normal)
         button.backgroundColor = UIColor.whiteColor()
         button.layer.shadowOffset = CGSize(width: 0, height: 1)

@@ -12,8 +12,8 @@ import RealmSwift
 private let mainThreadRealm = try! Realm()
 
 protocol TBRealmDataSource {
-    typealias ObjectType : Object
-    typealias ReturnType
+    associatedtype ObjectType : Object
+    associatedtype ReturnType
 
     var predicate: NSPredicate? { get set }
     var sortDescriptors: [SortDescriptor]? { get set }

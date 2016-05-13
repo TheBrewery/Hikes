@@ -117,7 +117,7 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
         saveButton.layer.shadowOffset = CGSize(width: 0, height: 1)
         saveButton.layer.shadowOpacity = 0.16
         saveButton.backgroundColor = UIColor.clearColor()
-        saveButton.addTarget(self, action: "updateSaved", forControlEvents: .TouchUpInside)
+        saveButton.addTarget(self, action: #selector(WHSiteCollectionViewCell.updateSaved), forControlEvents: .TouchUpInside)
 
         imageViewContainer = UIView(frame: imageViewContainerFrame)
         imageViewContainer.clipsToBounds = true
@@ -208,7 +208,7 @@ class WHSitesViewController: TBBaseViewController {
         let layout = collectionView.collectionViewLayout as! TBParallaxFlowLayout
         layout.minimumLineSpacing = 20.0
 
-        NSNotificationCenter.defaultCenter().addObserver(self.collectionView, selector: "reloadData", name: RealmDataBaseDidLoadNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self.collectionView, selector: #selector(UITableView.reloadData), name: RealmDataBaseDidLoadNotification, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
