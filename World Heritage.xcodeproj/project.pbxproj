@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D1700B81CBB49C3007D0738 /* World_Heritage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1700B71CBB49C3007D0738 /* World_Heritage_Tests.swift */; };
-		0D1700C61CBB49F1007D0738 /* World_Heritage_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1700C51CBB49F1007D0738 /* World_Heritage_UITests.swift */; };
 		0D1A00D01C7230DF00AC64D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1A00B31C7230DE00AC64D3 /* AppDelegate.swift */; };
 		0D1A00D11C7230DF00AC64D3 /* WHExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1A00B51C7230DE00AC64D3 /* WHExploreViewController.swift */; };
 		0D1A00D21C7230DF00AC64D3 /* WHSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1A00B61C7230DE00AC64D3 /* WHSiteViewController.swift */; };
@@ -38,6 +36,7 @@
 		0D956E901C76CA71004A5D86 /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D956E8F1C76CA71004A5D86 /* Site.swift */; };
 		0D956E921C76CC66004A5D86 /* TBRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D956E911C76CC66004A5D86 /* TBRealmDataSource.swift */; };
 		0DA362E91C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA362E81C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift */; };
+		0DB39AA61CC19EE9004C3A83 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB39AA51CC19EE9004C3A83 /* AppDelegateTests.swift */; };
 		0DBC11431C6E3E5B0057C7F6 /* WHDebugConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC113F1C6E3E5B0057C7F6 /* WHDebugConstants.swift */; };
 		0DBC11441C6E3E5B0057C7F6 /* WHReleaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC11401C6E3E5B0057C7F6 /* WHReleaseConstants.swift */; };
 		0DBE86AA1CA31CDE00608050 /* UIImage+Tinted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBE86A91CA31CDE00608050 /* UIImage+Tinted.swift */; };
@@ -74,10 +73,8 @@
 
 /* Begin PBXFileReference section */
 		0D1700B51CBB49C3007D0738 /* World Heritage Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "World Heritage Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D1700B71CBB49C3007D0738 /* World_Heritage_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World_Heritage_Tests.swift; sourceTree = "<group>"; };
 		0D1700B91CBB49C3007D0738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D1700C31CBB49F1007D0738 /* World Heritage UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "World Heritage UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D1700C51CBB49F1007D0738 /* World_Heritage_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World_Heritage_UITests.swift; sourceTree = "<group>"; };
 		0D1700C71CBB49F1007D0738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D1A00B31C7230DE00AC64D3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D1A00B51C7230DE00AC64D3 /* WHExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHExploreViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +107,8 @@
 		0D956E8F1C76CA71004A5D86 /* Site.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
 		0D956E911C76CC66004A5D86 /* TBRealmDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBRealmDataSource.swift; sourceTree = "<group>"; };
 		0DA362E81C75A3C100ADE697 /* TBAnimatedLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAnimatedLaunchViewController.swift; sourceTree = "<group>"; };
+		0DB39AA51CC19EE9004C3A83 /* AppDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
+		0DB39AD41CC70C8F004C3A83 /* World Heritage Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "World Heritage Tests-Prefix.pch"; sourceTree = "<group>"; };
 		0DBC113D1C6E3E5B0057C7F6 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		0DBC113E1C6E3E5B0057C7F6 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		0DBC113F1C6E3E5B0057C7F6 /* WHDebugConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHDebugConstants.swift; sourceTree = "<group>"; };
@@ -157,10 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DE33A3C1B85B82F008F6246 /* Alamofire.framework in Frameworks */,
+				C53C46FD834BCE9CC616E21A /* Pods.framework in Frameworks */,
 				D91F51F8595EBBAE15BE7745 /* Pods_World_Heritage.framework in Frameworks */,
 				0DE33A3A1B85B82F008F6246 /* Realm.framework in Frameworks */,
 				0DE33A3B1B85B82F008F6246 /* RealmSwift.framework in Frameworks */,
-				C53C46FD834BCE9CC616E21A /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				0D1700B91CBB49C3007D0738 /* Info.plist */,
-				0D1700B71CBB49C3007D0738 /* World_Heritage_Tests.swift */,
+				0DB39AD41CC70C8F004C3A83 /* World Heritage Tests-Prefix.pch */,
+				0DB39AA51CC19EE9004C3A83 /* AppDelegateTests.swift */,
 			);
 			path = "World Heritage Tests";
 			sourceTree = "<group>";
@@ -180,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				0D1700C71CBB49F1007D0738 /* Info.plist */,
-				0D1700C51CBB49F1007D0738 /* World_Heritage_UITests.swift */,
 			);
 			path = "World Heritage UITests";
 			sourceTree = "<group>";
@@ -314,12 +313,12 @@
 			isa = PBXGroup;
 			children = (
 				0DE33A331B85B1F7008F6246 /* Alamofire.framework */,
-				B6CE657AFEA96A4F5ADE5B9C /* Pods_World_Heritage.framework */,
-				0DE33A381B85B775008F6246 /* Realm.framework */,
-				0DE33A391B85B775008F6246 /* RealmSwift.framework */,
 				8CB373670E61C30DD2498AD4 /* Pods.framework */,
+				B6CE657AFEA96A4F5ADE5B9C /* Pods_World_Heritage.framework */,
 				1D40ABC736A47DE9235751C4 /* Pods_World_Heritage_Tests.framework */,
 				101E42B58959F3D869760082 /* Pods_World_Heritage_UITests.framework */,
+				0DE33A381B85B775008F6246 /* Realm.framework */,
+				0DE33A391B85B775008F6246 /* RealmSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -327,12 +326,12 @@
 		D3A9B8F31C01F8656592DA61 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				95492B779A78C38358C2D36A /* Pods-World Heritage.debug.xcconfig */,
-				529AD995455957671989297A /* Pods-World Heritage.release.xcconfig */,
 				6B4D25C997A072D6C52853CA /* Pods-World Heritage Tests.debug.xcconfig */,
 				72A07429513F117D8F634932 /* Pods-World Heritage Tests.release.xcconfig */,
 				FAA43B56F2BC984E20C60F5B /* Pods-World Heritage UITests.debug.xcconfig */,
 				34A8DA62248B0F6EDEF47175 /* Pods-World Heritage UITests.release.xcconfig */,
+				95492B779A78C38358C2D36A /* Pods-World Heritage.debug.xcconfig */,
+				529AD995455957671989297A /* Pods-World Heritage.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -350,6 +349,7 @@
 				0D1700B31CBB49C3007D0738 /* Resources */,
 				70A778FB12CD338F5F48B1F5 /* Embed Pods Frameworks */,
 				0904F312670D2625F25AD42D /* Copy Pods Resources */,
+				0DB39AD21CC70184004C3A83 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -408,7 +408,7 @@
 		0D6AE3121B85A0DF000B0A07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "The Brewery";
 				TargetAttributes = {
@@ -491,6 +491,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-World Heritage Tests/Pods-World Heritage Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		0DB39AD21CC70184004C3A83 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 		0DE980AA1C81933500954651 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -618,7 +631,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D1700B81CBB49C3007D0738 /* World_Heritage_Tests.swift in Sources */,
+				0DB39AA61CC19EE9004C3A83 /* AppDelegateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,7 +639,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D1700C61CBB49F1007D0738 /* World_Heritage_UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,14 +719,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B4D25C997A072D6C52853CA /* Pods-World Heritage Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "World Heritage Test/World Heritage Tests-Prefix.pch";
 				INFOPLIST_FILE = "World Heritage Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.World-Heritage-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WHS β.app/WHS β";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -722,13 +740,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 72A07429513F117D8F634932 /* Pods-World Heritage Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "World Heritage Test/World Heritage Tests-Prefix.pch";
 				INFOPLIST_FILE = "World Heritage Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.thebrewery.World-Heritage-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WHS β.app/WHS β";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -751,6 +776,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34A8DA62248B0F6EDEF47175 /* Pods-World Heritage UITests.release.xcconfig */;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "World Heritage UITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -852,7 +878,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/WorldHeritage/Info.plist";
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "$(inherited)";
@@ -872,7 +901,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/WorldHeritage/Info.plist";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

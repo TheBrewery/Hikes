@@ -1,0 +1,18 @@
+//
+//  World Heritage Tests-Prefix.h
+//  World Heritage
+//
+//  Created by James Hildensperger on 4/19/16.
+//  Copyright © 2016 The Brewery. All rights reserved.
+//
+
+
+#ifdef __OBJC__
+
+@import "$(PRODUCT_NAME:c99extidentifier)"
+@import WHS_β
+@import Foundation
+@import Quick
+@import Nimble
+
+#endif
