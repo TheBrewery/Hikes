@@ -42,36 +42,9 @@ class TBMapViewController: TBBaseViewController {
         return button
     }()
 
-    lazy var searchButton: TBCircularIconButton = {
-        let buttonSize = CGSize(width: 50, height: 50)
-        let buttonFrame = CGRect(origin: CGPointZero, size: buttonSize)
-
-        let button = TBCircularIconButton(icon: Ionic.IosSearch, frame: buttonFrame, target: self, action: "search")
-        button.iconColor = UIColor.whiteColor()
-        button.color = UIColor.whDarkBlueColor()
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: buttonSize.height)
-        let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: buttonSize.width)
-        button.addConstraints([heightConstraint, widthConstraint])
-
-        self.view.addSubview(button)
-        let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: -20)
-        let bottomConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: -79 - buttonSize.height)
-        self.view.addConstraints([horizontalConstraint, bottomConstraint])
-        return button
-    }()
-
     var showsRecenterButton = true {
         didSet {
             recenterButton.alpha = CGFloat(showsRecenterButton)
-        }
-    }
-
-    var showsSearchButton = true {
-        didSet {
-            searchButton.alpha = CGFloat(showsSearchButton)
         }
     }
 
@@ -84,7 +57,6 @@ class TBMapViewController: TBBaseViewController {
         preferredBlurredStatusBarStyleBarStyle = .LightDefault
 
         recenterButton.alpha = 1
-        searchButton.alpha = 1
 
         dataSource.fetch { [weak self] (objects) -> () in
             guard let _self = self else {
