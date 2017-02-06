@@ -110,7 +110,7 @@ class WHSiteAnnotation: NSObject, MKAnnotation {
     }
 
     var subtitle: String? {
-        return site.location.isEmpty ? site.countries : site.location
+        return site.location.isEmpty ? site.countries.map({ $0.name }).joinWithSeparator(", "): site.location
     }
 }
 

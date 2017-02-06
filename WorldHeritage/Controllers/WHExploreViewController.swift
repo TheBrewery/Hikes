@@ -100,18 +100,27 @@ class WHExploreViewController: WHSitesViewController {
     // MARK: - Actions
 
     func filter() {
-        let filterViewController = WHFilterAndSortViewController(filterPredicate: dataSource.predicate, sortDescriptors: dataSource.sortDescriptors)
-
-        filterViewController.sortOrFilterDidChange = { [weak self] (predicate, sortDescriptors) -> Void in
+        self.performSegueWithIdentifier("ShowFilterAndSortViewController", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        
+        guard let filterViewController = segue.destinationViewController as? WHFilterAndSortViewController else {
+            return
+        }
+        
+        filterViewController.filterPredicate = dataSource.predicate
+        filterViewController.sortDescriptor = dataSource.sortDescriptors?.first
+        
+        filterViewController.sortOrFilterDidChange = { [weak self] (predicate, sortDescriptor) -> Void in
             guard let _self = self else {
                 return
             }
-
+            
             _self.dataSource.predicate = predicate
-            _self.dataSource.sortDescriptors = sortDescriptors
+            _self.dataSource.sortDescriptors = [sortDescriptor!]
         }
-
-        self.navigationController?.showDetailViewController(filterViewController, sender: nil)
     }
 
     // MARK: - UIScrollViewDelegate

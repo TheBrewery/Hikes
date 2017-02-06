@@ -147,6 +147,11 @@ class WHSiteCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+    }
+
 //    private class func titleHeight(width: CGFloat, site: Site) -> CGFloat {
 //        let boundingSize = CGSize(width: width - 2 * margin, height: 9999)
 //        return site.titleAttributedString().boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, context: nil).height

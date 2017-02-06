@@ -90,6 +90,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-World Heritage UITests/ObjectMapper.framework"
   install_framework "Pods-World Heritage UITests/Realm.framework"
   install_framework "Pods-World Heritage UITests/RealmSwift.framework"
+  install_framework "Pods-World Heritage UITests/SKPhotoBrowser.framework"
+  install_framework "Pods-World Heritage UITests/Static.framework"
   install_framework "Pods-World Heritage UITests/Nimble.framework"
   install_framework "Pods-World Heritage UITests/Quick.framework"
 fi
@@ -100,6 +102,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-World Heritage UITests/ObjectMapper.framework"
   install_framework "Pods-World Heritage UITests/Realm.framework"
   install_framework "Pods-World Heritage UITests/RealmSwift.framework"
+  install_framework "Pods-World Heritage UITests/SKPhotoBrowser.framework"
+  install_framework "Pods-World Heritage UITests/Static.framework"
   install_framework "Pods-World Heritage UITests/Nimble.framework"
   install_framework "Pods-World Heritage UITests/Quick.framework"
 fi

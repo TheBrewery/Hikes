@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 import RealmSwift
+import SKPhotoBrowser
 
 class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
     var viewHasLaidOutContraints = false
@@ -90,6 +91,9 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
     class func createWith(site: Site) -> WHSiteViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("WHSiteViewController") as! WHSiteViewController
         viewController.site = site
+        site.fetchImages { (images, error) in
+            
+        }
         return viewController
     }
 
@@ -111,6 +115,30 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+    
+    func showPhotoBrowser() {
+        guard let images = site.images where images.count > 0 else {
+            return
+        }
+        
+        let photos = images.map({ $0.skphoto()! })
+        
+        let photoBrowser = SKPhotoBrowser(photos: photos)
+//        photoBrowser.displayBackAndForwardButton = false
+        
+//        let toolbar: UIToolbar = photoBrowser.view.subviews.filter { $0 is UIToolbar }.first! as! UIToolbar
+        
+//        let image = UIImage(named: "poweredby-foursquare-white")!
+//        let imageView = UIImageView(image: image)
+//        let scaleFactor: CGFloat = 0.66
+//        let size = CGSizeMake(image.size.width * scaleFactor, image.size.height * scaleFactor)
+//        let origin = CGPoint(x: toolbar.frame.width - size.width - 10.0, y: toolbar.frame.height/2.0 - size.height/2.0)
+//        imageView.frame = CGRect(origin: origin, size: size)
+//        toolbar.addSubview(imageView)
+        
+        photoBrowser.initializePageIndex(0)
+        presentViewController(photoBrowser, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
@@ -183,13 +211,22 @@ class WHSiteViewController: TBBaseViewController, UIScrollViewDelegate {
 
         descriptionAttributedString.appendAttributedString(NSAttributedString(string: "\nSelection Criteria:\n", attributes: [NSFontAttributeName : UIFont.regularFontOfSize(16.0)]))
 
-        for criteria in site.criteria! {
+        for criteria in site.criteria {
             let criteriaAttributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: "(\(criteria.identifier))", attributes: [NSFontAttributeName: UIFont.regularFontOfSize(16.0), NSParagraphStyleAttributeName: style]))
-            let isLast = criteria.identifier == site.criteria?.last?.identifier
-            criteriaAttributedString.appendAttributedString(NSAttributedString(string: isLast ? " \(criteria.descriptionText)" : " \(criteria.descriptionText)\n", attributes: attributes))
+            let isLast = criteria.identifier == site.criteria.last?.identifier
+            criteriaAttributedString.appendAttributedString(NSAttributedString(string: isLast ? " \(criteria.explaination)" : " \(criteria.explaination)\n", attributes: attributes))
             descriptionAttributedString.appendAttributedString(criteriaAttributedString)
         }
+        
         descriptionLabel.attributedText = descriptionAttributedString
+        
+        navigationTitleLabel.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
+        visualEffectView.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
+        imageView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        
+        imageView.userInteractionEnabled = true
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(WHSiteViewController.showPhotoBrowser)))
     }
 
     override func viewDidLayoutSubviews() {

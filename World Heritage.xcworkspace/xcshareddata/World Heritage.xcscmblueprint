@@ -5,11 +5,13 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "1C994507C574D43253159F75C81F0E5FF8356992" : 0,
+    "72C031073F0E7401AEDA6D1B9D7F04ED931ECBFE" : 0,
     "B692E49111326E837C018A81937CE5DD529EB735" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "83378983-050E-4EEA-AC0B-30C41E715E37",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7D8B66F9-792B-4790-B9A0-46BBD0457846",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "1C994507C574D43253159F75C81F0E5FF8356992" : "WorldHeritage\/",
+    "72C031073F0E7401AEDA6D1B9D7F04ED931ECBFE" : "Static\/",
     "B692E49111326E837C018A81937CE5DD529EB735" : "FBAnnotationClusteringSwift\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "World Heritage",
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TheBrewery\/Hikes.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C994507C574D43253159F75C81F0E5FF8356992"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TheBrewery\/Static.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "72C031073F0E7401AEDA6D1B9D7F04ED931ECBFE"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TheBrewery\/FBAnnotationClusteringSwift",

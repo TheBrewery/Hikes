@@ -90,6 +90,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/ObjectMapper.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
+  install_framework "Pods/SKPhotoBrowser.framework"
+  install_framework "Pods/Static.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
@@ -98,4 +100,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/ObjectMapper.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
+  install_framework "Pods/SKPhotoBrowser.framework"
+  install_framework "Pods/Static.framework"
 fi

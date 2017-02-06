@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 import RealmSwift
 import MapKit
+import Alamofire
 
 struct SitesRealmDataSource: TBRealmDataSource {
     typealias ObjectType = Site
@@ -28,23 +29,6 @@ struct SitesRealmDataSource: TBRealmDataSource {
     }
 }
 
-
-//private let StringToIntTransform = TransformOf<Int, String>(fromJSON: { Int($0!) }, toJSON: { $0.map { String($0) } })
-private let StringToDoubleTransform = TransformOf<Double, String>(fromJSON: { Double($0!) }, toJSON: { $0.map { String($0) } })
-
-private let StringToStringArrayTransform = TransformOf<[String], String>(fromJSON: { (string: String?) -> [String]? in
-    guard let string = string else {
-        return nil
-    }
-    return string.componentsSeparatedByCharactersInSet(NSCharacterSet.punctuationCharacterSet())
-    }, toJSON: { (value: [String]?) -> String? in
-        guard let value = value else {
-            return nil
-        }
-        return value.joinWithSeparator(" ")
-})
-
-
 private let criteriaDescriptionDictionary = [
     "i": "to represent a masterpiece of human creative genius",
     "ii": "to exhibit an important interchange of human values, over a span of time or within a cultural area of the world, on developments in architecture or technology, monumental arts, town-planning or landscape design",
@@ -58,24 +42,65 @@ private let criteriaDescriptionDictionary = [
     "x": "to contain the most important and significant natural habitats for in-situ conservation of biological diversity, including those containing threatened species of outstanding universal value from the point of view of science or conservation"
 ]
 
+private let StringToDoubleTransform = TransformOf<Double, String>(fromJSON: {
+    Double($0!)
+    }, toJSON: {
+        $0.map { String($0) }
+})
+
+private let StringToCountriesTransform = TransformOf<List<Country>, String>(fromJSON: {
+    guard let countriesStrings = $0?.componentsSeparatedByCharactersInSet(NSCharacterSet.punctuationCharacterSet()).filter({ !$0.isEmpty }) else {
+        return nil
+    }
+    
+    let countriesArray = countriesStrings.map { string -> Country in
+        return Country(value: ["identifier": string, "name": string])
+    }
+    
+    return List(countriesArray)
+    
+    }, toJSON: {
+        $0.map({ String($0) })
+})
+
+private let StringToCriteriaTransform = TransformOf<List<Criteria>, String>(fromJSON: {
+    guard let criteriaStrings = $0?.componentsSeparatedByCharactersInSet(NSCharacterSet.punctuationCharacterSet()).filter({ !$0.isEmpty }) else {
+        return nil
+    }
+    
+    let criteriaArray = criteriaStrings.map { string -> Criteria in
+        return Criteria(value: ["identifier": string, "explaination": criteriaDescriptionDictionary[string]!])
+    }
+    
+    return List(criteriaArray)
+    
+    }, toJSON: {
+        $0.map({ String($0) })
+})
+
+private let StringToRegionTransform = TransformOf<Region, String>(fromJSON: {
+    return Region(value: ["identifier": $0!, "name":  $0!])
+    }, toJSON: {
+        $0.map({ String($0) })
+})
+
 class Site: TBRealmObject, Mappable {
     private dynamic var criteriaString: String = ""
     private dynamic var urlString: String = ""
     private dynamic var imageUrlString: String = ""
-
+    private dynamic var countriesString: String = ""
+    
     dynamic var lat: Double = 0.0
     dynamic var lng: Double = 0.0
 
     dynamic var extensionType: Int = 0
     dynamic var revision: Int = 0
 
-    dynamic var countries: String = ""
     dynamic var category: String = ""
     dynamic var historicalDescription: String = ""
     dynamic var inscriptionYear: String = ""
     dynamic var location: String = ""
     dynamic var name: String = ""
-    dynamic var region: String = ""
     dynamic var shortDescription: String = ""
     dynamic var countryIso: String = ""
     dynamic var danger: String = ""
@@ -84,15 +109,41 @@ class Site: TBRealmObject, Mappable {
     dynamic var justification: String = ""
     dynamic var saved: Bool = false
 
-    let images = List<Image>()
+    dynamic var region: Region? = nil
+    
+    func fetchImages(completion: ((images: List<Image>?, error: NSError?)-> Void)? ) {
+        if images?.count > 0 {
+            completion?(images: images, error: nil)
+            return
+        }
+        
+        Alamofire.request(Router.GetImages(identifier)).responseJSON { response in
+        switch response.result {
+        case .Success:
+            guard let imagesArray = response.result.value?["images"] as? [[String: AnyObject]] else {
+                let error = NSError(domain: "", code: 501, userInfo: [NSLocalizedDescriptionKey : "No image information fount!"])
+                completion?(images: nil, error: error)
+                return
+            }
+        
+            let images = imagesArray.map({ (imageDictionary) -> Image in
+                let imageMap = Map(mappingType: .FromJSON, JSONDictionary: imageDictionary)
+                return Image(imageMap)!
+            })
+        
+            self.images = List(images)
 
-
-    var criteria: [(identifier: String, descriptionText: String)]? {
-        let criteria = criteriaString.componentsSeparatedByCharactersInSet(NSCharacterSet.punctuationCharacterSet()).filter { !$0.isEmpty }
-        return criteria.map {
-            return ($0, criteriaDescriptionDictionary[$0]!)
+            completion?(images: self.images, error: nil)
+        case .Failure(let error):
+            completion?(images: nil, error: error)
+        }
         }
     }
+    
+    var images: List<Image>?
+    var criteria = List<Criteria>()
+    var countries = List<Country>()
+    
 
     var url: NSURL? {
         return NSURL(string: urlString)
@@ -111,11 +162,8 @@ class Site: TBRealmObject, Mappable {
         name <- map["site"]
         inscriptionYear <- map["date_inscribed"]
         location <- map["location"]
-        countries <- map["states"]
         category <- map["category"]
         historicalDescription <- map["historical_description"]
-        criteriaString <- map["criteria_txt"]
-        region <- map["region"]
         shortDescription <- map["short_description"]
         countryIso <- map["iso_code"]
         danger <- map["danger"]
@@ -126,8 +174,13 @@ class Site: TBRealmObject, Mappable {
         revision <- map["revision"]
         urlString <- map["http_url"]
         imageUrlString <- map["image_url"]
+        
         lat <- (map["latitude"], StringToDoubleTransform)
         lng <- (map["longitude"], StringToDoubleTransform)
+        
+        region <- (map["region"], StringToRegionTransform)
+        criteria <- (map["criteria_txt"], StringToCriteriaTransform)
+        countries <- (map["states"], StringToCountriesTransform)
     }
 
     required convenience init?(_ map: Map) {
@@ -136,11 +189,10 @@ class Site: TBRealmObject, Mappable {
     }
 }
 
-
 extension Site {
     func titleAttributedString(color: UIColor = UIColor.whDarkBlueColor()) -> NSAttributedString {
         let trimmedName = name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let formattedCountries = " \(countries.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))"
+        let formattedCountries = countries.map({ $0.name }).joinWithSeparator(" ")
         let attributedString = NSMutableAttributedString(string: trimmedName, attributes: [NSFontAttributeName: UIFont.regularFontOfSize(20), NSForegroundColorAttributeName: color])
         attributedString.appendAttributedString(NSAttributedString(string: formattedCountries, attributes: [NSFontAttributeName: UIFont.lightFontOfSize(20), NSForegroundColorAttributeName: color]))
         return attributedString

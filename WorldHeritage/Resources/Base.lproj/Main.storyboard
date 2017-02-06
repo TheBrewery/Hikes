@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pbG-lK-oIV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pbG-lK-oIV">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -119,7 +119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HikeSearchCell" rowHeight="128" id="Q5m-kk-xXU" customClass="HikesSearchCell" customModule="WHS_β" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HikeSearchCell" rowHeight="128" id="Q5m-kk-xXU" customClass="SiteSearchCell" customModule="WHS_β" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="128"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q5m-kk-xXU" id="zM7-31-GoT">
@@ -269,7 +269,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8E-zg-eey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="450" y="-172"/>
+            <point key="canvasLocation" x="455" y="-162"/>
         </scene>
         <!--Explore-->
         <scene sceneID="Urb-hz-0gG">
@@ -311,11 +311,116 @@
                     <navigationItem key="navigationItem" id="v0C-yd-Oxg"/>
                     <connections>
                         <outlet property="collectionView" destination="zAj-oR-iMg" id="6Lm-9e-IIP"/>
+                        <segue destination="FpY-dp-YWG" kind="showDetail" identifier="ShowFilterAndSortViewController" id="3Am-Mu-pmi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A3d-uB-qNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-599" y="764"/>
+        </scene>
+        <!--Filter And Sort View Controller-->
+        <scene sceneID="wUd-R6-JdA">
+            <objects>
+                <viewController id="FpY-dp-YWG" customClass="WHFilterAndSortViewController" customModule="WHS_β" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nKs-YQ-3qB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xj8-oe-n4M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qOr-1R-c6W">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="I2r-y6-4xo">
+                                <rect key="frame" x="20" y="30" width="560" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="s54-Wk-Zfz"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Sort"/>
+                                    <segment title="Filter"/>
+                                </segments>
+                                <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentedControlDidChangeValue" destination="FpY-dp-YWG" eventType="valueChanged" id="Eby-d9-uid"/>
+                                </connections>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yr8-ZA-Ld8">
+                                <rect key="frame" x="0.0" y="70" width="600" height="470"/>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="an5-N3-Rbg">
+                                <rect key="frame" x="10" y="550" width="285" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="eNO-mn-Z2I"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapCancelButton" destination="FpY-dp-YWG" eventType="touchUpInside" id="gNz-WM-xgq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHQ-ZD-L8d">
+                                <rect key="frame" x="305" y="550" width="285" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Bs-6L-KZZ"/>
+                                </constraints>
+                                <state key="normal" title="Apply">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapApplyButton" destination="FpY-dp-YWG" eventType="touchUpInside" id="ozw-nx-BkN"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xWj-tp-W6g">
+                                <rect key="frame" x="269" y="338" width="118" height="31"/>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oRZ-Lq-IUx">
+                                <rect key="frame" x="147" y="338" width="118" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xj8-oe-n4M" firstAttribute="top" secondItem="an5-N3-Rbg" secondAttribute="bottom" constant="10" id="4Cg-7g-uxL"/>
+                            <constraint firstItem="I2r-y6-4xo" firstAttribute="leading" secondItem="qOr-1R-c6W" secondAttribute="leadingMargin" id="Fxy-rg-Xn2"/>
+                            <constraint firstItem="Xj8-oe-n4M" firstAttribute="top" secondItem="WHQ-ZD-L8d" secondAttribute="bottom" constant="10" id="PN1-PC-FD0"/>
+                            <constraint firstItem="yr8-ZA-Ld8" firstAttribute="top" secondItem="I2r-y6-4xo" secondAttribute="bottom" constant="10" id="UHY-7G-R2G"/>
+                            <constraint firstItem="I2r-y6-4xo" firstAttribute="trailing" secondItem="qOr-1R-c6W" secondAttribute="trailingMargin" id="XiE-sn-NgT"/>
+                            <constraint firstItem="I2r-y6-4xo" firstAttribute="top" secondItem="nKs-YQ-3qB" secondAttribute="bottom" constant="10" id="YgN-a6-IaO"/>
+                            <constraint firstItem="yr8-ZA-Ld8" firstAttribute="leading" secondItem="qOr-1R-c6W" secondAttribute="leadingMargin" constant="-20" id="Zta-D0-agw"/>
+                            <constraint firstItem="an5-N3-Rbg" firstAttribute="width" secondItem="WHQ-ZD-L8d" secondAttribute="width" id="b3b-gF-IuJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yr8-ZA-Ld8" secondAttribute="trailing" constant="-20" id="d2L-M0-gzX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WHQ-ZD-L8d" secondAttribute="trailing" constant="-10" id="oHJ-8u-kmf"/>
+                            <constraint firstItem="an5-N3-Rbg" firstAttribute="leading" secondItem="qOr-1R-c6W" secondAttribute="leadingMargin" constant="-10" id="pr2-VS-VfQ"/>
+                            <constraint firstItem="WHQ-ZD-L8d" firstAttribute="top" secondItem="yr8-ZA-Ld8" secondAttribute="bottom" constant="10" id="wzU-Sb-zTc"/>
+                            <constraint firstItem="WHQ-ZD-L8d" firstAttribute="leading" secondItem="an5-N3-Rbg" secondAttribute="trailing" constant="10" id="yrk-wo-dOh"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="xWj-tp-W6g"/>
+                                <exclude reference="oRZ-Lq-IUx"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="applyButton" destination="WHQ-ZD-L8d" id="V4E-ja-sKr"/>
+                        <outlet property="cancelButton" destination="an5-N3-Rbg" id="OCj-Of-W93"/>
+                        <outlet property="containerView" destination="yr8-ZA-Ld8" id="mjb-6r-Sv6"/>
+                        <outlet property="sortFilterSegmentedControl" destination="I2r-y6-4xo" id="Bso-Fb-gxL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w0d-B7-zt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-599" y="1462"/>
         </scene>
         <!--Site View Controller-->
         <scene sceneID="UPR-2p-R9a">

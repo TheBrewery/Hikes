@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class HikesSearchCell: UITableViewCell {
+class SiteSearchCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 }
@@ -120,7 +120,7 @@ extension WHSearchViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("HikeSearchCell", forIndexPath: indexPath) as! HikesSearchCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("HikeSearchCell", forIndexPath: indexPath) as! SiteSearchCell
 
         if let site = dataSource[indexPath] {
             cell.titleLabel.attributedText = site.titleAttributedString()

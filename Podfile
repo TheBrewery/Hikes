@@ -1,11 +1,13 @@
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'AlamofireImage', '~> 2.2.0'
-pod 'Alamofire', '~> 3.1.4'
-pod 'ObjectMapper', '~> 1.0.1'
-pod 'RealmSwift', '~> 0.98.6'
+pod 'AlamofireImage', '~> 2.4.0'
+pod 'Alamofire', '~> 3.4.0'
+pod 'ObjectMapper', '~> 1.3.0'
+pod 'RealmSwift', '~> 0.103.1'
+pod 'SKPhotoBrowser', '~> 1.8.8'
 
+pod 'Static', :path => '../Static/'
 pod 'FBAnnotationClusteringSwift', :path => '../FBAnnotationClusteringSwift/'
 
 def testing_pods

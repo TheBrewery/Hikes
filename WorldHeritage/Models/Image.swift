@@ -9,50 +9,66 @@
 import Foundation
 import ObjectMapper
 import RealmSwift
+import SKPhotoBrowser
 
-private let baseImageUrlString = "http://assets.hike.io/hike-images/"
-// small, medium, large.jpg
+private let whcUrlString = "http://whc.unesco.org/"
 
-enum ImageSize: Int {
-    case Small
-    case Medium
-    case Large
-}
-
-enum ImageType: String {
-    case Generic = "Generic"
-    case Facts = "Facts"
-    case Landscape = "Landscape"
-    case Preview = "Preview"
-}
-
-private var _mapping: [String: String] = {
-    return [
-        "identifier" : "id",
-        "type": "type",
-        "path": "string_id",
-        "width": "width",
-        "height": "height",
-        "descriptionHtml": "alt",
-        "attributionUrlString": "attribution_link"]
-    }()
-
-class Image : TBRealmObject {
-    dynamic var type: String = ImageType.Generic.rawValue
-    dynamic var path: String = ""
-    dynamic var descriptionHtml: String = ""
-    dynamic var width: Float = 0.0
-    dynamic var height: Float = 0.0
-    dynamic var attributionUrlString: String = ""
+class Image: TBRealmObject, Mappable {
+    dynamic var author: String = ""
+    dynamic var source: String = ""
+    dynamic var date: String = ""
+    dynamic var descriptionString: String = ""
+    dynamic var copyright: String = ""
     
-    func urlForImageSize (size: ImageSize = ImageSize.Medium) -> NSURL {
-        switch size {
-        case .Small:
-            return NSURL(string: "\(baseImageUrlString)\(self.path)-small.jpg")!
-        case .Large:
-            return NSURL(string: "\(baseImageUrlString)\(self.path)-large.jpg")!
-        default:
-            return NSURL(string: "\(baseImageUrlString)\(self.path)-medium.jpg")!
+    private dynamic var urlString: String?
+    private dynamic var usageTermsUrlString: String?
+    private dynamic var licenseUrlString: String?
+    
+    var licenseUrl: NSURL? {
+        guard let path = licenseUrlString else {
+            return nil
         }
+        return NSURL(string: path)
+    }
+    
+    dynamic var usageTermsUrl: NSURL? {
+        guard let path = usageTermsUrlString else {
+            return nil
+        }
+        return NSURL(string: whcUrlString + path)
+    }
+    
+    dynamic var url: NSURL? {
+        guard let path = urlString else {
+            return nil
+        }
+        return NSURL(string: whcUrlString + path)
+    }
+    
+    func mapping(map: Map) {
+        identifier <- map["_id"]
+        author <- map["author"]
+        source <- map["source"]
+        date <- map["date"]
+        descriptionString <- map["description"]
+        copyright <- map["copyright"]
+        
+        urlString <- map["path"]
+        usageTermsUrlString <- map["termsPath"]
+    }
+    
+    required convenience init?(_ map: Map) {
+        self.init()
+        mapping(map)
+    }
+    
+    func skphoto() -> SKPhoto? {
+        guard let urlString = urlString else {
+            return nil
+        }
+        
+        let photo = SKPhoto.photoWithImageURL(urlString)
+        photo.caption = copyright
+        return photo
     }
 }

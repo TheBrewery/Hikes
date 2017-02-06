@@ -15,6 +15,8 @@ class WHSavedViewController: WHSitesViewController {
     var emptyLabel: UILabel!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         configureEmptyLabel()
 
         dataSource.predicate = NSPredicate(format: "saved == %@", argumentArray: [true])
@@ -25,7 +27,7 @@ class WHSavedViewController: WHSitesViewController {
             _self.emptyLabel.alpha = CGFloat(!Bool(count))
         }
 
-        notificationToken = dataSource.fetchedResults.addNotificationBlock { [weak self] (results, error) -> () in
+        notificationToken = dataSource.fetchedResults.addNotificationBlock { [weak self] (changes) -> Void in
             guard let _self = self else {
                 return
             }
@@ -35,22 +37,42 @@ class WHSavedViewController: WHSitesViewController {
                 }.map {
                     _self.collectionView.indexPathForCell($0)!
             }
-
-            let newAlpha = CGFloat(!Bool(results!.count))
-            if _self.emptyLabel.alpha != newAlpha {
-                UIView.animateWithDuration(0.25) {
-                    _self.emptyLabel.alpha = newAlpha
-                }
+            
+            switch changes {
+            case .Initial:
+                break
+            case .Update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+//                TODO
+//                tableView.beginUpdates()
+//                tableView.insertRowsAtIndexPaths(insertions.map { NSIndexPath(forRow: $0, inSection: 0) },
+//                    withRowAnimation: .Automatic)
+//                tableView.deleteRowsAtIndexPaths(deletions.map { NSIndexPath(forRow: $0, inSection: 0) },
+//                    withRowAnimation: .Automatic)
+//                tableView.reloadRowsAtIndexPaths(modifications.map { NSIndexPath(forRow: $0, inSection: 0) },
+//                    withRowAnimation: .Automatic)
+//                tableView.endUpdates()
+//                let newAlpha = CGFloat(!Bool(results!.count))
+//                if _self.emptyLabel.alpha != newAlpha {
+//                    UIView.animateWithDuration(0.25) {
+//                        _self.emptyLabel.alpha = newAlpha
+//                    }
+//                }
+//                
+//                guard indexPathsToRemove.count > 0 else {
+//                    return
+//                }
+                break
+            case .Error(let error):
+                fatalError("\(error)")
+                break
             }
 
-            guard indexPathsToRemove.count > 0 else {
-                return
-            }
+
 
             _self.collectionView.deleteItemsAtIndexPaths(indexPathsToRemove)
         }
 
-        super.viewDidLoad()
     }
 
     // MARK: - Private
